@@ -49,6 +49,12 @@
     <Filter Include="ヘッダー ファイル\UI">
       <UniqueIdentifier>{30137820-3559-42e5-973b-81735a5a755f}</UniqueIdentifier>
     </Filter>
+      <Filter Include="ソース ファイル\Enemy">
+      <UniqueIdentifier>{9bffa11f-2238-4d12-9002-20e881ac0433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Enemy">
+      <UniqueIdentifier>{fdbcf347-ee47-41cb-a8f6-dfc66a621027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +125,10 @@
     </ClCompile>
     <ClCompile Include="UI\Easing.cpp">
       <Filter>ソース ファイル\UI</Filter>
+      </ClCompile>
+      <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="UI\Easing.h">
       <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
