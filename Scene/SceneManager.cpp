@@ -31,15 +31,15 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
-		Tutorial();
+		Tutorial(keys, oldkeys);
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		Stage();
+		Stage(keys, oldkeys);
 
 		break;
 	case SceneManager::Scene::Result://リザルト
-		Result();
+		Result(keys, oldkeys);
 
 		break;
 	default:
@@ -90,14 +90,23 @@ void SceneManager::Title(char* keys, char* oldkeys) {
 	}
 }
 
-void SceneManager::Tutorial() {
+void SceneManager::Tutorial(char* keys, char* oldkeys) {
 	justBefore = 2;
+	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+		scene_ = Scene::Blackout;
+	}
 }
 
-void SceneManager::Stage() {
+void SceneManager::Stage(char* keys, char* oldkeys) {
 	justBefore = 3;
+	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+		scene_ = Scene::Blackout;
+	}
 }
 
-void SceneManager::Result() {
+void SceneManager::Result(char* keys, char* oldkeys) {
 	justBefore = 4;
+	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+		scene_ = Scene::Blackout;
+	}
 }

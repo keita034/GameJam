@@ -48,17 +48,17 @@ public:
 	/// <summary>
 	/// チュートリアル
 	/// </summary>
-	void Tutorial();
+	void Tutorial(char* keys, char* oldkeys);
 
 	/// <summary>
 	/// バトルステージ
 	/// </summary>
-	void Stage();
+	void Stage(char* keys, char* oldkeys);
 
 	/// <summary>
 	/// リザルト
 	/// </summary>
-	void Result();
+	void Result(char* keys, char* oldkeys);
 
 
 	enum class Scene {
