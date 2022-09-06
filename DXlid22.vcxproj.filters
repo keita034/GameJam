@@ -123,7 +123,7 @@
     <ClCompile Include="Player\Player.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Easing.cpp">
+    <ClCompile Include="UI\Pause.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
     <ClCompile Include="Enemy\Enemy.cpp">
@@ -191,7 +191,7 @@
     <ClInclude Include="Scene\TitleScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Easing.h">
+    <ClInclude Include="UI\Pause.h">
       <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
     <ClInclude Include="Player\Player.h">

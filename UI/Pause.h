@@ -2,11 +2,12 @@
 #include<math.h>
 #include <DxLib.h>
 
-class Easing
+class Pause
 {
 
 private:
 	//ŠÖ”‚Ì§ì
+
 	void Move(int x[], int y[], int r[], int px, int py);
 	void Long(char* keys, char* oldkeys);
 	void Draw(int x[], int y[], int r[]);

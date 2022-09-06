@@ -12,7 +12,7 @@ void SceneManager::Initialize() {
 	gameScene_ = new GameScene();
 	resultScene_ = new ResultScene();
 
-	//イニシャライズする
+	//初期化処理
 	//titleScene_->Initialize();
 	//gameScene_->Initialize();
 	//resultScene_->Initialize();
