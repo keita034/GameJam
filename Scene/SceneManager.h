@@ -43,7 +43,7 @@ public:
 	/// <summary>
 	/// タイトル
 	/// </summary>
-	void Title();
+	void Title(char* keys, char* oldkeys);
 
 	/// <summary>
 	/// チュートリアル
@@ -72,9 +72,9 @@ public:
 private:
 
 	//フェーズ
-	Scene scene_ = Scene::Blackout;
-	//キープシーン
-	Scene keepScene;
+	Scene scene_ = Scene::Title;
+	//直前のシーンを記録
+	int justBefore = 1;
 
 	//タイトル
 	TitleScene* titleScene_ = nullptr;

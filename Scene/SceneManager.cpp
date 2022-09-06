@@ -27,7 +27,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://タイトル
-		Title();
+		Title(keys, oldkeys);
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -58,29 +58,46 @@ void SceneManager::Draw() {
 
 //シーン切り替え
 void SceneManager::Blackout(char* keys, char* oldkeys) {
-	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+	if (isBlackOut == 0) {
 		isBlackOut = 1;
-		pal = 0;
+		pal = 70;
 	}
-	if (isBlackOut == 1) {
+	else if (isBlackOut == 1) {
 		if (pal < 255) {
 			pal += 30;
+		}
+		else if (pal > 255) {
+			if (justBefore == 1) {
+				pal = 0;
+				scene_ = Scene::Tutorial;
+			}
+			else if (justBefore == 2) {
+				pal = 0;
+				scene_ = Scene::Stage;
+			}
+			else if (justBefore == 3) {
+				pal = 0;
+				scene_ = Scene::Result;
+			}
 		}
 	}
 }
 
-void SceneManager::Title() {
-
+void SceneManager::Title(char* keys, char* oldkeys) {
+	justBefore = 1;
+	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+		scene_ = Scene::Blackout;
+	}
 }
 
 void SceneManager::Tutorial() {
-
+	justBefore = 2;
 }
 
 void SceneManager::Stage() {
-
+	justBefore = 3;
 }
 
 void SceneManager::Result() {
-
+	justBefore = 4;
 }
