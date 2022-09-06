@@ -49,6 +49,12 @@
     <Filter Include="ヘッダー ファイル\UI">
       <UniqueIdentifier>{30137820-3559-42e5-973b-81735a5a755f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Enemy">
+      <UniqueIdentifier>{6382fdb4-7495-403a-adc9-e307551568cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Enemy">
+      <UniqueIdentifier>{b5dc1b22-b86d-40dc-b931-9a58659e63c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -120,6 +126,9 @@
     <ClCompile Include="UI\Easing.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\MouseInput.h">
@@ -187,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="Player\Player.h">
       <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
