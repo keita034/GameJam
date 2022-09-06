@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,7 +103,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +138,7 @@
     <ClCompile Include="Particle\HitPar.cpp" />
     <ClCompile Include="Particle\ModeChangeMotion.cpp" />
     <ClCompile Include="Particle\Particle.cpp" />
+    <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Particle\HitPar.h" />
     <ClInclude Include="Particle\ModeChangeMotion.h" />
     <ClInclude Include="Particle\Particle.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
