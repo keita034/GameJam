@@ -1,4 +1,5 @@
 #include "DxLib.h"
+
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "LC1D_26_モミヤマケイタ: タイトル";
 
