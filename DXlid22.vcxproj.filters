@@ -13,36 +13,156 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Input">
+      <UniqueIdentifier>{96c2e4fd-f122-4be0-8bbf-91e091f2be8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Input">
+      <UniqueIdentifier>{660570e8-21e6-414a-836f-9187e57b4fb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Particel">
+      <UniqueIdentifier>{11e11ced-90a9-451e-ba32-a2eba86b7936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Particel">
+      <UniqueIdentifier>{ae189933-86e6-4da3-a65f-4b73fb516551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Util">
+      <UniqueIdentifier>{bd1d91d0-a349-4bb8-939a-323f6df5ec3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Util">
+      <UniqueIdentifier>{1150227b-97f4-4483-ac55-545625e27b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{c487e4f8-4356-4e44-86e3-57b60b0f2e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{2f40fbf0-4167-41cf-a928-28753c055548}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Input\JoyPadInput.cpp">
+      <Filter>ソース ファイル\Input</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Input\KeyBoardInput.cpp">
+      <Filter>ソース ファイル\Input</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Input\MouseInput.cpp">
+      <Filter>ソース ファイル\Input</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Particle\Particle.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\ModeChangeMotion.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\HitPar.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\FireWorksRand.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\FireWorks.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Box.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Camera.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Circle.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Color.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Ease.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Timer.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Util.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Vec2.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ResultScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Input\MouseInput.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Input\KeyBoardInput.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
     </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Input\JoyPadInput.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Particle\FireWorks.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\FireWorksRand.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\HitPar.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\ModeChangeMotion.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\Particle.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Camera.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Circle.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Color.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Ease.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Timer.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Util.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Vec2.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Box.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ResultScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

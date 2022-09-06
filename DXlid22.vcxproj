@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,7 +103,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,17 +129,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Input\JoyPadInput.cpp" />
+    <ClCompile Include="Input\KeyBoardInput.cpp" />
+    <ClCompile Include="Input\MouseInput.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ResultScene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Particle\FireWorks.cpp" />
+    <ClCompile Include="Particle\FireWorksRand.cpp" />
+    <ClCompile Include="Particle\HitPar.cpp" />
+    <ClCompile Include="Particle\ModeChangeMotion.cpp" />
+    <ClCompile Include="Particle\Particle.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\ResultScene.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="Util\Box.cpp" />
+    <ClCompile Include="Util\Camera.cpp" />
+    <ClCompile Include="Util\Circle.cpp" />
+    <ClCompile Include="Util\Color.cpp" />
+    <ClCompile Include="Util\Ease.cpp" />
+    <ClCompile Include="Util\Timer.cpp" />
+    <ClCompile Include="Util\Util.cpp" />
+    <ClCompile Include="Util\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="ResultScene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Input\JoyPadInput.h" />
+    <ClInclude Include="Input\KeyBoardInput.h" />
+    <ClInclude Include="Input\MouseInput.h" />
+    <ClInclude Include="Particle\FireWorks.h" />
+    <ClInclude Include="Particle\FireWorksRand.h" />
+    <ClInclude Include="Particle\HitPar.h" />
+    <ClInclude Include="Particle\ModeChangeMotion.h" />
+    <ClInclude Include="Particle\Particle.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\ResultScene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="Util\Box.h" />
+    <ClInclude Include="Util\Camera.h" />
+    <ClInclude Include="Util\Circle.h" />
+    <ClInclude Include="Util\Color.h" />
+    <ClInclude Include="Util\Ease.h" />
+    <ClInclude Include="Util\Timer.h" />
+    <ClInclude Include="Util\Util.h" />
+    <ClInclude Include="Util\Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

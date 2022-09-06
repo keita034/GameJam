@@ -10,6 +10,9 @@ const int WIN_HEIGHT = 400;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
                    _In_ int nCmdShow) {
+
+	SetOutApplicationLogValidFlag(FALSE);
+
 	// ウィンドウモードに設定
 	ChangeWindowMode(TRUE);
 
