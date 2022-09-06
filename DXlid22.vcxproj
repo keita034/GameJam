@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy;$(ProjectDir)UI</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,7 +103,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Input;$(ProjectDir)Util;$(ProjectDir)Particle;$(ProjectDir)Scene;$(ProjectDir)Player;$(ProjectDir)Enemy;$(ProjectDir)UI</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +143,7 @@
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="UI\Easing.cpp" />
     <ClCompile Include="Util\Box.cpp" />
     <ClCompile Include="Util\Camera.cpp" />
     <ClCompile Include="Util\Circle.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="UI\Easing.h" />
     <ClInclude Include="Util\Box.h" />
     <ClInclude Include="Util\Camera.h" />
     <ClInclude Include="Util\Circle.h" />
