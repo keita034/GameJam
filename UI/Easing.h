@@ -1,8 +1,21 @@
 #pragma once
 #include<math.h>
+#include <DxLib.h>
 
 class Easing
 {
+
+private:
+	//関数の制作
+	void Move(int x[], int y[], int r[], int px, int py);
+	void Long(char* keys, char* oldkeys);
+	void Draw(int x[], int y[], int r[]);
+
+	double easeInOutCubic(double x);
+	double easeInBack(double x);
+	double easeInOutBack(double x);
+	double easeInOutCirc(double x);
+
 public:
 	// 画像などのリソースデータの変数宣言と読み込み
 	int nextGh = LoadGraph("push_space.png", true);
@@ -61,13 +74,4 @@ public:
 
 	int reFlag = 0; int reFlag2 = 0;
 
-	//関数の制作
-	void Move(int x[], int y[], int r[], int px, int py);
-	void Long(char* keys, char* oldkeys);
-	void Draw(int x[], int y[], int r[]);
-
-	double easeInOutCubic(double x);
-	double easeInBack(double x);
-	double easeInOutBack(double x);
-	double easeInOutCirc(double x);
 };
