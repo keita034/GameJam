@@ -1,5 +1,5 @@
 #include "DxLib.h"
-#include""
+#include"SceneManager.h"
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "LC1D_26_モミヤマケイタ: タイトル";
 
@@ -31,7 +31,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetWindowSizeExtendRate(1.0);
 
 	// 画面の背景色を設定する
-	SetBackgroundColor(0x00, 0x00, 0x00);
+	SetBackgroundColor(255, 255, 255);
 
 	// DXlibの初期化
 	if (DxLib_Init() == -1) { return -1; }
@@ -43,7 +43,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 
 	// ゲームループで使う変数の宣言
+	//new
+	SceneManager* sceneManager_ = new SceneManager();
 
+	//イニシャライズ
+	sceneManager_->Initialize();
 
 	// 最新のキーボード情報用
 	char keys[256] = {0};
@@ -66,9 +70,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-
+		sceneManager_->Update(keys, oldkeys);
 
 		// 描画処理
+		sceneManager_->Draw();
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
@@ -83,7 +88,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 
 		// ESCキーが押されたらループから抜ける
-		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
+		if (CheckHitKey(KEY_INPUT_F1) == 1) {
 			break;
 		}
 	}

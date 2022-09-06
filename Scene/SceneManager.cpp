@@ -1,22 +1,29 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager(){}
+SceneManager::SceneManager() {}
 
-SceneManager::~SceneManager(){
+SceneManager::~SceneManager() {
 
 }
 
-void SceneManager::Initialize(){
+void SceneManager::Initialize() {
+	//newする
 	titleScene_ = new TitleScene();
 	gameScene_ = new GameScene();
 	resultScene_ = new ResultScene();
+
+	//イニシャライズする
+	//titleScene_->Initialize();
+	//gameScene_->Initialize();
+	//resultScene_->Initialize();
+
 }
 
-void SceneManager::Update(){
+void SceneManager::Update(char* keys, char* oldkeys) {
 
 	switch (scene_) {
 	case SceneManager::Scene::Blackout://暗転シーン
-		Blackout();
+		Blackout(keys, oldkeys);
 
 		break;
 	case SceneManager::Scene::Title://タイトル
@@ -41,7 +48,7 @@ void SceneManager::Update(){
 
 }
 
-void SceneManager::Draw(){
+void SceneManager::Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -50,25 +57,30 @@ void SceneManager::Draw(){
 
 
 //シーン切り替え
-void SceneManager::Blackout(){
-	pal = 150;
-	if (pal < 255) {
-		pal += pal + 5;
+void SceneManager::Blackout(char* keys, char* oldkeys) {
+	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
+		isBlackOut = 1;
+		pal = 0;
+	}
+	if (isBlackOut == 1) {
+		if (pal < 255) {
+			pal += 30;
+		}
 	}
 }
 
-void SceneManager::Title(){
+void SceneManager::Title() {
 
 }
 
-void SceneManager::Tutorial(){
+void SceneManager::Tutorial() {
 
 }
 
-void SceneManager::Stage(){
+void SceneManager::Stage() {
 
 }
 
-void SceneManager::Result(){
+void SceneManager::Result() {
 
 }

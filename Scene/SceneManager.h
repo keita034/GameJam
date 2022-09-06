@@ -28,7 +28,7 @@ public:
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
-	void Update();
+	void Update(char* keys, char* oldkeys);
 
 	/// <summary>
 	/// 描画
@@ -38,7 +38,7 @@ public:
 	/// <summary>
 	/// 暗転シーン
 	/// </summary>
-	void Blackout();
+	void Blackout(char* keys, char* oldkeys);
 
 	/// <summary>
 	/// タイトル
@@ -72,7 +72,7 @@ public:
 private:
 
 	//フェーズ
-	Scene scene_ = Scene::Title;
+	Scene scene_ = Scene::Blackout;
 	//キープシーン
 	Scene keepScene;
 
@@ -86,6 +86,10 @@ private:
 	//パーティクル
 	int pal = 0;
 	int palTimer;
+
+	//暗転フラグ
+	int isBlackOut = 0;
+
 
 };
 
