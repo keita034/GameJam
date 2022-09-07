@@ -48,16 +48,21 @@ private:
 	// 画像などのリソースデータの変数宣言と読み込み
 	int MenuGh;
 	int SoundGh;
-	int BackGh;
-	int Back2Gh;
+	int GameOutGh;
+	int GameOut2Gh;
 	int ResetGh;
 	int TitleGh;
+	int BackGh;
+	int Back2Gh;
+	int backGroundGh;
+	int soundBarGh;
+	int soundChangeGh;
 
 	Ease* ease_ = nullptr;
 
 	//メンバ変数
-	float timer[5];
-	float MaxTimer[5];
+	float timer[7];
+	float MaxTimer[7];
 
 	float menuX = -300;
 	float menuY = 20;
@@ -75,9 +80,55 @@ private:
 	float TitleY = 180 + 128;
 	float TitleXFinal;
 
-	float backX = -300;
-	float backY = 500;
-	float backXFinal;
+	float GameOutX = -300;
+	float GameOutY = 500;
+	float GameOutXFinal;
+
+	//sound押したとき出てくる背景
+	float backGroundLeftX = 800;
+	float backGroundRightX = 800;
+	float backGroundTopY = 300;
+	float backGroundDownY = 300;
+
+	float backGroundLeftFinalX;
+	float backGroundRightFinalX;
+	float backGroundTopFinalY;
+	float backGroundDownFinalY;
+
+	float backLeftX = 800;
+	float backRightX = 800;
+	float backTopY = 300;
+	float backDownY = 300;
+
+	float backLeftFinalX;
+	float backRightFinalX;
+	float backTopFinalY;
+	float backDownFinalY;
+
+
+
+
+	//サウンドバーたち
+	float soundBarLeftX = 800;
+	float soundBarRightX = 800;
+	float soundBarTopY = 300;
+	float soundBarDownY = 300;
+
+	float soundBarLeftFinalX;
+	float soundBarRightFinalX;
+	float soundBarTopFinalY;
+	float soundBarDownFinalY;
+
+	float soundChangeLeftX = 800;
+	float soundChangeRightX = 800;
+	float soundChangeTopY = 300;
+	float soundChangeDownY = 300;
+	
+	float soundChangeLeftFinalX;
+	float soundChangeRightFinalX;
+	float soundChangeTopFinalY;
+	float soundChangeDownFinalY;
+
 
 
 	int isPause = 3;
@@ -87,11 +138,16 @@ private:
 	int isHit2 = 0;
 	int isHit3 = 0;
 	int isHit4 = 0;
+	int isHit5 = 0;
 
 	int pal = 255;
 	int pal2 = 255;
 	int pal3 = 255;
 	int pal4 = 255;
+	int pal5 = 255;
 
+	int isSetting = 0;
+	int isSettingBack = 0;
+	int isSettingAndEsc = 0;
 	int isFinish = 0;
 };

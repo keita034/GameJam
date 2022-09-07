@@ -5,10 +5,15 @@ void Pause::Initialize() {
 	// 画像などのリソースデータの変数宣言と読み込み
 	MenuGh = LoadGraph("Resources/Menu.png", true);
 	SoundGh = LoadGraph("Resources/Sound.png", true);
-	BackGh = LoadGraph("Resources/Back.png", true);
-	Back2Gh = LoadGraph("Resources/Back2.png", true);
+	GameOutGh = LoadGraph("Resources/GameOut.png", true);
+	GameOut2Gh = LoadGraph("Resources/GameOut2.png", true);
 	ResetGh = LoadGraph("Resources/Reset.png", true);
 	TitleGh = LoadGraph("Resources/Title.png", true);
+	BackGh = LoadGraph("Resources/Back.png", true);
+	Back2Gh = LoadGraph("Resources/Back2.png", true);
+	backGroundGh = LoadGraph("Resources/SettingBackGround.png", true);
+	soundBarGh = LoadGraph("Resources/soundBar.png", true);
+	soundChangeGh = LoadGraph("Resources/soundChange.png", true);
 
 	//イージング初期化
 	ease_ = new Ease();
@@ -18,6 +23,8 @@ void Pause::Initialize() {
 	MaxTimer[2] = 100.0f;
 	MaxTimer[3] = 105.0f;
 	MaxTimer[4] = 120.0f;
+	MaxTimer[5] = 20.0f;
+	MaxTimer[6] = 120.0f;
 
 }
 
@@ -30,31 +37,80 @@ void Pause::Update() {
 void Pause::Move() {
 
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 7; i++) {
 		if (timer[i] < MaxTimer[i]) {
 			timer[i]++;
 		}
 	}
 
+	//エスケープ押されたとき
 	if (isPause == 0) {
-		menuXFinal = 150; soundXFinal = 30; ResetXFinal = 30; TitleXFinal = 30; backXFinal = 120;
+		menuXFinal = 150; soundXFinal = 30; ResetXFinal = 30; TitleXFinal = 30; GameOutXFinal = 120;
 		menuX = menuX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
 		soundX = soundX + (soundXFinal - soundX) * ease_->easeInOutCubic(timer[1] / MaxTimer[1]);
 		ResetX = ResetX + (ResetXFinal - ResetX) * ease_->easeInOutCubic(timer[2] / MaxTimer[2]);
 		TitleX = TitleX + (TitleXFinal - TitleX) * ease_->easeInOutCubic(timer[3] / MaxTimer[3]);
-		backX = backX + (backXFinal - backX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
+		GameOutX = GameOutX + (GameOutXFinal - GameOutX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
 	}
-	if (isPause == 1) {
-		menuXFinal = -400; soundXFinal = -500; ResetXFinal = -500; TitleXFinal = -500; backXFinal = -300;
+	else if (isPause == 1) {
+		menuXFinal = -400; soundXFinal = -500; ResetXFinal = -500; TitleXFinal = -500; GameOutXFinal = -300;
 		menuX = menuX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
 		soundX = soundX + (soundXFinal - soundX) * ease_->easeInOutCubic(timer[1] / MaxTimer[1]);
 		ResetX = ResetX + (ResetXFinal - ResetX) * ease_->easeInOutCubic(timer[2] / MaxTimer[2]);
 		TitleX = TitleX + (TitleXFinal - TitleX) * ease_->easeInOutCubic(timer[3] / MaxTimer[3]);
-		backX = backX + (backXFinal - backX) * ease_->easeInOutCubic(timer[4] / MaxTimer[4]);
+		GameOutX = GameOutX + (GameOutXFinal - GameOutX) * ease_->easeInOutCubic(timer[4] / MaxTimer[4]);
+	}
+	//設定押されたとき
+	if (isSettingBack == 0) {
+		if (isSetting == 1) {
+			//位置決め
+			backGroundLeftFinalX = 400; backGroundRightFinalX = 1200; backGroundTopFinalY = 100; backGroundDownFinalY = 600;
+			backLeftFinalX = 800 - 62; backRightFinalX = 800 + 62; backTopFinalY = 490; backDownFinalY = 540;
+			soundBarLeftFinalX = 590;soundBarRightFinalX = 1100;soundBarTopFinalY = 250;soundBarDownFinalY = 280;
+			soundChangeLeftFinalX = 1000 - 32;soundChangeRightFinalX = 1000 + 32;soundChangeTopFinalY = 265 - 32;soundChangeDownFinalY = 265 + 32;
+
+			backGroundLeftX = backGroundLeftX + (backGroundLeftFinalX - backGroundLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backGroundRightX = backGroundRightX + (backGroundRightFinalX - backGroundRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backGroundTopY = backGroundTopY + (backGroundTopFinalY - backGroundTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backGroundDownY = backGroundDownY + (backGroundDownFinalY - backGroundDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+			backLeftX = backLeftX + (backLeftFinalX - backLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backRightX = backRightX + (backRightFinalX - backRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backTopY = backTopY + (backTopFinalY - backTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			backDownY = backDownY + (backDownFinalY - backDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+			//サウンドバー
+			soundBarLeftX = soundBarLeftX + (soundBarLeftFinalX - soundBarLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			soundBarRightX = soundBarRightX + (soundBarRightFinalX - soundBarRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			soundBarTopY = soundBarTopY + (soundBarTopFinalY - soundBarTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			soundBarDownY = soundBarDownY + (soundBarDownFinalY - soundBarDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		}
+	}
+	else if (isSettingBack == 1) {
+
+		backGroundLeftFinalX = 800; backGroundRightFinalX = 800; backGroundTopFinalY = 300; backGroundDownFinalY = 300;
+		backLeftFinalX = 800; backRightFinalX = 800; backTopFinalY = 300; backDownFinalY = 300;
+
+		backGroundLeftX = backGroundLeftX + (backGroundLeftFinalX - backGroundLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backGroundRightX = backGroundRightX + (backGroundRightFinalX - backGroundRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backGroundTopY = backGroundTopY + (backGroundTopFinalY - backGroundTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backGroundDownY = backGroundDownY + (backGroundDownFinalY - backGroundDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+		backLeftX = backLeftX + (backLeftFinalX - backLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backRightX = backRightX + (backRightFinalX - backRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backTopY = backTopY + (backTopFinalY - backTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		backDownY = backDownY + (backDownFinalY - backDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 	}
 
-	if (timer[0] >= 50.0f) {
-		isPause = 3;
+
+	//ただの初期化調整
+	if (isSettingBack == 1) {
+		if (timer[5] >= MaxTimer[5]) {
+			isSetting = 0;
+			isSettingBack = 0;
+			isSettingAndEsc = 0;
+			pal5 = 0;
+		}
 	}
 
 }
@@ -65,7 +121,7 @@ void Pause::MenuSelect() {
 
 	//矩形の当たり判定
 	if (soundX < x && x < soundX + 178) {
-		if (soundY < y && y < soundY + 64) {
+		if (soundY < y && y < soundY + 67) {
 			isHit = 1;
 			pal = 255; pal2 = 120; pal3 = 120;
 		}
@@ -78,7 +134,7 @@ void Pause::MenuSelect() {
 	}
 
 	if (ResetX < x && x < ResetX + 178) {
-		if (ResetY < y && y < ResetY + 64) {
+		if (ResetY - 3 < y && y < ResetY + 67) {
 			isHit2 = 1;
 			pal = 120; pal2 = 255; pal3 = 120;
 		}
@@ -91,7 +147,7 @@ void Pause::MenuSelect() {
 	}
 
 	if (TitleX < x && x < TitleX + 178) {
-		if (TitleY < y && y < TitleY + 64) {
+		if (TitleY - 3 < y && y < TitleY + 64) {
 			isHit3 = 1;
 			pal = 120; pal2 = 120; pal3 = 255;
 		}
@@ -103,8 +159,8 @@ void Pause::MenuSelect() {
 		isHit3 = 0;
 	}
 
-	if (backX < x && x < backX + 178) {
-		if (backY < y && y < backY + 64) {
+	if (GameOutX < x && x < GameOutX + 178) {
+		if (GameOutY < y && y < GameOutY + 64) {
 			isHit4 = 1;
 			pal = 120; pal2 = 120; pal3 = 120;
 		}
@@ -116,12 +172,51 @@ void Pause::MenuSelect() {
 		isHit4 = 0;
 	}
 
+	if (isSetting == 1) {
+		if (backLeftX < x && x < backRightX) {
+			if (backTopY < y && y < backDownY) {
+				isHit5 = 1;
+			}
+			else {
+				isHit5 = 0;
+			}
+		}
+		else {
+			isHit5 = 0;
+		}
+	}
+
+
+	if (isHit == 1) {
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
+			timer[5] = 0;
+			isSetting = 1;
+			pal5 = 70;
+		}
+	}
 	if (isHit4 == 1) {
 		int Mouse = GetMouseInput();
 		if (Mouse && MOUSE_INPUT_LEFT) {
 			isFinish = 1;
 		}
 	}
+	if (isHit5 == 1) {
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
+			timer[5] = 0;
+			isSettingBack = 1;
+		}
+	}
+
+	if (isSettingAndEsc == 0) {
+		if (isPause == 1) {
+			isSettingAndEsc = 1;
+			timer[5] = 0;
+			isSettingBack = 1;
+		}
+	}
+
 
 	if (isHit == 0) {
 		if (isHit2 == 0) {
@@ -137,7 +232,7 @@ void Pause::MenuSelect() {
 
 void Pause::Draw() {
 	DrawBox(0, 0, menuX + 200, 800, GetColor(100, 100, 100), true);
-	DrawBox(0, 0, backX + 190, 800, GetColor(100, 100, 100), true);
+	DrawBox(0, 0, GameOutX + 190, 800, GetColor(100, 100, 100), true);
 	DrawGraph(menuX, menuY, MenuGh, true);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
@@ -153,12 +248,28 @@ void Pause::Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	if (isHit4 == 0) {
-		DrawGraph(backX, backY, BackGh, true);
+		DrawGraph(GameOutX, GameOutY, GameOutGh, true);
 	}
 	else {
-		DrawGraph(backX, backY, Back2Gh, true);
+		DrawGraph(GameOutX, GameOutY, GameOut2Gh, true);
 	}
 	
+	if (isSetting == 1) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal5);
+		DrawBox(0, 0, 1280, 800, GetColor(0, 0, 0), true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		DrawExtendGraph(backGroundLeftX, backGroundTopY, backGroundRightX, backGroundDownY, backGroundGh, true);
+
+		DrawExtendGraph(soundBarLeftX, soundBarTopY, soundBarRightX, soundBarDownY, soundBarGh, true);
+		if (isHit5 == 0) {
+			DrawExtendGraph(backLeftX, backTopY, backRightX, backDownY, BackGh, true);
+		}
+		else {
+			DrawExtendGraph(backLeftX, backTopY, backRightX, backDownY, Back2Gh, true);
+		}
+	}
+
 }
 
 void Pause::SetIsEsc(int isEsc) {
