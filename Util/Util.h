@@ -4,9 +4,7 @@
 #include "Color.h"
 #include "Vec2.h"
 #include "Ease.h"
-const char TITLE[] = "DxLib";
-const int WIN_WIDTH = 1920;
-const int WIN_HEIGHT = 1080;
+
 const double PI = 3.141592653589;
 
 enum Scene

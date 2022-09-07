@@ -9,7 +9,6 @@ void Player::Initialize()
 void Player::Update()
 {
 	float rotSpeed = 0.05f;
-	float radius = 30.0f;
 
 	if (key.GetKey(KEY_INPUT_LEFT))
 	{
@@ -74,6 +73,16 @@ void Player::Draw()
 	{
 		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
 	}
+}
+
+Vec2 Player::GetPos()
+{
+	return pos;
+}
+
+Vec2 Player::GetScreen()
+{
+	return screen;
 }
 
 void Player::Attack()

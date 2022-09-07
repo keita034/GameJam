@@ -3,7 +3,7 @@ Enemy::Enemy()
 {
 	pos_ = { 0,0 };
 	speed_ = { 2,2 };
-	playerPos_ = { 0,0 };
+	playerPos_ = { 1280.0f,720.0f };
 	radius_ = 5;
 	pattern_ = heightUp;
 }
@@ -88,7 +88,12 @@ void Enemy::Update(Vec2 playerNpos)
 	}
 }
 
-void Enemy::Draw()
+void Enemy::Draw(Vec2 screen)
 {
-	DrawCircle(pos_.x, pos_.y, radius_, GetColor(255, 255, 255), true);
+	DrawCircle(pos_.x - screen.x, pos_.y - screen.y, radius_, GetColor(255, 255, 255), true);
+}
+
+bool Enemy::IsDeath()
+{
+	return isDeath_;
 }
