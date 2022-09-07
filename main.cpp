@@ -89,6 +89,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (ProcessMessage() == -1) {
 			break;
 		}
+		//やめるボタンを押したらやめる
+		if (sceneManager_->GetFinish() == 1) {
+			break;
+		}
 
 		// ESCキーが押されたらループから抜ける
 		if (CheckHitKey(KEY_INPUT_F1) == 1) {

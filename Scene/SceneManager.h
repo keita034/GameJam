@@ -60,6 +60,7 @@ public:
 	/// </summary>
 	void Result(char* keys, char* oldkeys);
 
+	int GetFinish();
 
 	enum class Scene {
 		Blackout,//à√ì]ÉVÅ[Éì
@@ -93,6 +94,8 @@ private:
 	int isBlackOut = 0;
 
 	int isESC = 0;
+
+	int isFinish = 0;
 
 };
 

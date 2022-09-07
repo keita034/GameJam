@@ -37,7 +37,7 @@ void Pause::Move() {
 	}
 
 	if (isPause == 0) {
-		menuXFinal = 150; soundXFinal = 30; ResetXFinal = 30; TitleXFinal = 30; backXFinal = 170;
+		menuXFinal = 150; soundXFinal = 30; ResetXFinal = 30; TitleXFinal = 30; backXFinal = 120;
 		menuX = menuX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
 		soundX = soundX + (soundXFinal - soundX) * ease_->easeInOutCubic(timer[1] / MaxTimer[1]);
 		ResetX = ResetX + (ResetXFinal - ResetX) * ease_->easeInOutCubic(timer[2] / MaxTimer[2]);
@@ -103,7 +103,7 @@ void Pause::MenuSelect() {
 		isHit3 = 0;
 	}
 
-	if (backX < x && x < backX + 124) {
+	if (backX < x && x < backX + 178) {
 		if (backY < y && y < backY + 64) {
 			isHit4 = 1;
 			pal = 120; pal2 = 120; pal3 = 120;
@@ -119,7 +119,7 @@ void Pause::MenuSelect() {
 	if (isHit4 == 1) {
 		int Mouse = GetMouseInput();
 		if (Mouse && MOUSE_INPUT_LEFT) {
-			timer[0] = 0; timer[1] = 0; timer[2] = 0; timer[3] = 0; timer[4] = 0;
+			isFinish = 1;
 		}
 	}
 
@@ -171,7 +171,7 @@ void Pause::TimerReset(int x) {
 	}
 }
 
-int Pause::GetPause() {
+int Pause::GetFinish() {
 
-	return isPause;
+	return isFinish;
 }

@@ -35,12 +35,14 @@ public:
 	/// </summary>
 	void MenuSelect();
 
+
+
 	//Esc押したら0出す1戻す
 	void SetIsEsc(int isEsc);
 	//xには0を入れる
 	void TimerReset(int x);
 
-	int GetPause();
+	int GetFinish();
 
 private:
 	// 画像などのリソースデータの変数宣言と読み込み
@@ -90,4 +92,6 @@ private:
 	int pal2 = 255;
 	int pal3 = 255;
 	int pal4 = 255;
+
+	int isFinish = 0;
 };

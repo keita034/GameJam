@@ -150,3 +150,10 @@ void SceneManager::Result(char* keys, char* oldkeys) {
 		scene_ = Scene::Blackout;
 	}
 }
+
+
+int SceneManager::GetFinish() {
+	isFinish = pause_->GetFinish();
+
+	return isFinish;
+}
