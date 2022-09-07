@@ -68,11 +68,11 @@ private:
 	float soundXFinal;
 
 	float ResetX = -300;
-	float ResetY = 170 + 64;
+	float ResetY = 175 + 64;
 	float ResetXFinal;
 
 	float TitleX = -300;
-	float TitleY = 170 + 128;
+	float TitleY = 180 + 128;
 	float TitleXFinal;
 
 	float backX = -300;
