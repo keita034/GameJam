@@ -28,7 +28,7 @@ private:
 	//半径
 	int radius = 30;
 	//スクリーン座標
-	Vec2 screen = { 640.0f,610.0f };
+	Vec2 screen = { 640.0f,360.0f };
 	int attackTime = 40;
 	int attackInterval = 0;
 	int maxAttackInterval = 50 * 10;

@@ -2,7 +2,7 @@
 
 void Player::Initialize()
 {
-	pos = {1280.0f,980.0f};
+	pos = {1280.0f,720.0f};
 	angle = -DX_PI_F / 2;
 }
 
