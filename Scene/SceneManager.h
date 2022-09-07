@@ -3,7 +3,7 @@
 #include"TitleScene.h"
 #include"GameScene.h"
 #include"ResultScene.h"
-
+#include"Pause.h"
 
 class SceneManager
 {
@@ -83,6 +83,8 @@ private:
 	//リザルト
 	ResultScene* resultScene_ = nullptr;
 
+	Pause* pause_ = nullptr;
+
 	//パーティクル
 	int pal = 0;
 	int palTimer;
@@ -90,6 +92,7 @@ private:
 	//暗転フラグ
 	int isBlackOut = 0;
 
+	int isESC = 0;
 
 };
 
