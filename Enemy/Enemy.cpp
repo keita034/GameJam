@@ -4,6 +4,7 @@ Enemy::Enemy()
 	pos_ = { 0,0 };
 	speed_ = { 2,2 };
 	playerPos_ = { 0,0 };
+	radius_ = 5;
 	pattern_ = heightUp;
 }
 
@@ -19,9 +20,8 @@ void Enemy::Initialize(Pattern pattern, Vec2 pos, Vec2 speed)
 	speed_ = speed;
 }
 
-void Enemy::Update()
+void Enemy::Update(Vec2 playerNpos)
 {
-
 	// プレイヤーの最初の位置を取得
 	Vec2 centerPos = playerPos_;
 
@@ -37,37 +37,58 @@ void Enemy::Update()
 	case heightUp:
 		speed_ = { 0,-2 };
 		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case heightDown:
-
+		speed_ = { 0,2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case widthL:
-
+		speed_ = { -2,0 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case widthR:
-
+		speed_ = { 2,0 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case upperL:
-
+		speed_ = { 2,2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case upperR:
-
+		speed_ = { -2,2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case diagonallyDownL:
-
+		speed_ = { 2,-2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case diagonallyDownR:
-
+		speed_ = { -2,-2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	case traking:
-
+		// プレイヤーの現在の位置を取得とエネミーの位置でベクトルを作る
+		velocity = playerNpos - pos_;
+		velocity.Normalized();
+		speed_ = { 2,2 };
+		velocity *= speed_;
+		pos_ += velocity;
 		break;
 	default:
+
 		break;
 	}
 }
 
 void Enemy::Draw()
 {
-
+	DrawCircle(pos_.x, pos_.y, radius_, GetColor(255, 255, 255), true);
 }

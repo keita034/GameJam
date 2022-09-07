@@ -28,7 +28,7 @@ public:
 	void Initialize(Pattern pattern,Vec2 pos,Vec2 speed);
 
 	// 更新関数
-	void Update();
+	void Update(Vec2 playerNpos);
 
 	// 描画関数
 	void Draw();
@@ -36,6 +36,7 @@ private:
 	// メンバー変数
 	Vec2 pos_;
 	Vec2 speed_;
+	float radius_;
 	Vec2 playerPos_;
 
 	// エネミーの行動パターン
