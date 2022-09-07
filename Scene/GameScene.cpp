@@ -17,7 +17,7 @@ void GameScene::Update(){
 		std::unique_ptr<Enemy> enemy;
 		enemy = std::make_unique<Enemy>();
 
-		enemy->Initialize(heightUp, { 640.0f ,1440.0f }, { 5.0f,5.0f });
+		enemy->Initialize(UpperL, { 640.0f ,1440.0f }, 5.0f);
 		enemys_.push_back(std::move(enemy));
 	}
 
@@ -40,4 +40,9 @@ void GameScene::Draw(){
 	{
 		enemy->Draw(player_->GetScreen());
 	}
+}
+
+void GameScene::CheckCollisions()
+{
+	
 }

@@ -65,8 +65,13 @@ public:
 	void Draw();
 
 	Vec2 GetPos();
+	int GetRadius();
 
 	Vec2 GetScreen();
+
+	bool GetAttackFlag();
+
+	int GetAttackRadius();
 
 private:
 

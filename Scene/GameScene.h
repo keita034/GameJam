@@ -2,6 +2,7 @@
 #include"DxLib.h"
 #include"Player.h"
 #include"Enemy.h"
+#include"Collision.h"
 #include<memory>
 #include<list>
 
@@ -24,6 +25,8 @@ public:
 	/// •`‰æ
 	/// </summary>
 	void Draw();
+
+	void CheckCollisions();
 
 private:
 	std::unique_ptr<Player> player_;

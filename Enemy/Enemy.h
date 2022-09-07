@@ -4,15 +4,16 @@
 #include"KeyBoardInput.h"
 enum Pattern
 {
-	heightUp,       // 縦上
-	heightDown,     // 縦下
-	widthL,         // 横左
-	widthR,         // 横右
-	upperL,         // 左斜め上
-	upperR,         // 右斜め上
-	diagonallyDownL,// 左斜め下
-	diagonallyDownR,// 右斜め下
-	traking         // 追尾
+	HeightUp,       // 縦上
+	HeightDown,     // 縦下
+	WidthL,         // 横左
+	WidthR,         // 横右
+	UpperL,         // 左斜め上
+	UpperR,         // 右斜め上
+	DiagonallyDownL,// 左斜め下
+	DiagonallyDownR,// 右斜め下
+	Traking,        // 追尾
+	Center,         //中心を通る
 };
 
 class Enemy
@@ -25,7 +26,7 @@ public:
 	// メンバー関数
 
 	// 初期化関数
-	void Initialize(Pattern pattern,Vec2 pos,Vec2 speed);
+	void Initialize(Pattern pattern,Vec2 pos,float speed);
 
 	// 更新関数
 	void Update(Vec2 playerNpos);
@@ -38,7 +39,8 @@ public:
 private:
 	// メンバー変数
 	Vec2 pos_;
-	Vec2 speed_;
+	float speed_;
+	Vec2 velocity_;
 	float radius_;
 	Vec2 playerPos_;
 	bool isDeath_;

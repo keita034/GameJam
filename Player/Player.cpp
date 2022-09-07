@@ -80,9 +80,24 @@ Vec2 Player::GetPos()
 	return pos;
 }
 
+int Player::GetRadius()
+{
+	return radius;
+}
+
 Vec2 Player::GetScreen()
 {
 	return screen;
+}
+
+bool Player::GetAttackFlag()
+{
+	return attackFlag;
+}
+
+int Player::GetAttackRadius()
+{
+	return attackRadius;
 }
 
 void Player::Attack()
