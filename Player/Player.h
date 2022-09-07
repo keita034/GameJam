@@ -10,30 +10,39 @@ private:
 
 	//座標
 	Vec2 pos;
+	//半径
+	int radius = 64;
+	//角度
+	float angle;
 	//スピード
 	float speed = 5.0f;
-	//アタックスピード
-	float attackSpeed;
-	//フィールドサイズ
-	Vec2 fieldSize = { 2560.0f ,1440.0f };
-	Vec2 zero = { 0.0f,0.0f };
+
 	//正面ベクトルの終点
 	Vec2 front;
 	//正面ベクトル
 	Vec2 frontVec;
 	//正面ベクトルの正規化
 	Vec2 normFrontVec;
-	//角度
-	float angle;
-	//半径
-	int radius = 30;
+	
+	//フィールドサイズ
+	Vec2 fieldSize = { 2560.0f ,1440.0f };
+	Vec2 zero = { 0.0f,0.0f };
+
 	//スクリーン座標
 	Vec2 screen = { 640.0f,360.0f };
-	int attackTime = 40;
-	int attackInterval = 0;
-	int maxAttackInterval = 50 * 10;
-	bool attackFlag = false;
 
+	//攻撃時間
+	int attackTime = 50 * 1;
+	//攻撃インターバル
+	int attackInterval = 0;
+	//最大攻撃インターバル
+	int maxAttackInterval = 50 * 2;
+	//攻撃フラグ
+	bool attackFlag = false;
+	//攻撃半径
+	int attackRadius = 150;
+
+	int level = 0;
 
 public:
 

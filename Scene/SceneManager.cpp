@@ -14,7 +14,7 @@ void SceneManager::Initialize() {
 
 	//初期化処理
 	//titleScene_->Initialize();
-	//gameScene_->Initialize();
+	gameScene_->Initialize();
 	//resultScene_->Initialize();
 
 }
@@ -27,8 +27,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://タイトル
-		Title(keys, oldkeys);
-
+		//Title(keys, oldkeys);
+		gameScene_->Update();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 		Tutorial(keys, oldkeys);
@@ -56,6 +56,24 @@ void SceneManager::Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	switch (scene_)
+	{
+	case SceneManager::Scene::Title://タイトル
+		gameScene_->Draw();
+		break;
+	case SceneManager::Scene::Tutorial://チュートリアル
+
+		break;
+	case SceneManager::Scene::Stage://バトルステージ
+
+		break;
+	case SceneManager::Scene::Result://リザルト
+
+		break;
+	default:
+		break;
+	}
 }
 
 

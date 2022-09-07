@@ -1,7 +1,12 @@
 #pragma once
+#include"DxLib.h"
+#include"Player.h"
+
 class GameScene
 {
 public:
+	GameScene();
+
 	/// <summary>
 	/// ‰Šú‰»
 	/// </summary>
@@ -18,7 +23,7 @@ public:
 	void Draw();
 
 private:
-
+	Player* player_;
 
 };
 

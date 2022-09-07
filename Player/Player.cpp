@@ -2,7 +2,7 @@
 
 void Player::Initialize()
 {
-	pos = {1280.0f,720.0f};
+	pos = { 1280.0f,720.0f };
 	angle = -DX_PI_F / 2;
 }
 
@@ -20,16 +20,17 @@ void Player::Update()
 		angle += rotSpeed;
 	}
 
-	front.x = pos.x + cosf(angle) * 50;
-	front.y = pos.y + sinf(angle) * 50;
+	front.x = pos.x + cosf(angle) * 100;
+	front.y = pos.y + sinf(angle) * 100;
 
 	frontVec = front - pos;//正面ベクトル
 	frontVec = frontVec.Normalized();//正面ベクトルの正規化
 
-	Vec2 tmpSpeed = frontVec * 5.0f;
+	Vec2 tmpSpeed = frontVec * speed;
+
 	Vec2 tmpPos = pos;
 
-	pos += tmpSpeed ;
+	pos += tmpSpeed;
 
 	if (pos.x - radius < zero.x)
 	{
@@ -56,11 +57,22 @@ void Player::Update()
 
 void Player::Draw()
 {
-	DrawCircle(pos.x- screen.x, pos.y- screen.y , radius, GetColor(255, 0, 0));
+	DrawBox(zero.x - screen.x, zero.y - screen.y, fieldSize.x / 2 - screen.x, fieldSize.y / 2 - screen.y, GetColor(50, 50, 50), true);
+	DrawBox((fieldSize.x / 2) - screen.x, zero.y - screen.y, fieldSize.x - screen.x, fieldSize.y / 2 - screen.y, GetColor(100, 100, 100), true);
+
+	DrawBox(zero.x - screen.x, fieldSize.y / 2 - screen.y, (fieldSize.x / 2) - screen.x, fieldSize.y - screen.y, GetColor(150, 150, 150), true);
+	DrawBox((fieldSize.x / 2) - screen.x, fieldSize.y / 2 - screen.y, fieldSize.x - screen.x, fieldSize.y - screen.y, GetColor(200, 200, 200), true);
+
+	DrawLine(pos.x - screen.x, pos.y - screen.y, front.x - screen.x, front.y - screen.y, GetColor(255, 0, 0),3);
+	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
+
+	DrawFormatString(0, 0, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
+	DrawFormatString(0, 20, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
+
 
 	if (attackFlag)
 	{
-		DrawCircle(pos.x - screen.x, pos.y - screen.y, radius + 40, GetColor(255, 255, 0));
+		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
 	}
 }
 
@@ -86,6 +98,7 @@ void Player::Attack()
 		{
 			attackFlag = false;
 			attackTime = 40;
+			attackInterval = maxAttackInterval;
 		}
 	}
 }
