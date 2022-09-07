@@ -1,4 +1,5 @@
 #include "Ease.h"
+#include"math.h"
 //’Ç‰Á
 double Ease::In(double start, double end, double time, double max_time)
 {
@@ -143,4 +144,8 @@ double Ease::InOut_Bounce(double start, double end, double time, double max_time
 			return start + move * ((n1 * (time -= 2.625 / d1) * time + 0.984375) / 2 + 0.5);
 		}
 	}
+}
+
+double Ease::easeInOutCubic(double x) {
+	return x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
 }

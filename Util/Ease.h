@@ -21,5 +21,8 @@ public:
 
 	double InOut_Bounce(double start, double end, double time, double max_time);
 
+	//‰´‚Ì‚â‚Â
+	double easeInOutCubic(double x);
+
 };
 

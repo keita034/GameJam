@@ -1,37 +1,73 @@
 #include"Pause.h"
 #include<math.h>
 
-void Pause::Initialize(){
+void Pause::Initialize() {
 	// 画像などのリソースデータの変数宣言と読み込み
-	nextGh = LoadGraph("push_space.png", true);
-	untiGh = LoadGraph("unti.png", true);
 	MenuGh = LoadGraph("Menu.png", true);
-	GamePlayGh = LoadGraph("GamePlay.png", true);
-	GraphicGh = LoadGraph("Graphic.png", true);
-	SettingGh = LoadGraph("Setting.png", true);
 	SoundGh = LoadGraph("Sound.png", true);
-	EscGh = LoadGraph("Esc.png", true);
-	ORGh = LoadGraph("OR.png", true);
-	siroGh = LoadGraph("sirotama.png", true);
 	BackGh = LoadGraph("Back.png", true);
 	Back2Gh = LoadGraph("Back2.png", true);
-}
 
-void Pause::Update(char* keys, char* oldkeys){
+	//イージング初期化
+	ease_ = new Ease();
 
-	
-
-}
-
-void Pause::Move(){
 
 }
 
-void Pause::MenuSelect(char* keys, char* oldkeys){
+void Pause::Update() {
+
+	if (isEscTrigger == 0) {
+		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
+			isEscTrigger = 1;
+			for (int i = 0; i < 5; i++) {
+				timer[i] = 0;
+			}
+		}
+	}
+	else if (isEscTrigger == 0) {
+		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
+			isEscTrigger = 0;
+			for (int i = 0; i < 5; i++) {
+				timer[i] = 0;
+			}
+		}
+	}
+
+	Move();
 
 }
 
-void Pause::Draw(){
+void Pause::Move() {
+
+
+	for (int i = 0; i < 5; i++) {
+		if (timer[i] <= MaxTimer[i]) {
+			timer[i]++;
+		}
+	}
+
+	if (isPause == 0) {
+		menuXFinal = 20;
+		menuX = menuX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
+		backX = backX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[1] / MaxTimer[1]);
+		soundX = soundX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[2] / MaxTimer[2]);
+	}
+	if (isPause == 1) {
+		menuXFinal = -100;
+		menuX = menuX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
+		backX = backX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
+		soundX = soundX + (menuXFinal - menuX) * ease_->easeInOutCubic(timer[0] / MaxTimer[0]);
+	}
+
+
+
+}
+
+void Pause::MenuSelect() {
+
+}
+
+void Pause::Draw() {
 
 }
 
