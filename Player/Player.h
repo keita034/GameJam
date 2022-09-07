@@ -10,9 +10,6 @@ private:
 	//座標
 	Vec2 pos;
 
-	//正面ベクトル
-	//Vec2 front;
-
 	//スピード
 	float speed = 5.0f;
 
@@ -29,8 +26,12 @@ private:
 	Vec2 frontVec;
 	//正面ベクトルの正規化
 	Vec2 normFrontVec;
-
+	//角度
 	float angle;
+	//半径
+	int radius = 30;
+	//スクリーン座標
+	Vec2 screen = { 640.0f,610.0f };
 
 public:
 
