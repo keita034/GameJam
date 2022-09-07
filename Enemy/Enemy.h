@@ -1,6 +1,7 @@
 #pragma once
 #include "Util.h"
 #include "DxLib.h"
+#include"KeyBoardInput.h"
 enum Pattern
 {
 	heightUp,       // ècè„

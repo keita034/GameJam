@@ -79,6 +79,14 @@ Vec2& Vec2::operator*=(float s)
 	return *this;
 }
 
+Vec2& Vec2::operator*=(const Vec2& v)
+{
+	x *= v.x;
+	y *= v.y;
+
+	return *this;
+}
+
 Vec2& Vec2::operator/=(float s)
 {
 	x /= s;

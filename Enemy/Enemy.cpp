@@ -21,14 +21,22 @@ void Enemy::Initialize(Pattern pattern, Vec2 pos, Vec2 speed)
 
 void Enemy::Update()
 {
+
+	// プレイヤーの最初の位置を取得
 	Vec2 centerPos = playerPos_;
 
+	// エネミーの位置を取得
 	Vec2 enemyPos = pos_;
+
+	// プレイヤーの初期位置からエネミーの位置のベクトル
+	Vec2 velocity = centerPos - enemyPos;
+	velocity.Normalized();
 
 	switch (pattern_)
 	{
 	case heightUp:
-
+		speed_ = { 0,-2 };
+		velocity *= speed_;
 		break;
 	case heightDown:
 

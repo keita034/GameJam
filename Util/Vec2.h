@@ -22,6 +22,7 @@ public:
 	Vec2& operator+=(const Vec2& v);
 	Vec2& operator-=(const Vec2& v);
 	Vec2& operator*=(float s);
+	Vec2& operator*=(const Vec2& v);
 	Vec2& operator/=(float s);
 	Vec2& operator/=(const Vec2& v);
 	bool operator>(const Vec2& v);
