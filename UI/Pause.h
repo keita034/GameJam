@@ -1,5 +1,5 @@
 #pragma once
-#include<math.h>
+#include"Ease.h"
 #include <DxLib.h>
 
 class Pause
@@ -8,29 +8,45 @@ class Pause
 private:
 	//関数の制作
 
-	void Move(int x[], int y[], int r[], int px, int py);
-	void Long(char* keys, char* oldkeys);
-	void Draw(int x[], int y[], int r[]);
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	void Initialize();
 
-	double easeInOutCubic(double x);
-	double easeInBack(double x);
-	double easeInOutBack(double x);
-	double easeInOutCirc(double x);
+	/// <summary>
+	/// 毎フレーム処理
+	/// </summary>
+	void Update(char* keys, char* oldkeys);
+
+	/// <summary>
+	/// 描画
+	/// </summary>
+	void Draw();
+
+	/// <summary>
+	/// イージングさせる
+	/// </summary>
+	void Move();
+
+	/// <summary>
+	/// 矩形の当たり判定で選択
+	/// </summary>
+	void MenuSelect(char* keys, char* oldkeys);
 
 public:
 	// 画像などのリソースデータの変数宣言と読み込み
-	int nextGh = LoadGraph("push_space.png", true);
-	int untiGh = LoadGraph("unti.png", true);
-	int MenuGh = LoadGraph("Menu.png", true);
-	int GamePlayGh = LoadGraph("GamePlay.png", true);
-	int GraphicGh = LoadGraph("Graphic.png", true);
-	int SettingGh = LoadGraph("Setting.png", true);
-	int SoundGh = LoadGraph("Sound.png", true);
-	int EscGh = LoadGraph("Esc.png", true);
-	int ORGh = LoadGraph("OR.png", true);
-	int siroGh = LoadGraph("sirotama.png", true);
-	int BackGh = LoadGraph("Back.png", true);
-	int Back2Gh = LoadGraph("Back2.png", true);
+	int nextGh;
+	int untiGh;
+	int MenuGh;
+	int GamePlayGh;
+	int GraphicGh;
+	int SettingGh;
+	int SoundGh;
+	int EscGh;
+	int ORGh;
+	int siroGh;
+	int BackGh;
+	int Back2Gh;
 
 	//メンバ変数
 
