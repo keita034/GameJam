@@ -64,6 +64,10 @@ public:
 	/// </summary>
 	void Draw();
 
+	Vec2 GetPos();
+
+	Vec2 GetScreen();
+
 private:
 
 	/// <summary>

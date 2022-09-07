@@ -31,14 +31,17 @@ public:
 	void Update(Vec2 playerNpos);
 
 	// 描画関数
-	void Draw();
+	void Draw(Vec2 screen);
+
+	bool IsDeath();
+
 private:
 	// メンバー変数
 	Vec2 pos_;
 	Vec2 speed_;
 	float radius_;
 	Vec2 playerPos_;
-
+	bool isDeath_;
 	// エネミーの行動パターン
 	Pattern pattern_;
 };
