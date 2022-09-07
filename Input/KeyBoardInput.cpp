@@ -17,31 +17,31 @@ void KeyBoardInput::Update()
 }
 
 // キーを長押しの時
-bool KeyBoardInput::GetKey(char key)
+bool KeyBoardInput::GetKey(int key)
 {
 	return keys[key];
 }
 
 // キーを押した瞬間
-bool KeyBoardInput::GetKeyTrigger(char key)
+bool KeyBoardInput::GetKeyTrigger(int key)
 {
 	return keys[key] && !oldkeys[key];
 }
 
 //キーを離した瞬間
-bool KeyBoardInput::GetKeyReleased(char key)
+bool KeyBoardInput::GetKeyReleased(int key)
 {
 	return !keys[key] && oldkeys[key];
 }
 
 // キーの左右どちらに入力しているか(戻り値は-1,0,1)
-int KeyBoardInput::GetHorizontal(char leftKey, char rightKey)
+int KeyBoardInput::GetHorizontal(int leftKey, int rightKey)
 {
 	return keys[rightKey] - keys[leftKey];
 }
 
 // キーの上下どちらに入力しているか(戻り値は-1,0,1)
-int KeyBoardInput::GetVertical(char downKey, char upKey)
+int KeyBoardInput::GetVertical(int downKey, int upKey)
 {
 	return keys[upKey] - keys[downKey];
 }

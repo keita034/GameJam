@@ -6,10 +6,10 @@ private:
 	char oldkeys[256];
 public:
 	void Update();
-	bool GetKey(char key);
-	bool GetKeyTrigger(char key);
-	bool GetKeyReleased(char key);
-	int GetHorizontal(char leftKey, char righKey);
-	int GetVertical(char downKey, char upkey);
+	bool GetKey(int key);
+	bool GetKeyTrigger(int key);
+	bool GetKeyReleased(int key);
+	int GetHorizontal(int leftKey, int righKey);
+	int GetVertical(int downKey, int upkey);
 };
 extern KeyBoardInput key;

@@ -1,16 +1,17 @@
 #include "DxLib.h"
 #include"SceneManager.h"
+#include"KeyBoardInput.h"
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "LC1D_26_モミヤマケイタ: タイトル";
 
 // ウィンドウ横幅
-const int WIN_WIDTH = 600;
+const int WIN_WIDTH = 1280;
 
 // ウィンドウ縦幅
-const int WIN_HEIGHT = 400;
+const int WIN_HEIGHT = 980;
 
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
-                   _In_ int nCmdShow) {
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,_In_ int nCmdShow)
+{
 
 	SetOutApplicationLogValidFlag(FALSE);
 
@@ -64,6 +65,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 		// 最新のキーボード情報を取得
 		GetHitKeyStateAll(keys);
+
+		key.Update();
 
 		// 画面クリア
 		ClearDrawScreen();

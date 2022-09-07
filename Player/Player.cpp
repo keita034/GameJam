@@ -50,9 +50,42 @@ void Player::Update()
 	}
 
 	screen += pos - tmpPos;
+
+	Attack();
 }
 
 void Player::Draw()
 {
 	DrawCircle(pos.x- screen.x, pos.y- screen.y , radius, GetColor(255, 0, 0));
+
+	if (attackFlag)
+	{
+		DrawCircle(pos.x - screen.x, pos.y - screen.y, radius + 40, GetColor(255, 255, 0));
+	}
+}
+
+void Player::Attack()
+{
+	if (key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
+	{
+		attackFlag = true;
+	}
+
+	if (attackInterval > 0)
+	{
+		attackInterval--;
+	}
+
+	if (attackFlag)
+	{
+		if (attackTime > 0)
+		{
+			attackTime--;
+		}
+		else
+		{
+			attackFlag = false;
+			attackTime = 40;
+		}
+	}
 }
