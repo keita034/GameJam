@@ -140,6 +140,7 @@
     <ClCompile Include="Particle\HitPar.cpp" />
     <ClCompile Include="Particle\ModeChangeMotion.cpp" />
     <ClCompile Include="Particle\Particle.cpp" />
+    <ClCompile Include="Particle\Smoke.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Particle\HitPar.h" />
     <ClInclude Include="Particle\ModeChangeMotion.h" />
     <ClInclude Include="Particle\Particle.h" />
+    <ClInclude Include="Particle\Smoke.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
