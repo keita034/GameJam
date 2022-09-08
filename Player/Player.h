@@ -16,7 +16,7 @@ private:
 	//1フレーム前の座標
 	Vec2 oldPos;
 	//半径
-	int radius = 64;
+	int radius = 32;
 	//角度
 	float angle = 0.0f;
 	//スピード
@@ -51,7 +51,7 @@ private:
 	//1フレーム前の攻撃フラグ
 	bool oldAttackFlag = false;
 	//攻撃半径
-	int attackRadius = 150;
+	int attackRadius = 128;
 	//攻撃威力
 	int attackPower = 1;
 	//攻撃しようとした座標
@@ -105,8 +105,9 @@ public:
 	void AttackUpdate(Vec2 vec);
 
 	bool AttackTriggerFlag();
+	void Attack();
+
 private:
 
-	void Attack();
 };
 
