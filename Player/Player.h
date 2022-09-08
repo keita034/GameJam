@@ -5,12 +5,16 @@
 #include"Ease.h"
 #include<cmath>
 
+class Enemy;
+
 class Player
 {
 private:
 
 	//座標
 	Vec2 pos;
+	//1フレーム前の座標
+	Vec2 oldPos;
 	//半径
 	int radius = 64;
 	//角度
@@ -44,12 +48,18 @@ private:
 	int attackDistance = 200;
 	//攻撃フラグ
 	bool attackFlag = false;
+	//1フレーム前の攻撃フラグ
+	bool oldAttackFlag = false;
 	//攻撃半径
 	int attackRadius = 150;
 	//攻撃威力
 	int attackPower = 1;
+	//攻撃しようとした座標
 	Vec2 attackBeginPos;
+	//攻撃のレベル
 	int level = 0;
+	//攻撃した時に一番近い敵とのベクトル
+	Vec2 attackEnemyToPlayerVec;
 
 	//体力
 	int hp = 3;
@@ -89,11 +99,14 @@ public:
 
 	int GetAttackPower();
 
-private:
-
 	/// <summary>
 	/// 攻撃
 	/// </summary>
+	void AttackUpdate(Vec2 vec);
+
+	bool AttackTriggerFlag();
+private:
+
 	void Attack();
 };
 

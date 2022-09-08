@@ -28,12 +28,13 @@ void Player::Update()
 
 	Vec2 tmpSpeed = frontVec * speed;
 
-	Vec2 tmpPos = pos;
+	oldPos = pos;
 	if (!attackFlag)
 	{
 		pos += tmpSpeed;
 	}
 
+	//移動制限
 	if (pos.x - radius < zero.x)
 	{
 		pos.x = zero.x + radius;
@@ -42,7 +43,6 @@ void Player::Update()
 	{
 		pos.y = zero.x + radius;
 	}
-
 	if (pos.x + radius > fieldSize.x)
 	{
 		pos.x = fieldSize.x - radius;
@@ -52,11 +52,8 @@ void Player::Update()
 		pos.y = fieldSize.y - radius;
 	}
 
-	Attack();
-
-	//現在の座標から1フレーム前の座標を引いて
-	//スクリーンの移動量を決める
-	screen += pos - tmpPos;
+	//1フレーム前の攻撃フラグを保存
+	oldAttackFlag = attackFlag;
 }
 
 void Player::Draw()
@@ -67,7 +64,7 @@ void Player::Draw()
 	DrawBox(zero.x - screen.x, fieldSize.y / 2 - screen.y, (fieldSize.x / 2) - screen.x, fieldSize.y - screen.y, GetColor(150, 150, 150), true);
 	DrawBox((fieldSize.x / 2) - screen.x, fieldSize.y / 2 - screen.y, fieldSize.x - screen.x, fieldSize.y - screen.y, GetColor(200, 200, 200), true);
 
-	DrawLine(pos.x - screen.x, pos.y - screen.y, front.x - screen.x, front.y - screen.y, GetColor(255, 0, 0),3);
+	DrawLine(pos.x - screen.x, pos.y - screen.y, front.x - screen.x, front.y - screen.y, GetColor(255, 0, 0), 3);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
 
 	DrawFormatString(0, 0, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
@@ -123,6 +120,20 @@ int Player::GetAttackPower()
 	return attackPower;
 }
 
+void Player::AttackUpdate(Vec2 vec)
+{
+	Attack();
+
+	//現在の座標から1フレーム前の座標を引いて
+	//スクリーンの移動量を決める
+	screen += pos - oldPos;
+}
+
+bool Player::AttackTriggerFlag()
+{
+	return !oldAttackFlag && attackFlag;
+}
+
 void Player::Attack()
 {
 	if (!attackFlag && key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
@@ -143,9 +154,10 @@ void Player::Attack()
 
 		float time = attackFrameTime / maxAttackTime;
 
+		//イージング
 		pos.x = attackBeginPos.x + Ease::easeInOutQuart(time) * (frontVec.x * attackDistance);
 		pos.y = attackBeginPos.y + Ease::easeInOutQuart(time) * (frontVec.y * attackDistance);
-		
+
 		if (time >= 1.0f)
 		{
 			attackFlag = false;
