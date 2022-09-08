@@ -91,15 +91,37 @@ void EnemyPop::EnemyPopInit()
 
 void EnemyPop::EnemyPopUpdate(Player *player_)
 {
+
+	Vec2 playerToEnemy = { 100.0f,100.0f };
+
 	enemys_.remove_if([](std::unique_ptr<Enemy>& enemy)
 	{
 			return enemy->IsDeath();
 	});
+
+	player_->Attack();
+
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		enemy->Update(player_->GetPos());
+
+		if (player_->AttackTriggerFlag())
+		{
+			if (CheckSphere2Sphere(player_->GetPos(), 100, enemy->GetPos(), enemy->GetRadius()))
+			{
+				if (playerToEnemy > enemy->GetPos() - player_->GetPos())
+				{
+					playerToEnemy = enemy->GetPos() - player_->GetPos();
+				}
+			}
+		}
 	}
+<<<<<<< HEAD
 	SnakeEnemyUpdate(player_);
+=======
+
+	player_->AttackUpdate(playerToEnemy);
+>>>>>>> „Ç´„É°„É©ÁßªÂãÅE
 }
 
 void EnemyPop::EnemyPopDraw(Player* player_)
@@ -113,8 +135,10 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 
 void EnemyPop::CheckCollisions(Player* player_)
 {
+
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
+
 		//ìGÇ∆é©ã@
 		if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
 		{
@@ -132,7 +156,7 @@ void EnemyPop::CheckCollisions(Player* player_)
 		}
 		else
 		{
-			enemy->HPSub(1);
+			enemy->HPSub(0);
 		}
 	}
 }

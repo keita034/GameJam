@@ -69,6 +69,7 @@ void Player::Draw()
 
 	DrawFormatString(0, 0, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
 	DrawFormatString(0, 20, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
+	DrawFormatString(0, 40, GetColor(255, 0, 255), "Level:%d", level);
 
 
 	if (attackFlag)
@@ -122,7 +123,11 @@ int Player::GetAttackPower()
 
 void Player::AttackUpdate(Vec2 vec)
 {
-	Attack();
+
+	if (vec.Length()<128.0f)
+	{
+		level++;
+	}
 
 	//現在の座標から1フレーム前の座標を引いて
 	//スクリーンの移動量を決める
@@ -131,7 +136,12 @@ void Player::AttackUpdate(Vec2 vec)
 
 bool Player::AttackTriggerFlag()
 {
-	return !oldAttackFlag && attackFlag;
+	if (!oldAttackFlag && attackFlag)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Player::Attack()
