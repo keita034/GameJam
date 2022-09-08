@@ -29,8 +29,10 @@ void Player::Update()
 	Vec2 tmpSpeed = frontVec * speed;
 
 	Vec2 tmpPos = pos;
-
-	pos += tmpSpeed;
+	if (!attackFlag)
+	{
+		pos += tmpSpeed;
+	}
 
 	if (pos.x - radius < zero.x)
 	{
@@ -50,11 +52,11 @@ void Player::Update()
 		pos.y = fieldSize.y - radius;
 	}
 
+	Attack();
+
 	//現在の座標から1フレーム前の座標を引いて
 	//スクリーンの移動量を決める
 	screen += pos - tmpPos;
-
-	Attack();
 }
 
 void Player::Draw()
@@ -74,7 +76,10 @@ void Player::Draw()
 
 	if (attackFlag)
 	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
 	}
 }
 
@@ -134,6 +139,18 @@ void Player::Attack()
 
 	if (attackFlag)
 	{
+		attackFrameTime++;
 
+		float time = attackFrameTime / maxAttackTime;
+
+		pos.x = attackBeginPos.x + Ease::easeInOutQuart(time) * (frontVec.x * attackDistance);
+		pos.y = attackBeginPos.y + Ease::easeInOutQuart(time) * (frontVec.y * attackDistance);
+		
+		if (time >= 1.0f)
+		{
+			attackFlag = false;
+			attackFrameTime = 0;
+			attackInterval = maxAttackInterval;
+		}
 	}
 }

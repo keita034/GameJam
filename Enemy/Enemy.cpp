@@ -87,6 +87,17 @@ void Enemy::Update(Vec2 playerNpos)
 
 		}
 	}
+
+	if (hp == 0)
+	{
+		isDeath_ = true;
+	}
+
+	if (pos_.x < -MaxPos.x || pos_.x > fieldSize.x + MaxPos.x||
+		pos_.y < -MaxPos.y || pos_.y > fieldSize.y + MaxPos.y)
+	{
+		isDeath_ = true;
+	}
 }
 
 void Enemy::Draw(Vec2 screen)

@@ -48,6 +48,9 @@ public:
 
 private:
 	// ƒƒ“ƒo[•Ï”
+	Vec2 zeroVec = { 0.0f,0.0f };
+	Vec2 MaxPos = { 700.0f,400.0f };
+	Vec2 fieldSize = { 2560.0f ,1440.0f };
 	Vec2 pos_;
 	float speed_;
 	Vec2 velocity_;
