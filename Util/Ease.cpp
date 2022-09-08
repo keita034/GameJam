@@ -149,3 +149,6 @@ double Ease::InOut_Bounce(double start, double end, double time, double max_time
 double Ease::easeInOutCubic(double x) {
 	return x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
 }
+double Ease::easeInOutQuart(double x) {
+	return x < 0.5 ? 8 * x * x * x * x : 1 - pow(-2 * x + 2, 4) / 2;
+}

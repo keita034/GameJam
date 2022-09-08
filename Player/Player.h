@@ -2,6 +2,7 @@
 #include"DxLib.h"
 #include"Vec2.h"
 #include"KeyBoardInput.h"
+#include"Ease.h"
 #include<cmath>
 
 class Player
@@ -13,7 +14,7 @@ private:
 	//”¼Œa
 	int radius = 64;
 	//Šp“x
-	float angle;
+	float angle = 0.0f;
 	//ƒXƒs[ƒh
 	float speed = 5.0f;
 
@@ -37,12 +38,19 @@ private:
 	int attackInterval = 0;
 	//Å‘åUŒ‚ƒCƒ“ƒ^[ƒoƒ‹
 	int maxAttackInterval = 50 * 2;
+	//UŒ‚‹——£
+	int attackDistance = 64;
 	//UŒ‚ƒtƒ‰ƒO
 	bool attackFlag = false;
 	//UŒ‚”¼Œa
 	int attackRadius = 150;
-
+	//UŒ‚ˆĞ—Í
+	int attackPower = 1;
+	Vec2 attackBeginPos;
 	int level = 0;
+
+	//‘Ì—Í
+	int hp = 3;
 
 public:
 
@@ -72,6 +80,12 @@ public:
 	bool GetAttackFlag();
 
 	int GetAttackRadius();
+
+	void HPSub(int subNum);
+
+	void HPAdd(int addNum);
+
+	int GetAttackPower();
 
 private:
 

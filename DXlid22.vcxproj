@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyPop.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Input\JoyPadInput.cpp" />
     <ClCompile Include="Input\KeyBoardInput.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Util\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EnemyPop.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Input\JoyPadInput.h" />
     <ClInclude Include="Input\KeyBoardInput.h" />

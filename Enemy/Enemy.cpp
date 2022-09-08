@@ -74,6 +74,19 @@ void Enemy::Update(Vec2 playerNpos)
 	default:
 		break;
 	}
+
+	if (!damageFlag)
+	{
+		damageInterval--;
+
+		if (damageInterval == 0)
+		{
+			damageInterval = maxDamageInterval;
+
+			damageFlag = true;
+
+		}
+	}
 }
 
 void Enemy::Draw(Vec2 screen)
@@ -84,4 +97,35 @@ void Enemy::Draw(Vec2 screen)
 bool Enemy::IsDeath()
 {
 	return isDeath_;
+}
+
+Vec2 Enemy::GetPos()
+{
+	return pos_;
+}
+
+int Enemy::GetRadius()
+{
+	return radius_;
+}
+
+void Enemy::Death()
+{
+	isDeath_ = true;
+}
+
+void Enemy::HPSub(int subNum)
+{
+	if (damageFlag)
+	{
+		hp -= subNum;
+
+		damageFlag = false;
+	}
+
+}
+
+void Enemy::HPAdd(int addNum)
+{
+	hp += addNum;
 }

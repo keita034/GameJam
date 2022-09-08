@@ -132,6 +132,9 @@
     <ClCompile Include="Util\Collision.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyPop.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\MouseInput.h">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Util\Collision.h">
       <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPop.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

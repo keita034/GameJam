@@ -26,10 +26,15 @@ void Pause::Initialize() {
 	MaxTimer[5] = 20.0f;
 	MaxTimer[6] = 120.0f;
 
+	soundChangeLeftFinalX = 1000 - 16;
+	soundChangeRightFinalX = 1000 + 16;
+	keepSoundLeft = soundChangeLeftFinalX;
+	keepSoundRight = soundChangeRightFinalX;
+
 }
 
 void Pause::Update() {
-	
+
 	Move();
 	MenuSelect();
 }
@@ -66,8 +71,9 @@ void Pause::Move() {
 			//位置決め
 			backGroundLeftFinalX = 400; backGroundRightFinalX = 1200; backGroundTopFinalY = 100; backGroundDownFinalY = 600;
 			backLeftFinalX = 800 - 62; backRightFinalX = 800 + 62; backTopFinalY = 490; backDownFinalY = 540;
-			soundBarLeftFinalX = 590;soundBarRightFinalX = 1100;soundBarTopFinalY = 250;soundBarDownFinalY = 280;
-			soundChangeLeftFinalX = 1000 - 32;soundChangeRightFinalX = 1000 + 32;soundChangeTopFinalY = 265 - 32;soundChangeDownFinalY = 265 + 32;
+			soundBarLeftFinalX = 590; soundBarRightFinalX = 1100; soundBarTopFinalY = 250; soundBarDownFinalY = 280;
+			soundChangeTopFinalY = 265 - 16; soundChangeDownFinalY = 265 + 16;
+
 
 			backGroundLeftX = backGroundLeftX + (backGroundLeftFinalX - backGroundLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 			backGroundRightX = backGroundRightX + (backGroundRightFinalX - backGroundRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
@@ -80,16 +86,28 @@ void Pause::Move() {
 			backDownY = backDownY + (backDownFinalY - backDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 
 			//サウンドバー
-			soundBarLeftX = soundBarLeftX + (soundBarLeftFinalX - soundBarLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
-			soundBarRightX = soundBarRightX + (soundBarRightFinalX - soundBarRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
-			soundBarTopY = soundBarTopY + (soundBarTopFinalY - soundBarTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
-			soundBarDownY = soundBarDownY + (soundBarDownFinalY - soundBarDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+			if (isSoundChange == 0) {
+
+				soundBarLeftX = soundBarLeftX + (soundBarLeftFinalX - soundBarLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundBarRightX = soundBarRightX + (soundBarRightFinalX - soundBarRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundBarTopY = soundBarTopY + (soundBarTopFinalY - soundBarTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundBarDownY = soundBarDownY + (soundBarDownFinalY - soundBarDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+				soundChangeLeftX = soundChangeLeftX + (keepSoundLeft - soundChangeLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundChangeRightX = soundChangeRightX + (keepSoundRight - soundChangeRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundChangeTopY = soundChangeTopY + (soundChangeTopFinalY - soundChangeTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+				soundChangeDownY = soundChangeDownY + (soundChangeDownFinalY - soundChangeDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+			}
+
 		}
 	}
 	else if (isSettingBack == 1) {
 
 		backGroundLeftFinalX = 800; backGroundRightFinalX = 800; backGroundTopFinalY = 300; backGroundDownFinalY = 300;
 		backLeftFinalX = 800; backRightFinalX = 800; backTopFinalY = 300; backDownFinalY = 300;
+		soundBarLeftFinalX = 800; soundBarRightFinalX = 800; soundBarTopFinalY = 300; soundBarDownFinalY = 300;
+		soundChangeLeftFinalX = 800; soundChangeRightFinalX = 800; soundChangeTopFinalY = 300; soundChangeDownFinalY = 300;
 
 		backGroundLeftX = backGroundLeftX + (backGroundLeftFinalX - backGroundLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 		backGroundRightX = backGroundRightX + (backGroundRightFinalX - backGroundRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
@@ -100,8 +118,19 @@ void Pause::Move() {
 		backRightX = backRightX + (backRightFinalX - backRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 		backTopY = backTopY + (backTopFinalY - backTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
 		backDownY = backDownY + (backDownFinalY - backDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
-	}
 
+		//サウンドバー
+		soundBarLeftX = soundBarLeftX + (soundBarLeftFinalX - soundBarLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundBarRightX = soundBarRightX + (soundBarRightFinalX - soundBarRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundBarTopY = soundBarTopY + (soundBarTopFinalY - soundBarTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundBarDownY = soundBarDownY + (soundBarDownFinalY - soundBarDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+		soundChangeLeftX = soundChangeLeftX + (soundChangeLeftFinalX - soundChangeLeftX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundChangeRightX = soundChangeRightX + (soundChangeRightFinalX - soundChangeRightX) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundChangeTopY = soundChangeTopY + (soundChangeTopFinalY - soundChangeTopY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+		soundChangeDownY = soundChangeDownY + (soundChangeDownFinalY - soundChangeDownY) * ease_->easeInOutCubic(timer[5] / MaxTimer[5]);
+
+	}
 
 	//ただの初期化調整
 	if (isSettingBack == 1) {
@@ -109,9 +138,19 @@ void Pause::Move() {
 			isSetting = 0;
 			isSettingBack = 0;
 			isSettingAndEsc = 0;
+			isSoundChange = 0;
 			pal5 = 0;
 		}
 	}
+
+	if (isSettingBack == 0) {
+		if (isSetting == 1) {
+			if (timer[5] >= MaxTimer[5]) {
+				isSoundChange = 1;
+			}
+		}
+	}
+
 
 }
 
@@ -184,6 +223,17 @@ void Pause::MenuSelect() {
 		else {
 			isHit5 = 0;
 		}
+		if (soundBarLeftX < x && x < soundBarRightX) {
+			if (soundBarTopY - 32 < y && y < soundBarDownY +  32) {
+				isHit6 = 1;
+			}
+			else {
+				isHit6 = 0;
+			}
+		}
+		else {
+			isHit6 = 0;
+		}
 	}
 
 
@@ -203,9 +253,31 @@ void Pause::MenuSelect() {
 	}
 	if (isHit5 == 1) {
 		int Mouse = GetMouseInput();
-		if (Mouse && MOUSE_INPUT_LEFT) {
+		if (mouse.GetCrickTrigger(MOUSE_INPUT_LEFT)) {
 			timer[5] = 0;
 			isSettingBack = 1;
+		}
+	}
+
+	if (isHit6 == 1) {
+		if (isSoundChange == 1) {
+			int Mouse = GetMouseInput();
+			if (Mouse && MOUSE_INPUT_LEFT) {
+				soundChangeLeftX = x - 16;
+				soundChangeRightX = x + 16;
+
+				if (soundChangeLeftX < 590) {
+					soundChangeLeftX = 590;
+					soundChangeRightX = 590 + 32;
+				}
+				else if (soundChangeRightX > 1100) {
+					soundChangeLeftX = 1100 - 32;
+					soundChangeRightX = 1100;
+				}
+				keepSoundLeft = soundChangeLeftX;
+				keepSoundRight = soundChangeRightX;
+
+			}
 		}
 	}
 
@@ -227,7 +299,7 @@ void Pause::MenuSelect() {
 			}
 		}
 	}
-	
+
 }
 
 void Pause::Draw() {
@@ -253,7 +325,7 @@ void Pause::Draw() {
 	else {
 		DrawGraph(GameOutX, GameOutY, GameOut2Gh, true);
 	}
-	
+
 	if (isSetting == 1) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal5);
 		DrawBox(0, 0, 1280, 800, GetColor(0, 0, 0), true);
@@ -262,6 +334,7 @@ void Pause::Draw() {
 		DrawExtendGraph(backGroundLeftX, backGroundTopY, backGroundRightX, backGroundDownY, backGroundGh, true);
 
 		DrawExtendGraph(soundBarLeftX, soundBarTopY, soundBarRightX, soundBarDownY, soundBarGh, true);
+		DrawExtendGraph(soundChangeLeftX, soundChangeTopY, soundChangeRightX, soundChangeDownY, soundChangeGh, true);
 		if (isHit5 == 0) {
 			DrawExtendGraph(backLeftX, backTopY, backRightX, backDownY, BackGh, true);
 		}

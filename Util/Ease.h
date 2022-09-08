@@ -23,6 +23,7 @@ public:
 
 	//‰´‚Ì‚â‚Â
 	double easeInOutCubic(double x);
+	double easeInOutQuart(double x)
 
 };
 
