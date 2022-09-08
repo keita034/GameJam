@@ -33,13 +33,15 @@ private:
 	Vec2 screen = { 640.0f,360.0f };
 
 	//UŒ‚ŠÔ
-	int attackTime = 50 * 1;
+	int attackTime = 0;
+	float attackFrameTime = 0;
+	int maxAttackTime = 50 * 1;
 	//UŒ‚ƒCƒ“ƒ^[ƒoƒ‹
 	int attackInterval = 0;
 	//Å‘åUŒ‚ƒCƒ“ƒ^[ƒoƒ‹
 	int maxAttackInterval = 50 * 2;
 	//UŒ‚‹——£
-	int attackDistance = 64;
+	int attackDistance = 200;
 	//UŒ‚ƒtƒ‰ƒO
 	bool attackFlag = false;
 	//UŒ‚”¼Œa

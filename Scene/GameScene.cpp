@@ -49,7 +49,7 @@ void GameScene::CheckCollisions()
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		//“G‚ÆŽ©‹@
-		if (CheckSphere2Sphere(player_->GetPos(),player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
+		if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
 		{
 			player_->HPSub(1);
 			enemy->Death();
@@ -57,6 +57,7 @@ void GameScene::CheckCollisions()
 
 		if (player_->GetAttackFlag())
 		{
+			//Ž©‹@‚ÌUŒ‚‚Æ“G
 			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), enemy->GetPos(), enemy->GetRadius()))
 			{
 				enemy->HPSub(player_->GetAttackPower());
