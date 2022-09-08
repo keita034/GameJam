@@ -2,7 +2,7 @@
 #include"Ease.h"
 #include <DxLib.h>
 #include"KeyBoardInput.h"
-
+#include"MouseInput.h"
 
 class Pause
 {
@@ -129,7 +129,8 @@ private:
 	float soundChangeTopFinalY;
 	float soundChangeDownFinalY;
 
-
+	float keepSoundLeft = 800;
+	float keepSoundRight = 800;
 
 	int isPause = 3;
 	int isEscTrigger = 0;
@@ -139,6 +140,7 @@ private:
 	int isHit3 = 0;
 	int isHit4 = 0;
 	int isHit5 = 0;
+	int isHit6 = 0;
 
 	int pal = 255;
 	int pal2 = 255;
@@ -150,4 +152,8 @@ private:
 	int isSettingBack = 0;
 	int isSettingAndEsc = 0;
 	int isFinish = 0;
+
+
+	int isSoundChange = 0;
+
 };
