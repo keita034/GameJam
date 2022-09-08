@@ -19,6 +19,7 @@ void Player::Update()
 		angle += rotSpeed;
 	}
 
+	//方向ベクトルを回転
 	front.x = pos.x + cosf(angle) * 100;
 	front.y = pos.y + sinf(angle) * 100;
 
@@ -49,6 +50,8 @@ void Player::Update()
 		pos.y = fieldSize.y - radius;
 	}
 
+	//現在の座標から1フレーム前の座標を引いて
+	//スクリーンの移動量を決める
 	screen += pos - tmpPos;
 
 	Attack();
@@ -100,11 +103,28 @@ int Player::GetAttackRadius()
 	return attackRadius;
 }
 
+void Player::HPSub(int subNum)
+{
+	hp -= subNum;
+}
+
+void Player::HPAdd(int addNum)
+{
+	hp += addNum;
+}
+
+int Player::GetAttackPower()
+{
+	return attackPower;
+}
+
 void Player::Attack()
 {
-	if (key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
+	if (!attackFlag && key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
 		attackFlag = true;
+
+		attackBeginPos = pos;
 	}
 
 	if (attackInterval > 0)
@@ -114,15 +134,6 @@ void Player::Attack()
 
 	if (attackFlag)
 	{
-		if (attackTime > 0)
-		{
-			attackTime--;
-		}
-		else
-		{
-			attackFlag = false;
-			attackTime = 40;
-			attackInterval = maxAttackInterval;
-		}
+
 	}
 }

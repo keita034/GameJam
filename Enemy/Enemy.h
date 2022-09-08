@@ -36,6 +36,16 @@ public:
 
 	bool IsDeath();
 
+	Vec2 GetPos();
+
+	int GetRadius();
+
+	void Death();
+
+	void HPSub(int subNum);
+
+	void HPAdd(int addNum);
+
 private:
 	// メンバー変数
 	Vec2 pos_;
@@ -44,7 +54,14 @@ private:
 	float radius_;
 	Vec2 playerPos_;
 	bool isDeath_;
+	//ダメージインターバル
+	int damageInterval;
+	int maxDamageInterval = 25;
+	//ダメージフラグ
+	bool damageFlag = true;
 	// エネミーの行動パターン
 	Pattern pattern_;
+	//体力
+	int hp = 3;
 };
 

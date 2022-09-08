@@ -30,6 +30,8 @@ void GameScene::Update(){
 	{
 		enemy->Update(player_->GetPos());
 	}
+
+	CheckCollisions();
 }
 
 void GameScene::Draw(){
@@ -44,5 +46,25 @@ void GameScene::Draw(){
 
 void GameScene::CheckCollisions()
 {
-	
+	for (std::unique_ptr<Enemy>& enemy : enemys_)
+	{
+		//“G‚ÆŽ©‹@
+		if (CheckSphere2Sphere(player_->GetPos(),player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
+		{
+			player_->HPSub(1);
+			enemy->Death();
+		}
+
+		if (player_->GetAttackFlag())
+		{
+			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), enemy->GetPos(), enemy->GetRadius()))
+			{
+				enemy->HPSub(player_->GetAttackPower());
+			}
+		}
+		else
+		{
+			enemy->HPSub(1);
+		}
+	}
 }
