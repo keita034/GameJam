@@ -99,7 +99,10 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 	{
 		enemy->Update(player_->GetPos());
 	}
-	SnakeEnemyUpdate(player_);
+	if (Poptimer >= 13 * 50)
+	{
+		SnakeEnemyUpdate(player_);
+	}
 }
 
 void EnemyPop::EnemyPopDraw(Player* player_)
@@ -108,7 +111,10 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	{
 		enemy->Draw(player_->GetScreen());
 	}
-	SnakeEnemyDraw(player_);
+	if (Poptimer >= 13 * 50)
+	{
+		SnakeEnemyDraw(player_);
+	}
 }
 
 void EnemyPop::CheckCollisions(Player* player_)
