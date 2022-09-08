@@ -28,8 +28,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://タイトル
-		Title(keys, oldkeys);
-		//gameScene_->Update();
+		//Title(keys, oldkeys);
+		gameScene_->Update();
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -77,7 +77,7 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
-		//gameScene_->Draw();
+		gameScene_->Draw();
 		pause_->Draw();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル

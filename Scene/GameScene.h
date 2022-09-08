@@ -5,6 +5,7 @@
 #include"Collision.h"
 #include<memory>
 #include<list>
+#include"EnemyPop.h"
 
 class GameScene
 {
@@ -26,11 +27,11 @@ public:
 	/// </summary>
 	void Draw();
 
-	void CheckCollisions();
+	
 
 private:
 	std::unique_ptr<Player> player_;
-	std::list<std::unique_ptr<Enemy>>enemys_;
-
+	//std::list<std::unique_ptr<Enemy>>enemys_;
+	std::unique_ptr<EnemyPop> enemypop_;
 };
 

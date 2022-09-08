@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemy.h"
 #include "Player.h"
+#include "Collision.h"
 #include<memory>
 #include<list>
 class EnemyPop
@@ -16,9 +17,11 @@ public:
 
 	// “G‚Ì•`‰æˆ—
 	void EnemyPopDraw(Player* player_);
+
+	void CheckCollisions(Player* player_);
 private:
 	// ƒƒ“ƒo[•Ï”
-	float Poptimer = 0;
+	int Poptimer = 0;
 	float timerInterval = 1 * 50;
 
 	// “G‚ÌƒŠƒXƒg

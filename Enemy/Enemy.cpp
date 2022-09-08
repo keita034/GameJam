@@ -4,7 +4,7 @@ Enemy::Enemy()
 	pos_ = { 0,0 };
 	speed_ = 2;
 	playerPos_ = { 1280.0f,720.0f };
-	radius_ = 5;
+	radius_ = 32;
 	pattern_ = HeightUp;
 	isDeath_ = false;
 }

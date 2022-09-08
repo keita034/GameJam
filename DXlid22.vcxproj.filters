@@ -132,11 +132,11 @@
     <ClCompile Include="Util\Collision.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy\EnemyPop.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Particle\Smoke.cpp">
       <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemyPop.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
