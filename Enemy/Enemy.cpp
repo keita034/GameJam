@@ -1,4 +1,7 @@
 #include "Enemy.h"
+
+
+
 Enemy::Enemy()
 {
 	pos_ = { 0,0 };
@@ -71,6 +74,12 @@ void Enemy::Update(Vec2 playerNpos)
 	case Center:
 		pos_ += velocity_* speed_;
 		break;
+	case TrakingEnemy:
+		velocity_ = tarkingEnemyPos - pos_;
+		velocity_ = velocity_.Normalized();
+		velocity_ *= speed_;
+		pos_ += velocity_;
+		break;
 	default:
 		break;
 	}
@@ -139,4 +148,9 @@ void Enemy::HPSub(int subNum)
 void Enemy::HPAdd(int addNum)
 {
 	hp += addNum;
+}
+
+void Enemy::SetTrakingEnemyPos(Vec2 &enemyPos)
+{
+	tarkingEnemyPos = enemyPos;
 }

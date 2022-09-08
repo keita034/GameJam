@@ -1,5 +1,6 @@
 #include "EnemyPop.h"
 
+
 void EnemyPop::EnemyPopInit()
 {
 	Poptimer += 1;
@@ -84,7 +85,7 @@ void EnemyPop::EnemyPopInit()
 	// 3ウェーブ目(12秒)
 	if (Poptimer == 13 * 50)
 	{
-
+		SnakeEnemyPop(Vec2{ 1080.0f ,240.0f });
 	}
 }
 
@@ -98,6 +99,7 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 	{
 		enemy->Update(player_->GetPos());
 	}
+	SnakeEnemyUpdate(player_);
 }
 
 void EnemyPop::EnemyPopDraw(Player* player_)
@@ -106,6 +108,7 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	{
 		enemy->Draw(player_->GetScreen());
 	}
+	SnakeEnemyDraw(player_);
 }
 
 void EnemyPop::CheckCollisions(Player* player_)
@@ -131,5 +134,38 @@ void EnemyPop::CheckCollisions(Player* player_)
 		{
 			enemy->HPSub(1);
 		}
+	}
+}
+
+void EnemyPop::SnakeEnemyPop(Vec2 pos)
+{
+	SnakeEnemy[0] = std::make_unique<Enemy>();
+	SnakeEnemy[0]->Initialize(Traking, { pos.x ,pos.y }, 3.0f);
+	
+	for (int i = 1; i < 5; i++)
+	{
+		SnakeEnemy[i] = std::make_unique<Enemy>();
+
+		SnakeEnemy[i]->Initialize(TrakingEnemy, { pos.x + 100 * i ,pos.y }, 3.0f);
+	}
+}
+
+void EnemyPop::SnakeEnemyUpdate(Player* player_)
+{
+	SnakeEnemy[0].get()->Update(player_->GetPos());
+	for (int i = 1; i < 5; i++)
+	{
+		int j = i - 1;
+		Vec2 EPos = SnakeEnemy[j].get()->GetPos();
+		SnakeEnemy[i].get()->SetTrakingEnemyPos(EPos);
+		SnakeEnemy[i].get()->Update(player_->GetPos());
+	}
+}
+
+void EnemyPop::SnakeEnemyDraw(Player* player_)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		SnakeEnemy[i].get()->Draw(player_->GetScreen());
 	}
 }

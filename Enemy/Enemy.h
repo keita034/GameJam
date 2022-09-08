@@ -13,7 +13,8 @@ enum Pattern
 	DiagonallyDownL,// 左斜め下
 	DiagonallyDownR,// 右斜め下
 	Traking,        // 追尾
-	Center,         //中心を通る
+	Center,         // 中心を通る
+	TrakingEnemy,   // 前にいる敵の後ろを追尾
 };
 
 class Enemy
@@ -46,6 +47,8 @@ public:
 
 	void HPAdd(int addNum);
 
+	void SetTrakingEnemyPos(Vec2 &enemyPos);
+
 private:
 	// メンバー変数
 	Vec2 zeroVec = { 0.0f,0.0f };
@@ -58,7 +61,7 @@ private:
 	Vec2 playerPos_;
 	bool isDeath_;
 	//ダメージインターバル
-	int damageInterval;
+	int damageInterval = 0;
 	int maxDamageInterval = 25;
 	//ダメージフラグ
 	bool damageFlag = true;
@@ -66,5 +69,8 @@ private:
 	Pattern pattern_;
 	//体力
 	int hp = 3;
+
+	// ひとつ前にいる敵の位置
+	Vec2 tarkingEnemyPos = { 0,0 };
 };
 
