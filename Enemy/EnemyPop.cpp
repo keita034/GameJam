@@ -3,7 +3,9 @@
 void EnemyPop::EnemyPopInit()
 {
 	Poptimer++;
-	if (Poptimer == 4 * 50)
+
+	// １ウェーブ目
+	if (Poptimer == 2 * 50)
 	{
 		for (int i = 0; i < 5; i++)
 		{
@@ -22,7 +24,11 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(HeightDown, { 640.0f + 80 * i ,1440.0f }, 4.0f);
 			enemys_.push_back(std::move(enemy));
 		}
+
+
 	}
+
+
 }
 
 void EnemyPop::EnemyPopUpdate(Player *player_)

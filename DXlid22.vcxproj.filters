@@ -132,7 +132,7 @@
     <ClCompile Include="Util\Collision.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyPop.cpp">
+    <ClCompile Include="Enemy\EnemyPop.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,7 +209,7 @@
     <ClInclude Include="Util\Collision.h">
       <Filter>ヘッダー ファイル\Util</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyPop.h">
+    <ClInclude Include="Enemy\EnemyPop.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
