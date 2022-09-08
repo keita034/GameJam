@@ -74,6 +74,9 @@ private:
 	Vec2 tarkingEnemyPos = { 0,0 };
 
 	// ひとつ前にいる敵とのベクトルの長さ
-	//Vec2 tarkingEnemyPosLength = { 0,0 };
+	Vec2 tarkingEnemyPosLength = { 0,0 };
+
+	// 今の敵と前の敵とのベクトルの長さ
+	Vec2 tarkingEnemyPosLengthN = { 0,0 };
 };
 

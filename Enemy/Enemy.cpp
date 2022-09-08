@@ -26,6 +26,7 @@ void Enemy::Initialize(Pattern pattern, Vec2 pos, float speed)
 	// プレイヤーの初期位置からエネミーの位置のベクトル
 	velocity_ = playerPos_ - pos_;
 	velocity_ = velocity_.Normalized();
+	tarkingEnemyPosLength = tarkingEnemyPos - pos_;
 }
 
 void Enemy::Update(Vec2 playerNpos)
@@ -75,9 +76,14 @@ void Enemy::Update(Vec2 playerNpos)
 		pos_ += velocity_* speed_;
 		break;
 	case TrakingEnemy:
+		tarkingEnemyPosLengthN= tarkingEnemyPos - pos_;
 		velocity_ = tarkingEnemyPos - pos_;
 		velocity_ = velocity_.Normalized();
-		velocity_ *= speed_;
+		if (tarkingEnemyPosLengthN.Length() >= tarkingEnemyPosLength.Length())
+		{
+			velocity_ *= speed_;
+		}
+		
 		pos_ += velocity_;
 		break;
 	default:

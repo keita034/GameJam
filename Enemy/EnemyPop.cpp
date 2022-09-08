@@ -173,8 +173,10 @@ void EnemyPop::SnakeEnemyPop(Vec2 pos)
 	for (int i = 1; i < 5; i++)
 	{
 		SnakeEnemy[i] = std::make_unique<Enemy>();
-
-		SnakeEnemy[i]->Initialize(TrakingEnemy, { pos.x + 100 * i ,pos.y }, 3.0f);
+		int j = i - 1;
+		Vec2 EPos = SnakeEnemy[j].get()->GetPos();
+		SnakeEnemy[i].get()->SetTrakingEnemyPos(EPos);
+		SnakeEnemy[i]->Initialize(TrakingEnemy, { pos.x + 75 * i ,pos.y }, 3.0f);
 	}
 }
 
