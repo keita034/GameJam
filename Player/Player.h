@@ -60,7 +60,11 @@ private:
 	int level = 0;
 	//攻撃した時に一番近い敵とのベクトル
 	Vec2 attackEnemyToPlayerVec;
-
+	//攻撃レベルが上がる距離
+	float levelUpDistance = 96;
+	//攻撃の方向ベクトル
+	Vec2 attackDirectionVec;
+	bool finalLevel = false;
 	//体力
 	int hp = 3;
 
