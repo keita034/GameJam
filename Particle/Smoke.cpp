@@ -35,7 +35,7 @@ void Smoke::Update() {
 			randY[i] = sin(Radian(angle));
 
 		}
-		else if (flag[i] == 1) {
+		if (flag[i] == 1) {
 			if (timer[i] < 50) {
 				timer[i]++;
 			}
@@ -44,9 +44,8 @@ void Smoke::Update() {
 			y[i] += randY[i] * 6;
 			if (timer[i] >= 50) {
 				flag[i] = 0;
-				timer[i] = 0;
-				x[i] = 740;
-				y[i] = 360;
+				/*x[i] = 740;
+				y[i] = 360;*/
 				pal[i] = 100;
 			}
 		}
@@ -69,4 +68,18 @@ void Smoke::Draw() {
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 	}
+}
+
+
+void Smoke::MakeSmoke(int SmokePosX, int SmokePosY, int HowManySmokes_) {
+
+	HowManySmokes = HowManySmokes_;
+	for (int i = 0; i < 300; i++) {
+		if (flag[i] == 0) {
+			x[i] = SmokePosX;
+			y[i] = SmokePosY;
+			timer[i] = 0;
+		}
+	}
+
 }

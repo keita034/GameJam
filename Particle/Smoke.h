@@ -21,6 +21,10 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 死んだときに出し続けるかとスモークの数
+	/// </summary>
+	void MakeSmoke(int SmokePosX,int SmokePosY,int HowManySmokes);
 
 private:
 
@@ -37,7 +41,12 @@ private:
 	int pal[300];
 
 	int frame = 0;
-	int maxFrame = 3;
+	int maxFrame = 1;
+
+	int DieTimer = 0;
+	int dieFlag = 0;
+
+	int HowManySmokes = 0;
 
 	Vec2 randomPos;
 	Vec2 movePos;
