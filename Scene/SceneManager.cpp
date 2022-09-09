@@ -30,8 +30,15 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://ƒ^ƒCƒgƒ‹
-		Title(keys, oldkeys);
+		//Title(keys, oldkeys);
 		//gameScene_->Update();
+		
+		if (key.GetKey(KEY_INPUT_SPACE)) {
+
+			smoke_->MakeSmoke(300, 300, 15);
+
+		}
+
 		smoke_->Update();
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
