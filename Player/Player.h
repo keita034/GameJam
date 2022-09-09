@@ -21,13 +21,8 @@ private:
 	float angle = 0.0f;
 	//スピード
 	float speed = 5.0f;
-
-	//正面ベクトルの終点
-	Vec2 front;
 	//正面ベクトル
 	Vec2 frontVec;
-	//正面ベクトルの正規化
-	Vec2 normFrontVec;
 	
 	//フィールドサイズ
 	Vec2 fieldSize = { 2560.0f ,1440.0f };
@@ -39,7 +34,7 @@ private:
 	//攻撃時間
 	int attackTime = 0;
 	float attackFrameTime = 0;
-	int maxAttackTime = 50 * 1;
+	int maxAttackTime = 40;
 	//攻撃インターバル
 	int attackInterval = 0;
 	//最大攻撃インターバル
@@ -58,18 +53,23 @@ private:
 	Vec2 attackBeginPos;
 	//攻撃しようとしたスクリーン座標
 	Vec2 attackScreenBeginPos;
+	Vec2 attackScreenEndPos;
 	bool attackCameraFlag = false;
 	//攻撃のレベル
 	int level = 0;
 	//攻撃した時に一番近い敵とのベクトル
 	Vec2 attackEnemyToPlayerVec;
 	//攻撃レベルが上がる距離
-	float levelUpDistance = 96;
+	float levelUpDistance = 200;
 	//攻撃の方向ベクトル
 	Vec2 attackDirectionVec;
 	bool finalLevel = false;
 	//体力
 	int hp = 10;
+
+	//コンボ猶予時間
+	float comboExtensionTime = 50 * 2;
+	int combo;
 
 public:
 
@@ -115,6 +115,8 @@ public:
 
 	bool AttackTriggerFlag();
 	void Attack();
+
+	int GetCombo();
 
 private:
 

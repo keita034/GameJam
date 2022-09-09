@@ -170,3 +170,18 @@ double Ease::easeOutCubic(double x)
 {
 	return 1 - pow(1 - x, 3);
 }
+
+double Ease::easeInCubic(double x)
+{
+	return x * x * x;
+}
+
+double Ease::easeOutQuad(double x)
+{
+	return 1 - (1 - x) * (1 - x);
+}
+
+double Ease::Lerp(double start, double end, double t)
+{
+	return (1 - t) * start + t * end;
+}

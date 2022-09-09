@@ -28,6 +28,16 @@ void Player::Update()
 
 	//1フレーム前の攻撃フラグを保存
 	oldAttackFlag = attackFlag;
+
+	if (comboExtensionTime > 0)
+	{
+		comboExtensionTime--;
+	}
+	else
+	{
+		level = 0;
+		combo = 0;
+	}
 }
 
 void Player::Draw()
@@ -107,6 +117,16 @@ int Player::GetAttackPower()
 
 void Player::LevelUpdate(Vec2 vec)
 {
+	if (!finalLevel)
+	{
+		//コンボの猶予時間を初期値に
+		comboExtensionTime = 100;
+	}
+	else
+	{
+		comboExtensionTime += 0.1f;
+	}
+
 	//ベクトルの長ささレベルが上がる距離より短かったら
 	if (vec.Length()<levelUpDistance)
 	{
@@ -115,43 +135,48 @@ void Player::LevelUpdate(Vec2 vec)
 		case 0:
 			attackRadius = 128;
 			attackPower = 1;
-			maxAttackTime = 50 * 1;
-			attackDistance = 200;
+			maxAttackTime = 40;
+			attackDistance = 400;
 			break;
 
 		case 1:
 			attackRadius = 128;
 			attackPower = 1;
-			maxAttackTime = 50 * 1;
-			attackDistance = 200;
+			maxAttackTime = 40;
+			attackDistance = 400;
 			break;
 
 		case 2:
 			attackRadius = 128;
 			attackPower = 1;
-			maxAttackTime = 50 * 1;
-			attackDistance = 200;
+			maxAttackTime = 40;
+			attackDistance = 400;
 			break;
 
 		case 3:
 			attackRadius = 128;
 			attackPower = 1;
-			maxAttackTime = 50 * 1;
-			attackDistance = 200;
+			maxAttackTime = 40;
+			attackDistance = 400;
 			break;
 
 		case 4:
 			finalLevel = true;
-			attackRadius = 128;
+			attackRadius = 280;
 			attackPower = 1;
-			maxAttackTime = 50 * 1;
-			attackDistance = 200;
+			maxAttackTime = 40;
+			attackDistance = 400;
+			levelUpDistance = 96;
+			break;
+
+		default:
+
 			break;
 		}
 
 		level++;
+		combo++;
 	}
-
 }
 
 void Player::MoveLimit()
@@ -210,19 +235,6 @@ void Player::Attack()
 		attackInterval--;
 	}
 
-	if (attackCameraFlag)
-	{
-		float time = attackFrameTime-10 / maxAttackTime;
-
-		screen.x = attackScreenBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
-		screen.y = attackScreenBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
-		
-		if (time >= 0.65f)
-		{
-			attackFlag = false;
-		}
-	}
-
 	if (attackFlag)
 	{
 		attackFrameTime++;
@@ -233,7 +245,10 @@ void Player::Attack()
 		if (!finalLevel)
 		{
 			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
-			pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+			pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
+
+			screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(time) * (attackDirectionVec.x * attackDistance);
+			screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
 
 		}
 		else//最終レベル
@@ -242,7 +257,7 @@ void Player::Attack()
 			pos.y = attackBeginPos.y + Ease::easeInBack(time) * (attackDirectionVec.y * attackDistance);
 		}
 
-		if (time >= 0.65f)
+		if (time >= 1.0f)
 		{
 			attackFlag = false;
 			attackFrameTime = 0;
@@ -259,4 +274,9 @@ void Player::Attack()
 			}
 		}
 	}
+}
+
+int Player::GetCombo()
+{
+	return combo;
 }

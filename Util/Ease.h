@@ -31,6 +31,9 @@ public:
 	static double easeInCirc(double x);
 
 	static double easeOutCubic(double x);
+	static double easeInCubic(double x);
+	static double easeOutQuad(double x);
 
+	static double Lerp(double start, double end, double t);
 };
 
