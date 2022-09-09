@@ -56,9 +56,12 @@ void Player::Draw()
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
-		DrawCircle(pos.x - screen.x, pos.y - screen.y, radius+ 128.0f, GetColor(255, 255, 0));
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 
+	for (size_t i = 0; i < hp; i++)
+	{
+		DrawBox(1036 + (20 * i), 275, 1056 + (20 * i), 312, GetColor(255, 0, 0), true);
 	}
 }
 
@@ -107,7 +110,6 @@ void Player::AttackUpdate(Vec2 vec)
 	//ベクトルの長ささレベルが上がる距離より短かったら
 	if (vec.Length()<levelUpDistance)
 	{
-		
 		switch (level)
 		{
 		case 0:
@@ -146,6 +148,7 @@ void Player::AttackUpdate(Vec2 vec)
 			attackDistance = 200;
 			break;
 		}
+
 		level++;
 	}
 

@@ -26,5 +26,7 @@ public:
 	static double easeInOutQuart(double x);
 	static double easeInBack(double x);
 
+	static double easeInCirc(double x);
+
 };
 

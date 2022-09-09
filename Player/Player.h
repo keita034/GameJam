@@ -16,7 +16,7 @@ private:
 	//1フレーム前の座標
 	Vec2 oldPos;
 	//半径
-	int radius = 32;
+	int radius = 24;
 	//角度
 	float angle = 0.0f;
 	//スピード
@@ -45,7 +45,7 @@ private:
 	//最大攻撃インターバル
 	int maxAttackInterval = 50 * 2;
 	//攻撃距離
-	int attackDistance = 200;
+	int attackDistance = 400;
 	//攻撃フラグ
 	bool attackFlag = false;
 	//1フレーム前の攻撃フラグ
@@ -66,7 +66,7 @@ private:
 	Vec2 attackDirectionVec;
 	bool finalLevel = false;
 	//体力
-	int hp = 3;
+	int hp = 10;
 
 public:
 

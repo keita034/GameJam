@@ -33,5 +33,7 @@ private:
 	std::unique_ptr<Player> player_;
 	//std::list<std::unique_ptr<Enemy>>enemys_;
 	std::unique_ptr<EnemyPop> enemypop_;
+
+	int frameImg;
 };
 

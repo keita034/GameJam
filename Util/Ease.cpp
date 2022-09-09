@@ -155,8 +155,13 @@ double Ease::easeInOutQuart(double x) {
 
 double Ease::easeInBack(double x)
 {
-   double c1 = 1.70158f;
-   double c3 = c1 + 1.0f;
+   double c1 = 1.70158;
+   double c3 = c1 + 1.0;
 
    return c3 * x * x * x - c1 * x * x;
+}
+
+double Ease::easeInCirc(double x)
+{
+	return 1 - sqrt(1 - pow(x, 2));
 }
