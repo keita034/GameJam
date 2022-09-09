@@ -88,6 +88,7 @@ private:
 	Pause* pause_ = nullptr;
 	Smoke* smoke_ = nullptr;
 
+	int siroGh;
 
 	//パーティクル
 	int pal = 0;

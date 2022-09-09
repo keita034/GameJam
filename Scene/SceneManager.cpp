@@ -7,6 +7,8 @@ SceneManager::~SceneManager() {
 }
 
 void SceneManager::Initialize() {
+	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
+
 	//new‚·‚é
 	titleScene_ = new TitleScene();
 	gameScene_ = new GameScene();
@@ -19,7 +21,7 @@ void SceneManager::Initialize() {
 	gameScene_->Initialize();
 	//resultScene_->Initialize();
 	pause_->Initialize();
-	smoke_->Initialize();
+	smoke_->Initialize(siroGh);
 }
 
 void SceneManager::Update(char* keys, char* oldkeys) {
@@ -35,7 +37,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
-			smoke_->MakeSmoke(300, 300, 15);
+			smoke_->MakeEnemySmoke(300, 300);
 
 		}
 
