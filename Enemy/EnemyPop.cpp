@@ -4,7 +4,7 @@
 void EnemyPop::EnemyPopInit()
 {
 	Poptimer += 1;
-
+	
 	// １ウェーブ目(2秒)
 	if (Poptimer == 2 * 50)
 	{
@@ -85,7 +85,8 @@ void EnemyPop::EnemyPopInit()
 	// 3ウェーブ目(12秒)
 	if (Poptimer == 13 * 50)
 	{
-		
+		snakeEenmy_ = std::make_unique<SnakeEnemy>();
+		snakeEenmy_.get()->SnakeEnemyPop({ 1080.0f ,240.0f });
 	}
 
 	// 4ウェーブ目(17秒)
@@ -182,7 +183,10 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 	});
 
 	player_->Attack();
-
+	if (Poptimer >= 13 * 50)
+	{
+		snakeEenmy_.get()->SnakeEnemyUpdate(player_);
+	}
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		enemy->Update(player_->GetPos());
@@ -199,7 +203,6 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 		}
 	}
 	
-
 	player_->LevelUpdate(playerToEnemy);
 
 	player_->MoveLimit();
@@ -211,7 +214,10 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	{
 		enemy->Draw(player_->GetScreen());
 	}
-
+	if (Poptimer >= 13 * 50)
+	{
+		snakeEenmy_.get()->SnakeEnemyDraw(player_);
+	}
 }
 
 void EnemyPop::CheckCollisions(Player* player_)

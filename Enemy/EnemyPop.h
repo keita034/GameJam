@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "SnakeEnemy.h"
 #include "Player.h"
 #include "Collision.h"
 #include "Util.h"
@@ -31,6 +32,7 @@ private:
 	// “G‚ÌƒŠƒXƒg
 	std::list<std::unique_ptr<Enemy>>enemys_;
 
-	
+	// ŽÖ‚Ì“G
+	std::unique_ptr<SnakeEnemy> snakeEenmy_;
 };
 

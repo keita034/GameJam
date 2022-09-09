@@ -31,7 +31,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Title://ƒ^ƒCƒgƒ‹
 		//Title(keys, oldkeys);
-		//gameScene_->Update();
+		gameScene_->Update();
 		
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
