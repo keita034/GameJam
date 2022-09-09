@@ -46,7 +46,9 @@ private:
 	int DieTimer = 0;
 	int dieFlag = 0;
 
-	int HowManySmokes = 0;
+	int Smokes = 0;
+
+	int NowSmoke = 0;
 
 	Vec2 randomPos;
 	Vec2 movePos;
