@@ -176,7 +176,11 @@ void Player::MoveLimit()
 
 	//現在の座標から1フレーム前の座標を引いて
 	//スクリーンの移動量を決める
-	screen += pos - oldPos;
+	if (!attackFlag)
+	{
+		screen += pos - oldPos;
+	}
+
 }
 
 bool Player::AttackTriggerFlag()
@@ -194,14 +198,29 @@ void Player::Attack()
 	if (!attackFlag && key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
 		attackFlag = true;
+		attackCameraFlag = true;
 
 		attackBeginPos = pos;
 		attackDirectionVec = frontVec;
+		attackScreenBeginPos = screen;
 	}
 
 	if (attackInterval > 0)
 	{
 		attackInterval--;
+	}
+
+	if (attackCameraFlag)
+	{
+		float time = attackFrameTime-10 / maxAttackTime;
+
+		screen.x = attackScreenBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+		screen.y = attackScreenBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
+		
+		if (time >= 0.65f)
+		{
+			attackFlag = false;
+		}
 	}
 
 	if (attackFlag)
@@ -213,8 +232,9 @@ void Player::Attack()
 		//イージング
 		if (!finalLevel)
 		{
-			pos.x = attackBeginPos.x + Ease::easeInOutQuart(time) * (attackDirectionVec.x * attackDistance);
-			pos.y = attackBeginPos.y + Ease::easeInOutQuart(time) * (attackDirectionVec.y * attackDistance);
+			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+			pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+
 		}
 		else//最終レベル
 		{
@@ -222,7 +242,7 @@ void Player::Attack()
 			pos.y = attackBeginPos.y + Ease::easeInBack(time) * (attackDirectionVec.y * attackDistance);
 		}
 
-		if (time >= 1.0f)
+		if (time >= 0.65f)
 		{
 			attackFlag = false;
 			attackFrameTime = 0;

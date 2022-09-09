@@ -1,4 +1,6 @@
 #pragma once
+#include"DxLib.h"
+
 //’Ç‰Á
 class Ease
 {
@@ -27,6 +29,8 @@ public:
 	static double easeInBack(double x);
 
 	static double easeInCirc(double x);
+
+	static double easeOutCubic(double x);
 
 };
 
