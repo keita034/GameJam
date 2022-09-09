@@ -165,3 +165,8 @@ double Ease::easeInCirc(double x)
 {
 	return 1 - sqrt(1 - pow(x, 2));
 }
+
+double Ease::easeOutCubic(double x)
+{
+	return 1 - pow(1 - x, 3);
+}

@@ -56,6 +56,9 @@ private:
 	int attackPower = 1;
 	//攻撃しようとした座標
 	Vec2 attackBeginPos;
+	//攻撃しようとしたスクリーン座標
+	Vec2 attackScreenBeginPos;
+	bool attackCameraFlag = false;
 	//攻撃のレベル
 	int level = 0;
 	//攻撃した時に一番近い敵とのベクトル
