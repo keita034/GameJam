@@ -4,6 +4,7 @@
 #include"GameScene.h"
 #include"ResultScene.h"
 #include"Pause.h"
+#include"Smoke.h"
 
 class SceneManager
 {
@@ -85,6 +86,8 @@ private:
 	ResultScene* resultScene_ = nullptr;
 
 	Pause* pause_ = nullptr;
+	Smoke* smoke_ = nullptr;
+
 
 	//パーティクル
 	int pal = 0;

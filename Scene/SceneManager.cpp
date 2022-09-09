@@ -12,12 +12,14 @@ void SceneManager::Initialize() {
 	gameScene_ = new GameScene();
 	resultScene_ = new ResultScene();
 	pause_ = new Pause();
+	smoke_ = new Smoke();
 
 	//初期化処理
 	//titleScene_->Initialize();
 	gameScene_->Initialize();
 	//resultScene_->Initialize();
 	pause_->Initialize();
+	smoke_->Initialize();
 }
 
 void SceneManager::Update(char* keys, char* oldkeys) {
@@ -28,8 +30,9 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://タイトル
-		//Title(keys, oldkeys);
-		gameScene_->Update();
+		Title(keys, oldkeys);
+		//gameScene_->Update();
+		smoke_->Update();
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -79,6 +82,8 @@ void SceneManager::Draw() {
 	case SceneManager::Scene::Title://タイトル
 		gameScene_->Draw();
 		pause_->Draw();
+		smoke_->Draw();
+
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 

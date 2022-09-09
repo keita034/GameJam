@@ -152,3 +152,11 @@ double Ease::easeInOutCubic(double x) {
 double Ease::easeInOutQuart(double x) {
 	return x < 0.5 ? 8 * x * x * x * x : 1 - pow(-2 * x + 2, 4) / 2;
 }
+
+double Ease::easeInBack(double x)
+{
+   double c1 = 1.70158f;
+   double c3 = c1 + 1.0f;
+
+   return c3 * x * x * x - c1 * x * x;
+}
