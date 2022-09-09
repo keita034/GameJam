@@ -15,6 +15,7 @@ enum Pattern
 	Traking,        // 追尾
 	Center,         // 中心を通る
 	TrakingEnemy,   // 前にいる敵の後ろを追尾
+	None,           // なにもない
 };
 
 class Enemy
@@ -48,6 +49,8 @@ public:
 	void HPAdd(int addNum);
 
 	void SetTrakingEnemyPos(Vec2 &enemyPos);
+
+	void SetEnemyPos(Vec2& pos);
 
 private:
 	// メンバー変数

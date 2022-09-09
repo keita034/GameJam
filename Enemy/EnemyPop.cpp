@@ -42,6 +42,8 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(Center, { 300.0f , 520.0f + 100 * i },4.0f);
 			enemys_.push_back(std::move(enemy));
 		}
+		rareEenmy_= std::make_unique<RareEnemy>();
+		rareEenmy_.get()->RareEnemyInit({ 1280, -70 });
 	}
 
 	// ‚QƒEƒF[ƒu–Ú(‚V•b)
@@ -189,10 +191,18 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 	});
 
 	player_->Attack();
+
+	if (Poptimer >= 2 * 50)
+	{
+		rareEenmy_.get()->RareEnemyUpdate(player_);
+	}
+
 	if (Poptimer >= 13 * 50)
 	{
 		snakeEenmy_.get()->SnakeEnemyUpdate(player_);
 	}
+
+
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		enemy->Update(player_->GetPos());
@@ -219,6 +229,10 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		enemy->Draw(player_->GetScreen());
+	}
+	if (Poptimer >= 2 * 50)
+	{
+		rareEenmy_.get()->RareEnemyDraw(player_);
 	}
 	if (Poptimer >= 13 * 50)
 	{

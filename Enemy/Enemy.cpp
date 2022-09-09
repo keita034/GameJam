@@ -158,3 +158,8 @@ void Enemy::SetTrakingEnemyPos(Vec2 &enemyPos)
 {
 	tarkingEnemyPos = enemyPos;
 }
+
+void Enemy::SetEnemyPos(Vec2& pos)
+{
+	pos_ = pos;
+}

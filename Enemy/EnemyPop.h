@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemy.h"
 #include "SnakeEnemy.h"
+#include "RareEnemy.h"
 #include "Player.h"
 #include "Collision.h"
 #include "Util.h"
@@ -34,5 +35,8 @@ private:
 
 	// Ö‚Ì“G
 	std::unique_ptr<SnakeEnemy> snakeEenmy_;
+
+	// ƒŒƒA“G
+	std::unique_ptr<RareEnemy> rareEenmy_;
 };
 

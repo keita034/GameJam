@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyPop.cpp" />
+    <ClCompile Include="Enemy\RareEnemy.cpp" />
     <ClCompile Include="Enemy\SnakeEnemy.cpp" />
     <ClCompile Include="Input\JoyPadInput.cpp" />
     <ClCompile Include="Input\KeyBoardInput.cpp" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyPop.h" />
+    <ClInclude Include="Enemy\RareEnemy.h" />
     <ClInclude Include="Enemy\SnakeEnemy.h" />
     <ClInclude Include="Input\JoyPadInput.h" />
     <ClInclude Include="Input\KeyBoardInput.h" />
