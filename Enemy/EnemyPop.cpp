@@ -82,7 +82,7 @@ void EnemyPop::EnemyPopInit()
 		}
 	}
 
-	// 3ウェーブ目(12秒)
+	// 3ウェーブ目(12秒)----蛇
 	if (Poptimer == 13 * 50)
 	{
 		snakeEenmy_ = std::make_unique<SnakeEnemy>();
@@ -169,6 +169,12 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(UpperL, { 1680.0f + 200 * i ,840.0f - 100 * i }, 3.0f);
 			enemys_.push_back(std::move(enemy));
 		}
+	}
+
+	// 6ウェーブ目(28秒)
+	if (Poptimer == 28 * 50)
+	{
+
 	}
 }
 
