@@ -203,8 +203,9 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 		SnakeEnemyUpdate(player_);
 	}
 
-	player_->AttackUpdate(playerToEnemy);
+	player_->LevelUpdate(playerToEnemy);
 
+	player_->MoveLimit();
 }
 
 void EnemyPop::EnemyPopDraw(Player* player_)

@@ -105,7 +105,7 @@ int Player::GetAttackPower()
 	return attackPower;
 }
 
-void Player::AttackUpdate(Vec2 vec)
+void Player::LevelUpdate(Vec2 vec)
 {
 	//ベクトルの長ささレベルが上がる距離より短かったら
 	if (vec.Length()<levelUpDistance)
@@ -152,7 +152,11 @@ void Player::AttackUpdate(Vec2 vec)
 		level++;
 	}
 
-	//移動制限
+}
+
+void Player::MoveLimit()
+{
+		//移動制限
 	if (pos.x - radius < zero.x)
 	{
 		pos.x = zero.x + radius;

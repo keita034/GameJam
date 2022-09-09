@@ -106,7 +106,9 @@ public:
 	/// <summary>
 	/// çUåÇ
 	/// </summary>
-	void AttackUpdate(Vec2 vec);
+	void LevelUpdate(Vec2 vec);
+
+	void MoveLimit();
 
 	bool AttackTriggerFlag();
 	void Attack();
