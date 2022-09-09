@@ -85,7 +85,7 @@ void EnemyPop::EnemyPopInit()
 	// 3ウェーブ目(12秒)
 	if (Poptimer == 13 * 50)
 	{
-		SnakeEnemyPop(Vec2{ 1080.0f ,240.0f });
+		
 	}
 
 	// 4ウェーブ目(17秒)
@@ -198,10 +198,7 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 			}
 		}
 	}
-	if (Poptimer >= 13 * 50)
-	{
-		SnakeEnemyUpdate(player_);
-	}
+	
 
 	player_->LevelUpdate(playerToEnemy);
 
@@ -214,10 +211,7 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	{
 		enemy->Draw(player_->GetScreen());
 	}
-	if (Poptimer >= 13 * 50)
-	{
-		SnakeEnemyDraw(player_);
-	}
+
 }
 
 void EnemyPop::CheckCollisions(Player* player_)

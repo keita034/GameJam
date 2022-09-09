@@ -138,7 +138,7 @@
     <ClCompile Include="Enemy\EnemyPop.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="SnakeEnemy.cpp">
+    <ClCompile Include="Enemy\SnakeEnemy.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,7 +221,7 @@
     <ClInclude Include="Particle\Smoke.h">
       <Filter>ヘッダー ファイル\Particel</Filter>
     </ClInclude>
-    <ClInclude Include="SnakeEnemy.h">
+    <ClInclude Include="Enemy\SnakeEnemy.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

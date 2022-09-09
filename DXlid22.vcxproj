@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyPop.cpp" />
+    <ClCompile Include="Enemy\SnakeEnemy.cpp" />
     <ClCompile Include="Input\JoyPadInput.cpp" />
     <ClCompile Include="Input\KeyBoardInput.cpp" />
     <ClCompile Include="Input\MouseInput.cpp" />
@@ -146,7 +147,6 @@
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
-    <ClCompile Include="SnakeEnemy.cpp" />
     <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="Util\Box.cpp" />
     <ClCompile Include="Util\Camera.cpp" />
@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyPop.h" />
+    <ClInclude Include="Enemy\SnakeEnemy.h" />
     <ClInclude Include="Input\JoyPadInput.h" />
     <ClInclude Include="Input\KeyBoardInput.h" />
     <ClInclude Include="Input\MouseInput.h" />
@@ -175,7 +176,6 @@
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="SnakeEnemy.h" />
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="Util\Box.h" />
     <ClInclude Include="Util\Camera.h" />

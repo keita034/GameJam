@@ -31,7 +31,6 @@ private:
 	// 敵のリスト
 	std::list<std::unique_ptr<Enemy>>enemys_;
 
-	// にょろにょろ敵用の配列
-	std::unique_ptr<Enemy> SnakeEnemy[5];
+	
 };
 
