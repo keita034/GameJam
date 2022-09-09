@@ -146,6 +146,7 @@
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="SnakeEnemy.cpp" />
     <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="Util\Box.cpp" />
     <ClCompile Include="Util\Camera.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="SnakeEnemy.h" />
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="Util\Box.h" />
     <ClInclude Include="Util\Camera.h" />

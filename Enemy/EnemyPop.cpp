@@ -87,6 +87,88 @@ void EnemyPop::EnemyPopInit()
 	{
 		SnakeEnemyPop(Vec2{ 1080.0f ,240.0f });
 	}
+
+	// 4ウェーブ目(17秒)
+	if (Poptimer == 17 * 50)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 1130.0f - 150 * i ,440.0f }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 1130.0f - 150 * i ,1040.0f }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 5ウェーブ目(23秒)
+	if (Poptimer == 23 * 50) 
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 880.0f + 200 * i ,240.0f }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperR, { 880.0f + 200 * i ,840.0f + 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperL, { 1680.0f + 200 * i ,840.0f - 100 * i }, 3.0f);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
 }
 
 void EnemyPop::EnemyPopUpdate(Player *player_)
@@ -165,37 +247,4 @@ void EnemyPop::CheckCollisions(Player* player_)
 	}
 }
 
-void EnemyPop::SnakeEnemyPop(Vec2 pos)
-{
-	SnakeEnemy[0] = std::make_unique<Enemy>();
-	SnakeEnemy[0]->Initialize(Traking, { pos.x ,pos.y }, 3.0f);
-	
-	for (int i = 1; i < 5; i++)
-	{
-		SnakeEnemy[i] = std::make_unique<Enemy>();
-		int j = i - 1;
-		Vec2 EPos = SnakeEnemy[j].get()->GetPos();
-		SnakeEnemy[i].get()->SetTrakingEnemyPos(EPos);
-		SnakeEnemy[i]->Initialize(TrakingEnemy, { pos.x + 75 * i ,pos.y }, 3.0f);
-	}
-}
 
-void EnemyPop::SnakeEnemyUpdate(Player* player_)
-{
-	SnakeEnemy[0].get()->Update(player_->GetPos());
-	for (int i = 1; i < 5; i++)
-	{
-		int j = i - 1;
-		Vec2 EPos = SnakeEnemy[j].get()->GetPos();
-		SnakeEnemy[i].get()->SetTrakingEnemyPos(EPos);
-		SnakeEnemy[i].get()->Update(player_->GetPos());
-	}
-}
-
-void EnemyPop::SnakeEnemyDraw(Player* player_)
-{
-	for (int i = 0; i < 5; i++)
-	{
-		SnakeEnemy[i].get()->Draw(player_->GetScreen());
-	}
-}

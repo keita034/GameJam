@@ -1,7 +1,5 @@
 #include "Enemy.h"
 
-
-
 Enemy::Enemy()
 {
 	pos_ = { 0,0 };

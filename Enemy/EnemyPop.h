@@ -22,14 +22,7 @@ public:
 	// 敵とプレイヤーの当たり判定
 	void CheckCollisions(Player* player_);
 
-	// にょろにょろ敵のを生成
-	void SnakeEnemyPop(Vec2 pos);
-
-	// にょろにょろ敵の更新処理
-	void SnakeEnemyUpdate(Player* player_);
-
-	// にょろにょろ敵の描画処理
-	void SnakeEnemyDraw(Player* player_);
+	
 private:
 	// メンバー変数
 	int Poptimer = 0;
