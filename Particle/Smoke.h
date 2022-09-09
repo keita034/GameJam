@@ -66,6 +66,8 @@ private:
 
 	int DiePal[300];
 
+	int SmokeRadius = 64;
+
 	int frame = 0;
 	int maxFrame = 1;
 

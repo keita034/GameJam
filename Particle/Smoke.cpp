@@ -110,7 +110,7 @@ void Smoke::Draw() {
 
 			SetDrawBright(50, 50, 50);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, DiePal[i]);
-			DrawExtendGraph(DieSmokeX[i], DieSmokeY[i], DieSmokeX[i] + 128, DieSmokeY[i] + 128, siroGh, true);
+			DrawExtendGraph(DieSmokeX[i] - SmokeRadius, DieSmokeY[i] - SmokeRadius, DieSmokeX[i] + SmokeRadius, DieSmokeY[i] + SmokeRadius, siroGh, true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 			SetDrawBright(255, 255, 255);
 
@@ -122,7 +122,7 @@ void Smoke::Draw() {
 
 			SetDrawBright(50, 50, 50);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, MakeBossPal[i]);
-			DrawExtendGraph(MakeBossSmokeX[i], MakeBossSmokeY[i], MakeBossSmokeX[i] + 128, MakeBossSmokeY[i] + 128, siroGh, true);
+			DrawExtendGraph(MakeBossSmokeX[i] - SmokeRadius, MakeBossSmokeY[i] - SmokeRadius, MakeBossSmokeX[i] + SmokeRadius, MakeBossSmokeY[i] + SmokeRadius, siroGh, true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 			SetDrawBright(255, 255, 255);
 
@@ -132,9 +132,9 @@ void Smoke::Draw() {
 	for (int i = 0; i < 10; i++) {
 		if (MakeEnemyFlag[i] == 1) {
 
-			SetDrawBright(50, 50, 50);
+			SetDrawBright(10, 10, 10);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, MakeEnemyPal[i]);
-			DrawExtendGraph(MakeEnemySmokeX[i], MakeEnemySmokeY[i], MakeEnemySmokeX[i] + 128, MakeEnemySmokeY[i] + 128, siroGh, true);
+			DrawExtendGraph(MakeEnemySmokeX[i] - SmokeRadius - 64, MakeEnemySmokeY[i] - SmokeRadius - 64, MakeEnemySmokeX[i] + SmokeRadius + 64, MakeEnemySmokeY[i] + SmokeRadius + 64, siroGh, true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 			SetDrawBright(255, 255, 255);
 

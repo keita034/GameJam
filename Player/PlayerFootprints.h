@@ -1,8 +1,10 @@
 #pragma once
-#pragma once
 
-class Smoke {
+
+class PlayerFootprints {
+
 public:
+
 
 	/// <summary>
 	/// ‰Šú‰»
@@ -19,9 +21,13 @@ public:
 	/// </summary>
 	void Draw();
 
-
 private:
 
+	int x[30];
+	int y[30];
 
+	int pal[30];
+
+	int FootArt[2];
 
 };

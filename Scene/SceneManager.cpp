@@ -33,7 +33,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Title://タイトル
 		//Title(keys, oldkeys);
-		gameScene_->Update();
+		//gameScene_->Update();
 		
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
@@ -89,7 +89,7 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
-		gameScene_->Draw();
+		//gameScene_->Draw();
 		pause_->Draw();
 		smoke_->Draw();
 
