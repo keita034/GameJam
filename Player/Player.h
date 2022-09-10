@@ -23,16 +23,20 @@ private:
 	float speed = 5.0f;
 	//正面ベクトル
 	Vec2 frontVec;
-	
+	Vec2 moveBuff;
+	//体力
+	int hp = 10;
+
 	//フィールドサイズ
 	Vec2 fieldSize = { 2560.0f ,1440.0f };
 	Vec2 zero = { 0.0f,0.0f };
 
 	//スクリーン座標
-	Vec2 screen = { 640.0f,360.0f };
+	Vec2 screen = { 760.0f,360.0f };
+	Vec2 screenInit = { 520.0f,360.0f };
 
 	//攻撃時間
-	int attackTime = 0;
+	float attackTime = 0;
 	float attackFrameTime = 0;
 	int maxAttackTime = 90;
 	//攻撃インターバル
@@ -64,8 +68,6 @@ private:
 	//攻撃の方向ベクトル
 	Vec2 attackDirectionVec;
 	bool finalLevel = false;
-	//体力
-	int hp = 10;
 
 	//コンボ猶予時間
 	float comboExtensionTime = 50 * 3;

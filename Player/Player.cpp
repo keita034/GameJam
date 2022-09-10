@@ -2,6 +2,21 @@
 #include"Enemy.h"
 #include"Collision.h"
 
+bool Complement(float& x1, float x2, float flame)//移動補完
+{
+	float distanceX = x2 - x1;//距離を出す
+
+	if (distanceX == 0)
+	{
+		return false;
+	}
+	float dividedDistanceX = distanceX / flame;//距離をflameで割った値
+
+	x1 += dividedDistanceX;//距離をflameで割った値を足す
+
+	return true;
+}
+
 void Player::Initialize()
 {
 	pos = { 1280.0f,720.0f };
@@ -35,7 +50,7 @@ void Player::Update()
 	{
 		levelUpExtensionTime--;
 	}
-	else if (levelUpExtensionTime <= 0 && levelUpExtensionFlag)
+	else if (levelUpExtensionTime <= 0 && levelUpExtensionFlag && !attackFlag)
 	{
 		level = 0;
 
@@ -231,21 +246,28 @@ void Player::ComboUpdate()
 
 void Player::MoveLimit()
 {
-		//移動制限
+	bool limitX = false;
+	bool limitY = false;
+
+	//移動制限
 	if (pos.x - radius < zero.x)
 	{
+		limitX = true;
 		pos.x = zero.x + radius;
 	}
 	if (pos.y - radius < zero.y)
 	{
+		limitY = true;
 		pos.y = zero.x + radius;
 	}
 	if (pos.x + radius > fieldSize.x)
 	{
+		limitX = true;
 		pos.x = fieldSize.x - radius;
 	}
 	if (pos.y + radius > fieldSize.y)
 	{
+		limitY = true;
 		pos.y = fieldSize.y - radius;
 	}
 
@@ -254,6 +276,35 @@ void Player::MoveLimit()
 	if (!attackFlag)
 	{
 		screen += pos - oldPos;
+	}
+	else
+	{
+		if (!limitX)
+		{
+			screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(attackTime) * (attackDirectionVec.x * attackDistance);
+		}
+		else
+		{
+			float movex = pos.x - screen.x - screenInit.x;
+			Complement(screen.x, screen.x + movex, maxAttackTime - attackFrameTime);
+		}
+
+		if (!limitY)
+		{
+			screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(attackTime) * (attackDirectionVec.y * attackDistance);
+		}
+		else
+		{
+			float movey = pos.y - screen.y - screenInit.y;
+			Complement(screen.y, screen.y + movey, maxAttackTime - attackFrameTime);
+		}
+
+		if (attackTime >= 1.0f)
+		{
+			attackFlag = false;
+			attackFrameTime = 0;
+			attackInterval = maxAttackInterval;
+		}
 	}
 
 }
@@ -270,6 +321,68 @@ bool Player::AttackTriggerFlag()
 
 void Player::Attack()
 {
+
+	if (key.GetKeyTrigger(KEY_INPUT_UP))
+	{
+		level++;
+	}
+
+	if (key.GetKeyTrigger(KEY_INPUT_DOWN))
+	{
+		level--;
+	}
+
+	if (key.GetKeyTrigger(KEY_INPUT_RETURN))
+	{
+		switch (level)
+		{
+		case 0:
+			attackRadius = 239;
+			attackPower = 1;
+			maxAttackTime = 80;
+			attackDistance = 480;
+			levelUpDistance = 179;
+			break;
+
+		case 1:
+			attackRadius = 218;
+			attackPower = 1;
+			maxAttackTime = 70;
+			attackDistance = 560;
+			levelUpDistance = 158;
+			break;
+
+		case 2:
+			attackRadius = 197;
+			attackPower = 2;
+			maxAttackTime = 60;
+			attackDistance = 640;
+			levelUpDistance = 137;
+			break;
+
+		case 3:
+			attackRadius = 176;
+			attackPower = 2;
+			maxAttackTime = 50;
+			attackDistance = 720;
+			levelUpDistance = 116;
+			break;
+
+		case 4:
+			finalLevel = true;
+			attackRadius = 155;
+			attackPower = 3;
+			maxAttackTime = 40;
+			attackDistance = 800;
+			levelUpDistance = 96;
+			break;
+
+		default:
+
+			break;
+		}
+	}
+
 	if (!attackFlag && key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
 		attackFlag = true;
@@ -290,22 +403,18 @@ void Player::Attack()
 	{
 		attackFrameTime++;
 
-		float time = attackFrameTime / maxAttackTime;
+		attackTime = attackFrameTime / maxAttackTime;
 
 		//イージング
-		pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
-		pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
-
-		screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(time) * (attackDirectionVec.x * attackDistance);
-		screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
-
-
-		if (time >= 1.0f)
-		{
-			attackFlag = false;
-			attackFrameTime = 0;
-			attackInterval = maxAttackInterval;
-		}
+		pos.x = attackBeginPos.x + Ease::easeOutCubic(attackTime) * (attackDirectionVec.x * attackDistance);
+		pos.y = attackBeginPos.y + Ease::easeOutCubic(attackTime) * (attackDirectionVec.y * attackDistance);
+	}
+	else
+	{
+		float movey = pos.y - screen.y - screenInit.y;
+		Complement(screen.y, screen.y + movey, 15);
+		float movex = pos.x - screen.x - screenInit.x;
+		Complement(screen.x, screen.x + movex, 15);
 	}
 }
 
@@ -318,4 +427,5 @@ void Player::AddCombo()
 {
 	combo++;
 	comboExtensionTime = maxComboExtensionTime;
+	comboExtensionFlag = true;
 }

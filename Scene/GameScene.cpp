@@ -8,7 +8,7 @@ GameScene::GameScene()
 
 void GameScene::Initialize(){
 	player_->Initialize();
-	frameImg = LoadGraph("Flame_Kari.png");
+	frameImg = LoadGraph("Resources/Flame.png");
 }
 
 void GameScene::Update(){
@@ -42,7 +42,7 @@ void GameScene::Draw(){
 	//	enemy->Draw(player_->GetScreen());
 	//}
 
-	DrawGraph(0, 0, frameImg, true);
+	DrawGraph(0-50, 0-50, frameImg, true);
 }
 
 
