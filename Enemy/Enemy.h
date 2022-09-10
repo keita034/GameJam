@@ -28,7 +28,7 @@ public:
 	// メンバー関数
 
 	// 初期化関数
-	void Initialize(Pattern pattern,Vec2 pos,float speed);
+	void Initialize(Pattern pattern,Vec2 pos,float speed,int hp_);
 
 	// 更新関数
 	void Update(Vec2 playerNpos);
@@ -71,6 +71,7 @@ private:
 	bool damageFlag = true;
 	// エネミーの行動パターン
 	Pattern pattern_;
+
 	//体力
 	int hp = 3;
 

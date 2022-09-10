@@ -26,6 +26,13 @@ public:
 
 	// •`‰æˆ—
 	void RareEnemyDraw(Player* player_);
+
+	// “–‚½‚è”»’è
+	void RareEnemyCheckCollisions(Player* player_);
+
+	// €–Sƒtƒ‰ƒO‚Ìæ“¾
+	bool IsDeath();
+
 private:
 	Vec2 InitPos = { 0,0 };
 	Vec2 velocity;

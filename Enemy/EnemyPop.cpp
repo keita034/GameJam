@@ -13,7 +13,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 1080.0f + 100 * i ,240.0f }, 3.0f);
+			enemy->Initialize(HeightDown, { 1080.0f + 100 * i ,240.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -22,7 +22,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightUp, { 1080.0f + 100 * i ,1240.0f }, 3.0f);
+			enemy->Initialize(HeightUp, { 1080.0f + 100 * i ,1240.0f }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -31,7 +31,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(Center, { 2260.0f , 520.0f + 100 * i },4.0f);
+			enemy->Initialize(Center, { 2260.0f , 520.0f + 100 * i }, 4.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 5; i++)
@@ -39,7 +39,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(Center, { 300.0f , 520.0f + 100 * i },4.0f);
+			enemy->Initialize(Center, { 300.0f , 520.0f + 100 * i }, 4.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		rareEenmy_= std::make_unique<RareEnemy>();
@@ -54,7 +54,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -63,7 +63,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 5; i++)
@@ -71,7 +71,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 5; i++)
@@ -79,7 +79,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
@@ -99,7 +99,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -107,7 +107,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f);
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -115,7 +115,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -123,7 +123,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f);
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 2; i++)
@@ -131,7 +131,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 1130.0f - 150 * i ,440.0f }, 3.0f);
+			enemy->Initialize(HeightDown, { 1130.0f - 150 * i ,440.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 2; i++)
@@ -139,7 +139,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightUp, { 1130.0f - 150 * i ,1040.0f }, 3.0f);
+			enemy->Initialize(HeightUp, { 1130.0f - 150 * i ,1040.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
@@ -152,7 +152,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 880.0f + 200 * i ,240.0f }, 3.0f);
+			enemy->Initialize(HeightDown, { 880.0f + 200 * i ,240.0f }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 2; i++)
@@ -160,7 +160,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperR, { 880.0f + 200 * i ,840.0f + 100 * i }, 3.0f);
+			enemy->Initialize(UpperR, { 880.0f + 200 * i ,840.0f + 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 2; i++)
@@ -168,7 +168,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperL, { 1680.0f + 200 * i ,840.0f - 100 * i }, 3.0f);
+			enemy->Initialize(UpperL, { 1680.0f + 200 * i ,840.0f - 100 * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
@@ -190,16 +190,40 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 			return enemy->IsDeath();
 	});
 
+	
+
 	player_->Attack();
 
 	if (Poptimer >= 2 * 50)
 	{
-		rareEenmy_.get()->RareEnemyUpdate(player_);
+		if (rareEenmy_ != nullptr)
+		{
+			if (rareEenmy_->IsDeath() == true)
+			{
+				rareEenmy_.release();
+			}
+		}
+		if (rareEenmy_!= nullptr)
+		{
+			rareEenmy_.get()->RareEnemyUpdate(player_);
+		}
 	}
 
 	if (Poptimer >= 13 * 50)
 	{
-		snakeEenmy_.get()->SnakeEnemyUpdate(player_);
+		if (snakeEenmy_ != nullptr)
+		{
+			if (snakeEenmy_->GetDeathCount() >= 5)
+			{
+				snakeEenmy_.release();
+			
+			}
+			if (snakeEenmy_ != nullptr)
+			{
+				snakeEenmy_->SnakeEnemyUpdate(player_);
+			}
+		}
+		
 	}
 
 
@@ -235,11 +259,17 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 	}
 	if (Poptimer >= 2 * 50)
 	{
-		rareEenmy_.get()->RareEnemyDraw(player_);
+		if (rareEenmy_ != nullptr)
+		{
+			rareEenmy_.get()->RareEnemyDraw(player_);
+		}
 	}
 	if (Poptimer >= 13 * 50)
 	{
-		snakeEenmy_.get()->SnakeEnemyDraw(player_);
+		if (snakeEenmy_ != nullptr)
+		{
+			snakeEenmy_.get()->SnakeEnemyDraw(player_);
+		}
 	}
 }
 

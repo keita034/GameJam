@@ -6,17 +6,18 @@ void RareEnemy::RareEnemyInit(Vec2 pos)
 	rareEnemy = std::make_unique<Enemy>();
 
 	InitPos = pos;
-	rareEnemy->Initialize(None, { pos.x ,pos.y }, 3.0f);
+	rareEnemy->Initialize(None, { pos.x ,pos.y }, 3.0f,4);
 }
 
 void RareEnemy::RareEnemyUpdate(Player* player_)
 {
 	timer++;
 	Vec2 Npos = rareEnemy.get()->GetPos();
+	RareEnemyCheckCollisions(player_);
 	switch (situation_)
 	{
 	case MoveLeftRight:
-		if (timer == 25 * 50)
+		if (timer == 5 * 50)
 		{
 			situation_ = TrakingPlayer;
 		}
@@ -67,9 +68,13 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 			
 			vector = player_->GetPos() - StopEnemyPos;
 			vector2 = vector.Normalized();
-			vector2 *= -1;
-			vector2 *= vector.Length();
 
+			// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚Æ‚Ì‹tƒxƒNƒgƒ‹
+			vector2 *= -1;
+
+			// ‰ñ“]‚·‚é”ÍˆÍ
+			vector2 *= 78;
+			
 			float Length = vector2.Length();
 
 			// ‰ñ“]‚Ì’†SˆÊ’u‚ðŽæ“¾
@@ -81,17 +86,18 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 			StopinitFlag = false;
 		}
 		
-		if (angle >= 6.28 * 3)
+		if (angle >= 6.28 * 3.3)
 		{
 			StopEnemyPos = rareEnemy->GetPos();
 			situation_ = Escape_;
 		}
 		// ‰ñ“]
-		angle += 0.05;
-		Vec2 rotePos = { center.x + cos(angle) * vector2.Length(),center.y + sin(angle) * vector2.Length() };
-
-		rareEnemy->SetEnemyPos({ rotePos });
 		
+		Vec2 rotePos = { center.x + cos(angle) * (vector2.Length()),
+						 center.y + sin(angle) * (vector2.Length()) };
+		rareEnemy->SetEnemyPos({ rotePos });
+
+		angle += 0.07;
 	}
 		break;
 	case Escape_:
@@ -117,4 +123,34 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 void RareEnemy::RareEnemyDraw(Player* player_)
 {
 	rareEnemy.get()->Draw(player_->GetScreen());
+}
+
+void RareEnemy::RareEnemyCheckCollisions(Player* player_)
+{
+	//“G‚ÆŽ©‹@
+	if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
+	{
+		player_->HPSub(1);
+		rareEnemy->Death();
+	}
+
+	if (player_->GetAttackFlag())
+	{
+		//Ž©‹@‚ÌUŒ‚‚Æ“G
+		if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
+		{
+			if (rareEnemy->GetDamageFlag())
+			{
+				player_->AddCombo();
+			}
+
+			rareEnemy->HPSub(player_->GetAttackPower());
+
+		}
+	}
+}
+
+bool RareEnemy::IsDeath()
+{
+	return rareEnemy->IsDeath();
 }

@@ -15,11 +15,13 @@ Enemy::~Enemy()
 	
 }
 
-void Enemy::Initialize(Pattern pattern, Vec2 pos, float speed)
+void Enemy::Initialize(Pattern pattern, Vec2 pos, float speed, int hp_)
 {
 	pattern_ = pattern;
 	pos_ = pos;
 	speed_ = speed;
+
+	hp = hp_;
 
 	// プレイヤーの初期位置からエネミーの位置のベクトル
 	velocity_ = playerPos_ - pos_;
