@@ -176,7 +176,85 @@ void EnemyPop::EnemyPopInit()
 	// 6ウェーブ目(28秒)
 	if (Poptimer == 28 * 50)
 	{
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
 
+			enemy->Initialize(HeightDown, { 512.0f + 512 * i ,240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 852.0f + 852 * i ,440.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 512.0f + 512 * i ,1300.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 852.0f + 852 * i ,1100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 7ウェーブ目(33秒)
+	if (Poptimer == 33 * 50)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 200.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 2360.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 8ウェーブ目(38秒)
+	if (Poptimer == 38 * 50)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 200.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 2360.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
 	}
 }
 
