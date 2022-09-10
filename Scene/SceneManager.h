@@ -5,6 +5,8 @@
 #include"ResultScene.h"
 #include"Pause.h"
 #include"Smoke.h"
+#include"PlayerFootprints.h"
+
 
 class SceneManager
 {
@@ -71,6 +73,11 @@ public:
 		Result,//リザルト
 	};
 
+
+	//テスト用関数
+	void TestMove();
+
+
 private:
 
 	//フェーズ
@@ -87,6 +94,13 @@ private:
 
 	Pause* pause_ = nullptr;
 	Smoke* smoke_ = nullptr;
+	PlayerFootprints* playerFootprints_ = nullptr;
+
+
+	//テスト用
+	int x = 300;
+	int y = 300;
+
 
 	int siroGh;
 
