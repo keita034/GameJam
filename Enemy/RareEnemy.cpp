@@ -16,7 +16,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 	switch (situation_)
 	{
 	case MoveLeftRight:
-		if (timer == 5 * 50)
+		if (timer == 25 * 50)
 		{
 			situation_ = TrakingPlayer;
 		}
