@@ -31,7 +31,7 @@ void Player::Update()
 	//1フレーム前の攻撃フラグを保存
 	oldAttackFlag = attackFlag;
 
-	if (comboExtensionTime > 0)
+	if (comboExtensionTime > 0 && comboExtensionFlag)
 	{
 		comboExtensionTime--;
 	}
@@ -39,6 +39,10 @@ void Player::Update()
 	{
 		level = 0;
 		combo = 0;
+		
+		//コンボの猶予時間を初期値に
+		comboExtensionTime = maxComboExtensionTime;
+		comboExtensionFlag = false;
 	}
 }
 
@@ -59,6 +63,7 @@ void Player::Draw()
 	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
 	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
 	DrawFormatString(130, 100, GetColor(255, 0, 255), "Level:%d", level);
+	DrawFormatString(130, 120, GetColor(255, 0, 255), "comboExtensionTime:%f", comboExtensionTime);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
@@ -124,21 +129,14 @@ void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
 		return;
 	}
 
-	if (!finalLevel)
-	{
-		//コンボの猶予時間を初期値に
-		comboExtensionTime = 100;
-	}
-	else
-	{
-		comboExtensionTime += 0.1f;
-	}
-
 	//ベクトルの長ささレベルが上がる距離より短かったら
 	if (vec.Length() < levelUpDistance && AttackTriggerFlag())
 	{
 		if (CheckSphere2Sphere(pos, attackRadius, enemy->GetPos(), enemy->GetRadius()))
 		{
+			comboExtensionFlag = true;
+			comboExtensionTime = maxComboExtensionTime;
+
 			switch (level)
 			{
 			case 0:
@@ -193,6 +191,11 @@ void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
 			}
 
 			combo++;
+
+			if (finalLevel && comboExtensionTime < 0)
+			{
+				comboExtensionTime += 0.1f;
+			}
 		}
 	}
 }

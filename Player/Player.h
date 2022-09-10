@@ -68,7 +68,9 @@ private:
 	int hp = 10;
 
 	//ƒRƒ“ƒ{—P—\ŽžŠÔ
-	float comboExtensionTime = 50 * 2;
+	float comboExtensionTime = 50 * 3;
+	float maxComboExtensionTime = comboExtensionTime;
+	bool comboExtensionFlag = false;
 	int combo;
 
 public:
