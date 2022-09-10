@@ -1,4 +1,6 @@
 #include"Player.h"
+#include"Enemy.h"
+#include"Collision.h"
 
 void Player::Initialize()
 {
@@ -54,9 +56,9 @@ void Player::Draw()
 		GetColor(255, 0, 0), 3);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
 
-	DrawFormatString(0, 0, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
-	DrawFormatString(0, 20, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
-	DrawFormatString(0, 40, GetColor(255, 0, 255), "Level:%d", level);
+	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
+	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
+	DrawFormatString(130, 100, GetColor(255, 0, 255), "Level:%d", level);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
@@ -115,8 +117,13 @@ int Player::GetAttackPower()
 	return attackPower;
 }
 
-void Player::LevelUpdate(Vec2 vec)
+void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
 {
+	if (!enemy)
+	{
+		return;
+	}
+
 	if (!finalLevel)
 	{
 		//コンボの猶予時間を初期値に
@@ -128,54 +135,65 @@ void Player::LevelUpdate(Vec2 vec)
 	}
 
 	//ベクトルの長ささレベルが上がる距離より短かったら
-	if (vec.Length()<levelUpDistance)
+	if (vec.Length() < levelUpDistance && AttackTriggerFlag())
 	{
-		switch (level)
+		if (CheckSphere2Sphere(pos, attackRadius, enemy->GetPos(), enemy->GetRadius()))
 		{
-		case 0:
-			attackRadius = 128;
-			attackPower = 1;
-			maxAttackTime = 40;
-			attackDistance = 400;
-			break;
+			switch (level)
+			{
+			case 0:
+				attackRadius = 239;
+				attackPower = 1;
+				maxAttackTime = 80;
+				attackDistance = 480;
+				levelUpDistance = 179;
+				level++;
+				break;
 
-		case 1:
-			attackRadius = 128;
-			attackPower = 1;
-			maxAttackTime = 40;
-			attackDistance = 400;
-			break;
+			case 1:
+				attackRadius = 218;
+				attackPower = 1;
+				maxAttackTime = 70;
+				attackDistance = 560;
+				levelUpDistance = 158;
+				level++;
+				break;
 
-		case 2:
-			attackRadius = 128;
-			attackPower = 1;
-			maxAttackTime = 40;
-			attackDistance = 400;
-			break;
+			case 2:
+				attackRadius = 197;
+				attackPower = 2;
+				maxAttackTime = 60;
+				attackDistance = 640;
+				levelUpDistance = 137;
+				level++;
+				break;
 
-		case 3:
-			attackRadius = 128;
-			attackPower = 1;
-			maxAttackTime = 40;
-			attackDistance = 400;
-			break;
+			case 3:
+				attackRadius = 176;
+				attackPower = 2;
+				maxAttackTime = 50;
+				attackDistance = 720;
+				levelUpDistance = 116;
+				level++;
+				break;
 
-		case 4:
-			finalLevel = true;
-			attackRadius = 280;
-			attackPower = 1;
-			maxAttackTime = 40;
-			attackDistance = 400;
-			levelUpDistance = 96;
-			break;
+			case 4:
+				finalLevel = true;
+				attackRadius = 155;
+				attackPower = 3;
+				maxAttackTime = 40;
+				attackDistance = 800;
+				levelUpDistance = 96;
+				level++;
+				break;
 
-		default:
+			default:
 
-			break;
+				break;
+			}
+
+			combo++;
 		}
-
-		level++;
-		combo++;
 	}
 }
 
@@ -242,36 +260,19 @@ void Player::Attack()
 		float time = attackFrameTime / maxAttackTime;
 
 		//イージング
-		if (!finalLevel)
-		{
+
 			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
 			pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
 
 			screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(time) * (attackDirectionVec.x * attackDistance);
 			screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
 
-		}
-		else//最終レベル
-		{
-			pos.x = attackBeginPos.x + Ease::easeInBack(time) * (attackDirectionVec.x * attackDistance);
-			pos.y = attackBeginPos.y + Ease::easeInBack(time) * (attackDirectionVec.y * attackDistance);
-		}
 
 		if (time >= 1.0f)
 		{
 			attackFlag = false;
 			attackFrameTime = 0;
 			attackInterval = maxAttackInterval;
-
-			if (finalLevel)
-			{
-				finalLevel = false;
-				//初期値に
-				attackRadius = 128;
-				attackPower = 1;
-				maxAttackTime = 50 * 1;
-				attackDistance = 200;
-			}
 		}
 	}
 }

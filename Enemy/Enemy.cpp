@@ -101,7 +101,7 @@ void Enemy::Update(Vec2 playerNpos)
 		}
 	}
 
-	if (hp == 0)
+	if (hp <= 0)
 	{
 		isDeath_ = true;
 	}

@@ -183,7 +183,7 @@ void EnemyPop::EnemyPopInit()
 void EnemyPop::EnemyPopUpdate(Player *player_)
 {
 
-	Vec2 playerToEnemy = { 100.0f,100.0f };
+	Vec2 playerToEnemy = { 900.0f,900.0f };
 
 	enemys_.remove_if([](std::unique_ptr<Enemy>& enemy)
 	{
@@ -203,6 +203,8 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 	}
 
 
+	Enemy* tmpEnemy = nullptr;
+
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
 		enemy->Update(player_->GetPos());
@@ -213,13 +215,14 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 			{
 				if (playerToEnemy > enemy->GetPos() - player_->GetPos())
 				{
+					tmpEnemy = enemy.get();
 					playerToEnemy = enemy->GetPos() - player_->GetPos();
 				}
 			}
 		}
 	}
 	
-	player_->LevelUpdate(playerToEnemy);
+	player_->LevelUpdate(playerToEnemy,tmpEnemy);
 
 	player_->MoveLimit();
 }
@@ -260,10 +263,6 @@ void EnemyPop::CheckCollisions(Player* player_)
 			{
 				enemy->HPSub(player_->GetAttackPower());
 			}
-		}
-		else
-		{
-			enemy->HPSub(0);
 		}
 	}
 }

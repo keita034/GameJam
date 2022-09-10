@@ -34,11 +34,11 @@ private:
 	//攻撃時間
 	int attackTime = 0;
 	float attackFrameTime = 0;
-	int maxAttackTime = 40;
+	int maxAttackTime = 90;
 	//攻撃インターバル
 	int attackInterval = 0;
 	//最大攻撃インターバル
-	int maxAttackInterval = 50 * 2;
+	int maxAttackInterval = 20;
 	//攻撃距離
 	int attackDistance = 400;
 	//攻撃フラグ
@@ -46,7 +46,7 @@ private:
 	//1フレーム前の攻撃フラグ
 	bool oldAttackFlag = false;
 	//攻撃半径
-	int attackRadius = 128;
+	int attackRadius = 260;
 	//攻撃威力
 	int attackPower = 1;
 	//攻撃しようとした座標
@@ -109,7 +109,7 @@ public:
 	/// <summary>
 	/// 攻撃
 	/// </summary>
-	void LevelUpdate(Vec2 vec);
+	void LevelUpdate(Vec2 vec, Enemy* enemy);
 
 	void MoveLimit();
 
