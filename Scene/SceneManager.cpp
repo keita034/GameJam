@@ -15,6 +15,7 @@ void SceneManager::Initialize() {
 	resultScene_ = new ResultScene();
 	pause_ = new Pause();
 	smoke_ = new Smoke();
+	playerFootprints_ = new PlayerFootprints();
 
 	//初期化処理
 	//titleScene_->Initialize();
@@ -22,6 +23,7 @@ void SceneManager::Initialize() {
 	//resultScene_->Initialize();
 	pause_->Initialize();
 	smoke_->Initialize(siroGh);
+	playerFootprints_->Initialize();
 }
 
 void SceneManager::Update(char* keys, char* oldkeys) {
@@ -33,15 +35,17 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Title://タイトル
 		//Title(keys, oldkeys);
-		gameScene_->Update();
+		//gameScene_->Update();
 		
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
-			smoke_->MakeEnemySmoke(300, 300);
+			//smoke_->MakeEnemySmoke(300, 300);
 
 		}
 
-		smoke_->Update();
+		//smoke_->Update();
+		TestMove();
+		playerFootprints_->Update(x, y);
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -89,9 +93,10 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
-		gameScene_->Draw();
+		//gameScene_->Draw();
 		pause_->Draw();
-		smoke_->Draw();
+		//smoke_->Draw();
+		playerFootprints_->Draw();
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -170,4 +175,22 @@ int SceneManager::GetFinish() {
 	isFinish = pause_->GetFinish();
 
 	return isFinish;
+}
+
+
+void SceneManager::TestMove() {
+
+	if (key.GetKey(KEY_INPUT_W)) {
+		y--;
+	}
+	if (key.GetKey(KEY_INPUT_S)) {
+		y++;
+	}
+	if (key.GetKey(KEY_INPUT_A)) {
+		x--;
+	}
+	if (key.GetKey(KEY_INPUT_D)) {
+		x++;
+	}
+
 }
