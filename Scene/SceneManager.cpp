@@ -83,9 +83,6 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 void SceneManager::Draw() {
 
-
-
-
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

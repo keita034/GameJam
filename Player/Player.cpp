@@ -11,8 +11,8 @@ void Player::Initialize()
 void Player::Update()
 {
 	Vec2 screenCentral = { 640.0f,360.0f };
-	int mosePosX=0;
-	int mosePosY=0;
+	int mosePosX = 0;
+	int mosePosY = 0;
 
 	GetMousePoint(&mosePosX, &mosePosY);
 	Vec2 mosePos = { (float)mosePosX ,(float)mosePosY };
@@ -31,18 +31,24 @@ void Player::Update()
 	//1フレーム前の攻撃フラグを保存
 	oldAttackFlag = attackFlag;
 
-	if (comboExtensionTime > 0 && comboExtensionFlag)
+	if (levelUpExtensionTime > 0 && levelUpExtensionFlag)
 	{
-		comboExtensionTime--;
+		levelUpExtensionTime--;
 	}
-	else
+	else if (levelUpExtensionTime <= 0 && levelUpExtensionFlag)
 	{
 		level = 0;
-		combo = 0;
-		
+
 		//コンボの猶予時間を初期値に
-		comboExtensionTime = maxComboExtensionTime;
-		comboExtensionFlag = false;
+		levelUpExtensionTime = maxLevelUpExtensionTime;
+		levelUpExtensionFlag = false;
+
+		//攻撃レベルが上がる距離
+		levelUpDistance = 200;
+		attackDistance = 400;
+		attackPower = 1;
+		attackRadius = 260;
+		maxAttackTime = 90;
 	}
 }
 
@@ -56,14 +62,18 @@ void Player::Draw()
 
 	DrawLine(
 		pos.x - screen.x, pos.y - screen.y,
-		pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y*100 - screen.y, 
+		pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
 		GetColor(255, 0, 0), 3);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
 
 	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
 	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
-	DrawFormatString(130, 100, GetColor(255, 0, 255), "Level:%d", level);
-	DrawFormatString(130, 120, GetColor(255, 0, 255), "comboExtensionTime:%f", comboExtensionTime);
+
+	DrawFormatString(130, 100, GetColor(255, 0, 255), "comboExtensionTime:%f", comboExtensionTime);
+	DrawFormatString(130, 120, GetColor(255, 0, 255), "combo:%d", combo);
+
+	DrawFormatString(130, 140, GetColor(255, 0, 255), "levelUpExtensionTime:%f", levelUpExtensionTime);
+	DrawFormatString(130, 160, GetColor(255, 0, 255), "Level:%d", level);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
@@ -122,7 +132,7 @@ int Player::GetAttackPower()
 	return attackPower;
 }
 
-void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
+void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 {
 	if (!enemy)
 	{
@@ -134,8 +144,8 @@ void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
 	{
 		if (CheckSphere2Sphere(pos, attackRadius, enemy->GetPos(), enemy->GetRadius()))
 		{
-			comboExtensionFlag = true;
-			comboExtensionTime = maxComboExtensionTime;
+			levelUpExtensionFlag = true;
+			levelUpExtensionTime = maxLevelUpExtensionTime;
 
 			switch (level)
 			{
@@ -190,12 +200,31 @@ void Player::LevelUpdate(Vec2 vec,Enemy* enemy)
 				break;
 			}
 
-			combo++;
-
-			if (finalLevel && comboExtensionTime < 0)
+			if (finalLevel && levelUpExtensionTime < 0)
 			{
-				comboExtensionTime += 0.1f;
+				levelUpExtensionTime += 0.1f;
 			}
+		}
+	}
+}
+
+void Player::ComboUpdate()
+{
+	if (comboExtensionFlag)
+	{
+		if (combo <= 0)
+		{
+			comboExtensionFlag = false;
+			return;
+		}
+
+		comboExtensionTime--;
+
+		if (comboExtensionTime < 0)
+		{
+			comboExtensionFlag = false;
+			comboExtensionTime = maxComboExtensionTime;
+			combo = 0;
 		}
 	}
 }
@@ -245,6 +274,7 @@ void Player::Attack()
 	{
 		attackFlag = true;
 		attackCameraFlag = true;
+		comboExtensionFlag = true;
 
 		attackBeginPos = pos;
 		attackDirectionVec = frontVec;
@@ -263,12 +293,11 @@ void Player::Attack()
 		float time = attackFrameTime / maxAttackTime;
 
 		//イージング
+		pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+		pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
 
-			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
-			pos.y = attackBeginPos.y + Ease::easeOutCubic(time) * (attackDirectionVec.y * attackDistance);
-
-			screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(time) * (attackDirectionVec.x * attackDistance);
-			screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
+		screen.x = attackScreenBeginPos.x + Ease::easeOutQuad(time) * (attackDirectionVec.x * attackDistance);
+		screen.y = attackScreenBeginPos.y + Ease::easeOutQuad(time) * (attackDirectionVec.y * attackDistance);			pos.x = attackBeginPos.x + Ease::easeOutCubic(time) * (attackDirectionVec.x * attackDistance);
 
 
 		if (time >= 1.0f)
@@ -283,4 +312,10 @@ void Player::Attack()
 int Player::GetCombo()
 {
 	return combo;
+}
+
+void Player::AddCombo()
+{
+	combo++;
+	comboExtensionTime = maxComboExtensionTime;
 }

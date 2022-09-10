@@ -29,6 +29,8 @@ void GameScene::Update(){
 	//}
 
 	enemypop_.get()->CheckCollisions(player_.get());
+
+	player_->ComboUpdate();
 }
 
 void GameScene::Draw(){

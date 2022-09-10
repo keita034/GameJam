@@ -163,3 +163,8 @@ void Enemy::SetEnemyPos(Vec2& pos)
 {
 	pos_ = pos;
 }
+
+bool Enemy::GetDamageFlag()
+{
+	return damageFlag;
+}

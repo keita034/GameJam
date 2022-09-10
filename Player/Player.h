@@ -73,6 +73,10 @@ private:
 	bool comboExtensionFlag = false;
 	int combo;
 
+	float levelUpExtensionTime = 50 * 3;
+	float maxLevelUpExtensionTime = comboExtensionTime;
+	bool levelUpExtensionFlag = false;
+
 public:
 
 	Player() = default;
@@ -113,12 +117,15 @@ public:
 	/// </summary>
 	void LevelUpdate(Vec2 vec, Enemy* enemy);
 
+	void ComboUpdate();
+
 	void MoveLimit();
 
 	bool AttackTriggerFlag();
 	void Attack();
 
 	int GetCombo();
+	void AddCombo();
 
 private:
 

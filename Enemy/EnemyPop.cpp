@@ -261,7 +261,13 @@ void EnemyPop::CheckCollisions(Player* player_)
 			//Ž©‹@‚ÌUŒ‚‚Æ“G
 			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), enemy->GetPos(), enemy->GetRadius()))
 			{
+				if (enemy->GetDamageFlag())
+				{
+					player_->AddCombo();
+				}
+
 				enemy->HPSub(player_->GetAttackPower());
+
 			}
 		}
 	}

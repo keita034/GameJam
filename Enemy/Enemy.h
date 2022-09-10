@@ -52,6 +52,7 @@ public:
 
 	void SetEnemyPos(Vec2& pos);
 
+	bool GetDamageFlag();
 private:
 	// ƒƒ“ƒo[•Ï”
 	Vec2 zeroVec = { 0.0f,0.0f };
