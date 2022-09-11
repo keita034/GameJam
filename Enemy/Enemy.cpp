@@ -86,6 +86,8 @@ void Enemy::Update(Vec2 playerNpos)
 		
 		pos_ += velocity_;
 		break;
+	case None:
+		break;
 	default:
 		break;
 	}

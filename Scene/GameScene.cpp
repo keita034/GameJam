@@ -43,6 +43,8 @@ void GameScene::Draw(){
 	//}
 
 	DrawGraph(0-50, 0-50, frameImg, true);
+
+	
 }
 
 
