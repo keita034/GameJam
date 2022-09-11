@@ -13,7 +13,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 {
 	timer++;
 	Vec2 Npos = rareEnemy.get()->GetPos();
-	RareEnemyCheckCollisions(player_);
+	rareEnemy->Update(player_->GetPos());
 	switch (situation_)
 	{
 	case MoveLeftRight:
@@ -42,6 +42,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		rareEnemy.get()->SetEnemyPos(Npos);
 		break;
 	case TrakingPlayer:
+		RareEnemyCheckCollisions(player_);
 		// プレイヤーの現在の位置を取得とエネミーの位置でベクトルを作る
 		velocity = player_->GetPos() - rareEnemy.get()->GetPos();
 		NowVelocity = player_->GetPos() - rareEnemy.get()->GetPos();
@@ -60,9 +61,11 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 
 		Npos += velocity;
 		rareEnemy.get()->SetEnemyPos(Npos);
+
 		break;
 	case StopInFrontOfThePlayer:
 	{
+		RareEnemyCheckCollisions(player_);
 		if (StopinitFlag == true)
 		{
 			
@@ -98,9 +101,11 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		rareEnemy->SetEnemyPos({ rotePos });
 
 		angle += 0.07;
+
 	}
 		break;
 	case Escape_:
+		RareEnemyCheckCollisions(player_);
 		velocity = InitPos - StopEnemyPos;
 		velocity = velocity.Normalized();
 		velocity *= Speed;
@@ -114,10 +119,12 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		{
 			situation_ = MoveLeftRight;
 		}
+		
 		break;
 	default:
 		break;
 	}
+	
 }
 
 void RareEnemy::RareEnemyDraw(Player* player_)

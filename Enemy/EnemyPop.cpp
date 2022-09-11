@@ -126,20 +126,20 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 1130.0f - 150 * i ,440.0f }, 3.0f,3);
+			enemy->Initialize(HeightDown, { 1055.0f + 150 * i ,440.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightUp, { 1130.0f - 150 * i ,1040.0f }, 3.0f,3);
+			enemy->Initialize(HeightUp, { 1055.0f + 150 * i ,1040.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
@@ -173,8 +173,8 @@ void EnemyPop::EnemyPopInit()
 		}
 	}
 
-	// 6ウェーブ目(28秒)
-	if (Poptimer == 28 * 50)
+	// 6ウェーブ目(30秒)
+	if (Poptimer == 30 * 50)
 	{
 		for (int i = 0; i < 4; i++)
 		{
@@ -190,7 +190,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 852.0f + 852 * i ,440.0f }, 3.0f, 3);
+			enemy->Initialize(HeightDown, { 768.0f + 1024 * i ,440.0f }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -208,20 +208,20 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightUp, { 852.0f + 852 * i ,1100.0f }, 3.0f, 3);
+			enemy->Initialize(HeightUp, { 768.0f + 1024 * i ,1100.0f }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
 
-	// 7ウェーブ目(33秒)
-	if (Poptimer == 33 * 50)
+	// 7ウェーブ目(35秒)
+	if (Poptimer == 35 * 50)
 	{
 		for (int i = 0; i < 6; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 200.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemy->Initialize(WidthR, { 200.0f ,200.0f + 200.0f * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -230,20 +230,20 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 2360.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemy->Initialize(WidthL, { 2360.0f ,200.0f + 200.0f * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
 
-	// 8ウェーブ目(38秒)
-	if (Poptimer == 38 * 50)
+	// 8ウェーブ目(42秒)
+	if (Poptimer == 42 * 50)
 	{
 		for (int i = 0; i < 2; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 200.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemy->Initialize(HeightDown, { 365.0f + 1830.0f * i ,190.0f }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -252,7 +252,535 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 2360.0f ,240.0f + 240.0f * i }, 3.0f, 3);
+			enemy->Initialize(HeightDown, { 730.0f + 365.0f * i,360.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 365.0f + 1830.0f * i ,1250.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 730.0f + 365.0f * i,1080.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 9ウェーブ目(47秒)
+	if (Poptimer == 47 * 50)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 200.0f + 100.0f * i ,200.0f - 100.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 2360.0f - 100.0f * i ,200.0f - 100.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 1030.0f + 100.0f * i,1240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 10ウェーブ目(55秒)
+	if (Poptimer == 55 * 50)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 320.0f + 320.0f * i ,200.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 320.0f + 320.0f * i ,1240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 220.0f ,173.0f + 173.0f*i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 2240.0f ,173.0f + 173.0f*i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 11ウェーブ目(60秒)
+	if (Poptimer == 60 * 50)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 200.0f  ,360.0f + 270.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 350.0f  ,405.0f + 630.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2360.0f  ,270.0f + 270.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2210.0f  ,405.0f + 630.0f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 12ウェーブ目(65秒)
+	if (Poptimer == 65 * 50)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 13ウェーブ目(70秒)
+	if (Poptimer == 70 * 50)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 512.0f + 512 * i ,240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 768.0f + 1024 * i ,440.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 512.0f + 512 * i ,1300.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 768.0f + 1024 * i ,1100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 14ウェーブ目(75秒)
+	if (Poptimer == 75 * 50)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 1080.0f + 100 * i ,240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 1080.0f + 100 * i ,1240.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 2260.0f , 520.0f + 100 * i }, 4.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(Center, { 300.0f , 520.0f + 100 * i }, 4.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 15ウェーブ目(80秒)
+	if (Poptimer == 80 * 50)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 1055.0f + 150 * i ,440.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 1055.0f + 150 * i ,1040.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 16ウェーブ目(85秒)
+	if (Poptimer == 85 * 50) 
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 365.0f + 1830.0f * i ,190.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 730.0f + 365.0f * i,360.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 365.0f + 1830.0f * i ,1250.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 730.0f + 365.0f * i,1080.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 17ウェーブ目(90秒)--------------ここから絶対殺すマン
+	if (Poptimer == 90 * 50)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 230.4f + 230.4f * i ,1340.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 100.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2460.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 18ウェーブ目(92秒)
+	if (Poptimer == 92 * 50)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 230.4f + 230.4f * i ,1340.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 100.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2460.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 19ウェーブ目(94秒)
+	if (Poptimer == 94 * 50)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 230.4f + 230.4f * i ,1340.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 100.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2460.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 20ウェーブ目(96秒)
+	if (Poptimer == 96 * 50)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 230.4f + 230.4f * i ,1340.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 100.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2460.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+	}
+
+	// 21ウェーブ目(98秒)
+	if (Poptimer == 98 * 50)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(HeightUp, { 230.4f + 230.4f * i ,1340.0f }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthR, { 100.0f,157.5f + 157.5f * i }, 3.0f, 3);
+			enemys_.push_back(std::move(enemy));
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			std::unique_ptr<Enemy> enemy;
+			enemy = std::make_unique<Enemy>();
+
+			enemy->Initialize(WidthL, { 2460.0f,157.5f + 157.5f * i }, 3.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
@@ -349,6 +877,8 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 			snakeEenmy_.get()->SnakeEnemyDraw(player_);
 		}
 	}
+
+	//DrawFormatString(100, 100, GetColor(255, 255, 255), "time=%d", Poptimer / 50);
 }
 
 void EnemyPop::CheckCollisions(Player* player_)

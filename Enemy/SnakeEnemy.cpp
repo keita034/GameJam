@@ -94,7 +94,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 		if (player_->GetAttackFlag())
 		{
 			//Ž©‹@‚ÌUŒ‚‚Æ“G
-			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), snakeEnemy[i]->GetPos(), snakeEnemy[i]->GetRadius()))
+   			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), snakeEnemy[i]->GetPos(), snakeEnemy[i]->GetRadius()))
 			{
 				if (snakeEnemy[4]->IsDeath() == false)
 				{
@@ -136,10 +136,6 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					}
 					snakeEnemy[0]->HPSub(player_->GetAttackPower());
 				}
-				
-
-				
-
 			}
 		}
 	}
