@@ -21,18 +21,19 @@ void Player::Initialize()
 {
 	pos = { 1280.0f,720.0f };
 	angle = -DX_PI_F / 2;
+	playerImg = LoadGraph("Resources/playerTop01.png");
 }
 
 void Player::Update()
 {
-	Vec2 screenCentral = { 640.0f,360.0f };
 	int mosePosX = 0;
 	int mosePosY = 0;
 
 	GetMousePoint(&mosePosX, &mosePosY);
+
 	Vec2 mosePos = { (float)mosePosX ,(float)mosePosY };
 
-	frontVec = mosePos - screenCentral;
+	frontVec = mosePos - screenInit;
 	frontVec = frontVec.Normalized();//ê≥ñ ÉxÉNÉgÉãÇÃê≥ãKâª
 
 	Vec2 tmpSpeed = frontVec * speed;
@@ -65,6 +66,8 @@ void Player::Update()
 		attackRadius = 260;
 		maxAttackTime = 90;
 	}
+
+	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
 }
 
 void Player::Draw()
@@ -79,7 +82,8 @@ void Player::Draw()
 		pos.x - screen.x, pos.y - screen.y,
 		pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
 		GetColor(255, 0, 0), 3);
-	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
+
+	DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
 
 	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
 	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
@@ -90,8 +94,11 @@ void Player::Draw()
 	DrawFormatString(130, 140, GetColor(255, 0, 255), "levelUpExtensionTime:%f", levelUpExtensionTime);
 	DrawFormatString(130, 160, GetColor(255, 0, 255), "Level:%d", level);
 
+	DrawFormatString(130, 180, GetColor(255, 0, 255), "angle:%f", angle);
+
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
+	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	if (attackFlag)
@@ -383,7 +390,9 @@ void Player::Attack()
 		}
 	}
 
-	if (!attackFlag && key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
+	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE);
+
+	if (!attackFlag && key.GetKeyReleased(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
 		attackFlag = true;
 		attackCameraFlag = true;
