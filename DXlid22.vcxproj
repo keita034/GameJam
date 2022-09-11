@@ -140,6 +140,7 @@
     <ClCompile Include="Particle\FireWorks.cpp" />
     <ClCompile Include="Particle\FireWorksRand.cpp" />
     <ClCompile Include="Particle\HitPar.cpp" />
+    <ClCompile Include="Particle\LevelUp.cpp" />
     <ClCompile Include="Particle\ModeChangeMotion.cpp" />
     <ClCompile Include="Particle\Particle.cpp" />
     <ClCompile Include="Particle\Smoke.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Particle\FireWorks.h" />
     <ClInclude Include="Particle\FireWorksRand.h" />
     <ClInclude Include="Particle\HitPar.h" />
+    <ClInclude Include="Particle\LevelUp.h" />
     <ClInclude Include="Particle\ModeChangeMotion.h" />
     <ClInclude Include="Particle\Particle.h" />
     <ClInclude Include="Particle\Smoke.h" />

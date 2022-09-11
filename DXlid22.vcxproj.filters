@@ -150,6 +150,9 @@
     <ClCompile Include="Player\PlayerFootprints.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Particle\LevelUp.cpp">
+      <Filter>ソース ファイル\Particel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\MouseInput.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="Player\PlayerFootprints.h">
       <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\LevelUp.h">
+      <Filter>ヘッダー ファイル\Particel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
