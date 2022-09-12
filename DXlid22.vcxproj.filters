@@ -150,7 +150,7 @@
     <ClCompile Include="Player\PlayerFootprints.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Particle\LevelUp.cpp">
+    <ClCompile Include="Particle\PlayerLevelUp.cpp">
       <Filter>ソース ファイル\Particel</Filter>
     </ClCompile>
   </ItemGroup>
@@ -245,7 +245,7 @@
     <ClInclude Include="Player\PlayerFootprints.h">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Particle\LevelUp.h">
+    <ClInclude Include="Particle\PlayerLevelUp.h">
       <Filter>ヘッダー ファイル\Particel</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,6 +16,7 @@ void SceneManager::Initialize() {
 	pause_ = new Pause();
 	smoke_ = new Smoke();
 	playerFootprints_ = new PlayerFootprints();
+	playerLevelUp_ = new PlayerLevelUp();
 
 	//初期化処理
 	//titleScene_->Initialize();
@@ -24,6 +25,8 @@ void SceneManager::Initialize() {
 	pause_->Initialize();
 	smoke_->Initialize(siroGh);
 	playerFootprints_->Initialize();
+	playerLevelUp_->Initialize();
+
 }
 
 void SceneManager::Update(char* keys, char* oldkeys) {
@@ -35,17 +38,18 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Title://タイトル
 		//Title(keys, oldkeys);
-		gameScene_->Update();
-		
+		//gameScene_->Update();
+		//smoke_->MakeEnemySmoke(300, 300);
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
-			//smoke_->MakeEnemySmoke(300, 300);
+			playerLevelUp_->playerLevelUp(6);
 
 		}
 
 		//smoke_->Update();
 		TestMove();
-		playerFootprints_->Update(x, y);
+		playerFootprints_->Update(640, 360);
+		playerLevelUp_->Update(300, 300);
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -90,10 +94,11 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
-		gameScene_->Draw();
+		//gameScene_->Draw();
 		pause_->Draw();
 		//smoke_->Draw();
 		playerFootprints_->Draw();
+		playerLevelUp_->Draw();
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル

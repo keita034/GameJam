@@ -1,5 +1,6 @@
 #include"DxLib.h"
 #include"PlayerFootprints.h"
+#include"math.h"
 
 void PlayerFootprints::Initialize() {
 	LoadDivGraph("Resources/asiatoAkarui.png", 2, 2, 1, 32, 32, FootArt);
@@ -67,22 +68,32 @@ void PlayerFootprints::Update(int playerPosX, int playerPosY) {
 
 	}
 
+	int mosePosX = 0;
+	int mosePosY = 0;
+
+	GetMousePoint(&mosePosX, &mosePosY);
+	Vec2 mosePos = { (float)mosePosX ,(float)mosePosY };
+
+	angle = atan2(double(mosePos.y - screenCentral.y), double(mosePos.x - screenCentral.x));
+	angle += 1.5708;
+
+
 }
 
 void PlayerFootprints::Draw() {
 
-	//DrawFormatString(20, 120, GetColor(0, 0, 0), "%d", footFlag[0], true);
+	DrawFormatString(20, 120, GetColor(0, 0, 0), "%lf", angle, true);
 
 	for (int i = 0; i < 30; i++) {
 
 		if (LeftFlag[i] == 1) {
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal[i]);
-			DrawGraph(x[i], y[i], FootArt[0], true);
+			DrawRotaGraph(x[i], y[i], 1, angle, FootArt[0], true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 		}
 		if (RightFlag[i] == 1) {
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal[i]);
-			DrawGraph(x[i], y[i], FootArt[1], true);
+			DrawRotaGraph(x[i], y[i], 1, angle, FootArt[1], true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 		}
 	}

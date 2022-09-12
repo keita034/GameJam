@@ -6,6 +6,7 @@
 #include"Pause.h"
 #include"Smoke.h"
 #include"PlayerFootprints.h"
+#include"playerLevelUp.h"
 
 
 class SceneManager
@@ -95,6 +96,7 @@ private:
 	Pause* pause_ = nullptr;
 	Smoke* smoke_ = nullptr;
 	PlayerFootprints* playerFootprints_ = nullptr;
+	PlayerLevelUp* playerLevelUp_ = nullptr;
 
 
 	//テスト用

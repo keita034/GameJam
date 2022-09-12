@@ -1,5 +1,5 @@
 #pragma once
-
+#include"Vec2.h"
 
 class PlayerFootprints {
 
@@ -34,7 +34,10 @@ private:
 	int pal[30];
 
 	int FootArt[2];
-
 	int LeftORright = 0;
+
+	Vec2 frontVec{ 0,0 };
+	Vec2 screenCentral = { 640.0f,360.0f };
+	double angle = 0;
 
 };
