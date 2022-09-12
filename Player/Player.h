@@ -26,6 +26,7 @@ private:
 	Vec2 moveBuff;
 	//体力
 	int hp = 10;
+	int playerImg;
 
 	//フィールドサイズ
 	Vec2 fieldSize = { 2560.0f ,1440.0f };
@@ -47,6 +48,7 @@ private:
 	int attackDistance = 400;
 	//攻撃フラグ
 	bool attackFlag = false;
+	bool attackStanceFlag = false;
 	//1フレーム前の攻撃フラグ
 	bool oldAttackFlag = false;
 	//攻撃半径
