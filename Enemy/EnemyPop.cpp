@@ -4,8 +4,9 @@
 void EnemyPop::EnemyPopInit()
 {
 	Poptimer += 1;
-	
-	// ‚PƒEƒF[ƒu–Ú(2•b)
+	// c‰¡‚ÉˆÚ“®‚·‚é“G‚Í”’‹ÊAÎ‚ß‚Æ’†S‚ÉˆÚ“®‚·‚é“G‚Íw‚Ì“G‚ğ•`‰æ
+
+	// ‚PƒEƒF[ƒu–Ú(2•b)-------------ƒŒƒA“G
 	if (Poptimer == 2 * 50)
 	{
 		for (int i = 0; i < 5; i++)
@@ -42,6 +43,8 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(Center, { 300.0f , 520.0f + 100 * i }, 4.0f, 3);
 			enemys_.push_back(std::move(enemy));
 		}
+
+		//-----------------------------------------------ƒŒƒA“G
 		rareEenmy_= std::make_unique<RareEnemy>();
 		rareEenmy_.get()->RareEnemyInit({ 1280, -70 });
 	}
@@ -126,6 +129,7 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
+		// --------------------------------”’‹Ê
 		for (int i = 0; i < 4; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
