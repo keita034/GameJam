@@ -39,8 +39,16 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Title://タイトル
-		//Title(keys, oldkeys);
+		Title(keys, oldkeys);
 		titleScene_->Update();
+		
+		break;
+	case SceneManager::Scene::Tutorial://チュートリアル
+		Tutorial(keys, oldkeys);
+
+		break;
+	case SceneManager::Scene::Stage://バトルステージ
+		Stage(keys, oldkeys);
 		//gameScene_->Update();
 		//smoke_->MakeEnemySmoke(300, 300);
 		if (key.GetKey(KEY_INPUT_SPACE)) {
@@ -68,17 +76,9 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		pause_->Update();
 
-	
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
 		sound_->Updata();
-		break;
-	case SceneManager::Scene::Tutorial://チュートリアル
-		Tutorial(keys, oldkeys);
-
-		break;
-	case SceneManager::Scene::Stage://バトルステージ
-		Stage(keys, oldkeys);
 
 		break;
 	case SceneManager::Scene::Result://リザルト
@@ -101,18 +101,17 @@ void SceneManager::Draw() {
 	{
 	case SceneManager::Scene::Title://タイトル
 		titleScene_->Draw();
-		//gameScene_->Draw();
-		pause_->Draw();
-		//smoke_->Draw();
-		playerFootprints_->Draw();
-		playerLevelUp_->Draw();
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-
+		gameScene_->Draw();
+		pause_->Draw();
+		//smoke_->Draw();
+		playerFootprints_->Draw();
+		playerLevelUp_->Draw();
 		break;
 	case SceneManager::Scene::Result://リザルト
 
@@ -132,7 +131,7 @@ void SceneManager::Blackout(char* keys, char* oldkeys) {
 	}
 	else if (isBlackOut == 1) {
 		if (pal < 255) {
-			pal += 20;
+			pal += 5;
 		}
 		else if (pal >= 255) {
 			if (justBefore == 1) {
@@ -152,7 +151,7 @@ void SceneManager::Blackout(char* keys, char* oldkeys) {
 }
 
 void SceneManager::Title(char* keys, char* oldkeys) {
-	justBefore = 1;
+	justBefore = 2;
 	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
 		scene_ = Scene::Blackout;
 	}
