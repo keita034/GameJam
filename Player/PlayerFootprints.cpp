@@ -80,7 +80,7 @@ void PlayerFootprints::Update(int playerPosX, int playerPosY) {
 
 }
 
-void PlayerFootprints::Draw() {
+void PlayerFootprints::Draw(Vec2 screen) {
 
 	DrawFormatString(20, 120, GetColor(0, 0, 0), "%lf", angle, true);
 

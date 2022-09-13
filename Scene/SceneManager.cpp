@@ -47,8 +47,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		Stage(keys, oldkeys);
-		//gameScene_->Update();
+		//Stage(keys, oldkeys);
+		gameScene_->Update();
 	
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {

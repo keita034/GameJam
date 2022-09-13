@@ -19,7 +19,7 @@ public:
 	/// <summary>
 	/// •`‰æ
 	/// </summary>
-	void Draw();
+	void Draw(Vec2 screen);
 
 private:
 

@@ -42,7 +42,7 @@ void GameScene::Initialize(){
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 
 
-	score= Score::GetInstance();
+	score = Score::GetInstance();
 
 	smoke_ = new Smoke();
 	playerFootprints_ = new PlayerFootprints();
@@ -62,12 +62,8 @@ void GameScene::Initialize(){
 
 	}
 	//smoke_->Update();
-	playerFootprints_->Update(640, 360);
 	playerLevelUp_->Update(300, 300);
 
-	//smoke_->Draw();
-	playerFootprints_->Draw();
-	playerLevelUp_->Draw();
 }
 
 void GameScene::Update(){
@@ -80,7 +76,7 @@ void GameScene::Update(){
 	enemypop_.get()->EnemyPopInit();
 	enemypop_.get()->EnemyPopUpdate(player_.get());
 
-
+	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().x);
 
 	//for (std::unique_ptr<Enemy>& enemy : enemys_)
 	//{
@@ -106,6 +102,10 @@ void GameScene::Draw(){
 	//{
 	//	enemy->Draw(player_->GetScreen());
 	//}
+
+	//smoke_->Draw();
+	playerFootprints_->Draw(player_->GetScreen());
+	//playerLevelUp_->Draw();
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
