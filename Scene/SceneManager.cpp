@@ -75,6 +75,14 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 	case SceneManager::Scene::Result://ƒŠƒUƒ‹ƒg
 		Result(keys, oldkeys);
 		resultScene_->Update();
+		if (resultScene_->GetChangeGame() == true)
+		{
+			scene_ = Scene::Stage;
+		}
+		if (resultScene_->GetChangeTitle() == true)
+		{
+			scene_ = Scene::Title;
+		}
 		break;
 	default:
 		break;
