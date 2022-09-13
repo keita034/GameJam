@@ -119,5 +119,6 @@ private:
 
 	int isFinish = 0;
 
+	int blackFlag = 0;
 };
 

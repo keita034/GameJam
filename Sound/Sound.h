@@ -25,7 +25,7 @@ public:
 	/// <summary>
 	/// gameSceneˆ—
 	/// </summary>
-	void gameSceneUpdate(int soundVolum);
+	void gameSceneUpdate();
 
 	/// <summary>
 	/// UIˆ—

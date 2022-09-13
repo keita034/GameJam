@@ -42,6 +42,12 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		Title(keys, oldkeys);
 		titleScene_->Update();
 		
+		pause_->Update();
+
+		sound_->SetSound(pause_->GetSoundVolum());
+		sound_->TitleUpdate();
+		sound_->Updata();
+
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 		Tutorial(keys, oldkeys);
@@ -57,7 +63,6 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		}
 		//smoke_->Update();
-		TestMove();
 		playerFootprints_->Update(640, 360);
 		playerLevelUp_->Update(300, 300);
 
@@ -77,7 +82,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		pause_->Update();
 
 		sound_->SetSound(pause_->GetSoundVolum());
-		sound_->TitleUpdate();
+		sound_->gameSceneUpdate();
 		sound_->Updata();
 
 		break;
@@ -92,10 +97,6 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 }
 
 void SceneManager::Draw() {
-
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
-	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	switch (scene_)
 	{
@@ -119,6 +120,10 @@ void SceneManager::Draw() {
 	default:
 		break;
 	}
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
+	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 
@@ -127,7 +132,7 @@ void SceneManager::Draw() {
 void SceneManager::Blackout(char* keys, char* oldkeys) {
 	if (isBlackOut == 0) {
 		isBlackOut = 1;
-		pal = 70;
+		pal = 255;
 	}
 	else if (isBlackOut == 1) {
 		if (pal < 255) {
@@ -153,8 +158,16 @@ void SceneManager::Blackout(char* keys, char* oldkeys) {
 void SceneManager::Title(char* keys, char* oldkeys) {
 	justBefore = 2;
 	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
-		scene_ = Scene::Blackout;
+		blackFlag = 1;
+		pal = 0;
 	}
+	if (blackFlag == 1) {
+		pal = pal + 5;
+		if (pal >= 255) {
+			scene_ = Scene::Blackout;
+		}
+	}
+
 }
 
 void SceneManager::Tutorial(char* keys, char* oldkeys) {

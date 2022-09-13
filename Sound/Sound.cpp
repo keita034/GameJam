@@ -30,6 +30,7 @@ void Sound::Initialize() {
 void Sound::Updata(){
 	
 	ChangeVolumeSoundMem(volum, titleBGM);
+	ChangeVolumeSoundMem(volum, gameBGM);
 	ChangeVolumeSoundMem(volum, level1);
 	ChangeVolumeSoundMem(volum, level2);
 	ChangeVolumeSoundMem(volum, level3);
@@ -48,10 +49,10 @@ void Sound::TitleUpdate() {
 	}
 }
 
-void Sound::gameSceneUpdate(int soundVolum) {
+void Sound::gameSceneUpdate() {
+	StopSoundMem(titleBGM);
 	if (CheckSoundMem(gameBGM) == 0) {
 		PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
-		ChangeVolumeSoundMem(soundVolum, gameBGM);
 	}
 }
 
