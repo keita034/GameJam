@@ -7,10 +7,15 @@
 #include "Util.h"
 #include<memory>
 #include<list>
+#include"Sound.h"
+#include"Pause.h"
+
 class EnemyPop
 {
 public:
 	// メンバー関数
+
+	EnemyPop();
 
 	// 敵の初期化
 	void EnemyPopInit();
@@ -29,6 +34,7 @@ private:
 	// メンバー変数
 	int Poptimer = 0;
 	float timerInterval = 1 * 50;
+	int siroGh = 0;
 
 	// 敵のリスト
 	std::list<std::unique_ptr<Enemy>>enemys_;
@@ -38,5 +44,10 @@ private:
 
 	// レア敵
 	std::unique_ptr<RareEnemy> rareEenmy_;
+
+	//音ワッカ
+	Sound* sound_ = nullptr;
+	Pause* pause_ = nullptr;
+
 };
 

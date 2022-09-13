@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// ‰¹‚ÌXV
 	/// </summary>
-	void Updata();
+	void Updata(int vol);
 
 	/// <summary>
 	/// titleˆ—
@@ -42,6 +42,9 @@ public:
 	/// AttackHitˆ—
 	/// </summary>
 	void AttackHitUpdata(int soundVolum);
+
+	void Swing();
+
 
 	void SetSound(int soundVolum);
 

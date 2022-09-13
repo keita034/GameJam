@@ -9,7 +9,6 @@ GameScene::GameScene()
 	player_ = std::make_unique<Player>();
 	enemypop_ = std::make_unique<EnemyPop>();
 
-	
 }
 
 void GameScene::Initialize(){
@@ -44,25 +43,15 @@ void GameScene::Initialize(){
 
 	score = Score::GetInstance();
 
-	smoke_ = new Smoke();
+	//smoke_ = new Smoke();
 	playerFootprints_ = new PlayerFootprints();
 	playerLevelUp_ = new PlayerLevelUp();
 
 	score->Initialize(player_.get());
 
-
-	smoke_->Initialize(siroGh);
 	playerFootprints_->Initialize();
 	playerLevelUp_->Initialize();
-
-	//smoke_->MakeEnemySmoke(300, 300);
-	if (key.GetKey(KEY_INPUT_SPACE)) {
-
-		playerLevelUp_->playerLevelUp(6);
-
-	}
-	//smoke_->Update();
-	playerLevelUp_->Update(300, 300);
+	
 
 }
 
@@ -76,12 +65,11 @@ void GameScene::Update(){
 	enemypop_.get()->EnemyPopInit();
 	enemypop_.get()->EnemyPopUpdate(player_.get());
 
-	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().x);
+	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y,player_->GetAngle());
+	
+	playerLevelUp_->Update(player_->GetPos().x, player_->GetPos().y);
 
-	//for (std::unique_ptr<Enemy>& enemy : enemys_)
-	//{
-	//	enemy->Update(player_->GetPos());
-	//}
+	smoke_->Update(0, 0);
 
 	enemypop_.get()->CheckCollisions(player_.get());
 
@@ -103,15 +91,17 @@ void GameScene::Draw(){
 	//	enemy->Draw(player_->GetScreen());
 	//}
 
-	//smoke_->Draw();
-	playerFootprints_->Draw(player_->GetScreen());
-	//playerLevelUp_->Draw();
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
+	DrawFormatString(700, 140, GetColor(0, 0, 0), "%f", player_->GetScreen().x, true);
+	DrawFormatString(700, 160, GetColor(0, 0, 0), "%f", player_->GetScreen().y, true);
 
+	playerFootprints_->Draw(player_->GetScreen());
+	playerLevelUp_->Draw(player_->GetScreen());
 	player_->Draw();
-
+	
+	smoke_->Draw(player_->GetScreen());
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
 
 	score->Draw();

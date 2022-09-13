@@ -4,12 +4,15 @@
 #include"KeyBoardInput.h"
 #include"Ease.h"
 #include<cmath>
+#include"Sound.h"
 
 class Enemy;
 
 class Player
 {
 private:
+
+	Sound* sound_ = nullptr;
 
 	//ç¿ïW
 	Vec2 pos{};
@@ -151,6 +154,8 @@ public:
 
 	int GetCombo();
 	void AddCombo();
+
+	float GetAngle();
 
 private:
 	void SwordDraw();

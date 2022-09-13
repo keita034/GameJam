@@ -35,11 +35,23 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		Title(keys, oldkeys);
 		titleScene_->Update();
 		
-		pause_->Update();
+		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
+			if (isESC == 0) {
+				pause_->TimerReset(0);
+				pause_->SetIsEsc(isESC);
+				isESC = 1;
+			}
+			else if (isESC == 1) {
+				pause_->TimerReset(0);
+				pause_->SetIsEsc(isESC);
+				isESC = 0;
+			}
+		}
 
+		pause_->Update();
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
-		sound_->Updata();
+		sound_->Updata(pause_->GetSoundVolum());
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -48,8 +60,6 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
 		//Stage(keys, oldkeys);
-		gameScene_->Update();
-	
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -65,10 +75,13 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 
 		pause_->Update();
-
-		sound_->SetSound(pause_->GetSoundVolum());
+		vx = pause_->GetSoundVolum();
+		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
-		sound_->Updata();
+		sound_->Updata(vx);
+
+		gameScene_->Update();
+
 
 		break;
 	case SceneManager::Scene::Result://リザルト
@@ -87,7 +100,7 @@ void SceneManager::Draw() {
 	{
 	case SceneManager::Scene::Title://タイトル
 		titleScene_->Draw();
-
+		pause_->Draw();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 

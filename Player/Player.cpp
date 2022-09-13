@@ -27,6 +27,8 @@ void Player::Initialize()
 	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
 	swordImg = LoadGraph("Resources/sword.png");
 	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
+	sound_ = new Sound();
+
 }
 
 void Player::Update()
@@ -201,6 +203,10 @@ int Player::GetAttackPower()
 int Player::GetHp()
 {
 	return hp;
+}
+
+float Player::GetAngle() {
+	return angle;
 }
 
 void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
@@ -499,6 +505,7 @@ void Player::Attack()
 		attackFlag = true;
 		attackCameraFlag = true;
 		comboExtensionFlag = true;
+		sound_->Swing();
 
 		attackBeginPos = pos;
 		attackDirectionVec = frontVec;

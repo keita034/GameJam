@@ -9,13 +9,19 @@ void PlayerFootprints::Initialize() {
 		LeftFlag[i] = 0;
 		RightFlag[i] = 0;
 		FootFlag[i] = 0;
+		angle[i] = 0;
+		redDown[i] = 0;
+		red[i] = 0;
 	}
 
 }
 
-void PlayerFootprints::Update(int playerPosX, int playerPosY) {
+void PlayerFootprints::Update(int playerPosX, int playerPosY,float angle_) {
 
 	footTimer--;
+
+	GetMousePoint(&mousePosX, &mousePosY);
+	Vec2 mosePos = { (float)mousePosX ,(float)mousePosY };
 
 	if (footTimer < 0) {
 		
@@ -23,14 +29,18 @@ void PlayerFootprints::Update(int playerPosX, int playerPosY) {
 			if (LeftORright == 0) {
 				if (LeftFlag[i] == 0) {
 					if (FootFlag[i] == 0) {
-						x[i] = playerPosX - 10;
+						x[i] = playerPosX - 4;
 						y[i] = playerPosY;
 
 						LeftFlag[i] = 1;
 						FootFlag[i] = 1;
 						pal[i] = 295;
-						footTimer = 25;
+						footTimer = 10;
 						LeftORright = 1;
+						red[i] = 255;
+
+						angle[i] = angle_;
+						angle[i] -= 1.5708;
 						break;
 					}
 				}
@@ -38,14 +48,18 @@ void PlayerFootprints::Update(int playerPosX, int playerPosY) {
 			else if(LeftORright == 1) {
 				if (RightFlag[i] == 0) {
 					if (FootFlag[i] == 0) {
-						x[i] = playerPosX + 10;
+						x[i] = playerPosX + 4;
 						y[i] = playerPosY;
 
 						RightFlag[i] = 1;
 						FootFlag[i] = 1;
 						pal[i] = 295;
-						footTimer = 25;
+						footTimer = 10;
 						LeftORright = 0;
+						red[i] = 255;
+
+						angle[i] = angle_;
+						angle[i] -= 1.5708;
 						break;
 					}
 				}
@@ -57,44 +71,39 @@ void PlayerFootprints::Update(int playerPosX, int playerPosY) {
 
 		if (LeftFlag[i] == 1 || RightFlag[i] == 1) {
 			pal[i] -= 3;
-
+			redDown[i] += 2.3;
 			if (pal[i] < 0) {
 				LeftFlag[i] = 0;
 				RightFlag[i] = 0;
 				FootFlag[i] = 0;
+				redDown[i] = 0;
 			}
 
 		}
 
 	}
 
-	int mosePosX = 0;
-	int mosePosY = 0;
-
-	GetMousePoint(&mosePosX, &mosePosY);
-	Vec2 mosePos = { (float)mosePosX ,(float)mosePosY };
-
-	angle = atan2(double(mosePos.y - screenCentral.y), double(mosePos.x - screenCentral.x));
-	angle += 1.5708;
-
 
 }
 
 void PlayerFootprints::Draw(Vec2 screen) {
 
-	DrawFormatString(20, 120, GetColor(0, 0, 0), "%lf", angle, true);
 
 	for (int i = 0; i < 30; i++) {
 
 		if (LeftFlag[i] == 1) {
+			SetDrawBright(red[i] - redDown[i], 50, 50);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal[i]);
-			DrawRotaGraph(x[i], y[i], 1, angle, FootArt[0], true);
+			DrawRotaGraph(x[i] - screen.x, y[i] - screen.y, 1, angle[i], FootArt[0], true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+			SetDrawBright(255, 255, 255);
 		}
 		if (RightFlag[i] == 1) {
+			SetDrawBright(red[i] - redDown[i], 50, 50);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal[i]);
-			DrawRotaGraph(x[i], y[i], 1, angle, FootArt[1], true);
+			DrawRotaGraph(x[i] - screen.x, y[i]- screen.y, 1, angle[i], FootArt[1], true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+			SetDrawBright(255, 255, 255);
 		}
 	}
 

@@ -99,7 +99,7 @@ private:
 	int x = 300;
 	int y = 300;
 
-
+	int vx = 0;
 	//パーティクル
 	int pal = 0;
 	int palTimer;
