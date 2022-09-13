@@ -9,6 +9,8 @@ GameScene::GameScene()
 void GameScene::Initialize(){
 	player_->Initialize();
 	frameImg = LoadGraph("Resources/Flame.png");
+	playerBackImg = LoadGraph("Resources/player_background.png");
+	backScreenImg = LoadGraph("Resources/jimen.png");
 }
 
 void GameScene::Update(){
@@ -35,14 +37,18 @@ void GameScene::Update(){
 
 void GameScene::Draw(){
 
-	player_->Draw();
+	DrawGraph(1280 - backScreenXRadius - player_->GetScreen().x, 720 - backScreenYRadius - player_->GetScreen().y, backScreenImg, true);
+
 	enemypop_.get()->EnemyPopDraw(player_.get());
 	//for (std::unique_ptr<Enemy>& enemy : enemys_)
 	//{
 	//	enemy->Draw(player_->GetScreen());
 	//}
 
-	DrawGraph(0-50, 0-50, frameImg, true);
+	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
+	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
+
+	player_->Draw();
 
 	
 }

@@ -22,6 +22,12 @@ void Player::Initialize()
 	pos = { 1280.0f,720.0f };
 	angle = -DX_PI_F / 2;
 	playerImg = LoadGraph("Resources/playerTop01.png");
+	hpBarImg = LoadGraph("Resources/Hp_Bar.png");
+	LoadDivGraph("Resources/player_kurisuta_None.png", 5, 5, 1, 280, 320, playerFrameImg);
+	damageEffectImg = LoadGraph("Resources/DamageEfect.png");
+	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
+	swordImg = LoadGraph("Resources/sword.png");
+	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
 }
 
 void Player::Update()
@@ -42,6 +48,7 @@ void Player::Update()
 	if (!attackFlag)
 	{
 		pos += tmpSpeed;
+
 	}
 
 	//1フレーム前の攻撃フラグを保存
@@ -60,11 +67,18 @@ void Player::Update()
 		levelUpExtensionFlag = false;
 
 		//攻撃レベルが上がる距離
-		levelUpDistance = 200;
-		attackDistance = 400;
+		attackRadius = 239;
 		attackPower = 1;
-		attackRadius = 260;
-		maxAttackTime = 90;
+		maxAttackTime = 80;
+		attackDistance = 480;
+		levelUpDistance = 179;
+		attackStanceEffectColor = 0x2c080b;
+		swordMagnification = 0.84f;
+	}
+
+	if (damageEffectTime > 0)
+	{
+		damageEffectTime -= 2;
 	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
@@ -72,18 +86,10 @@ void Player::Update()
 
 void Player::Draw()
 {
-	DrawBox(zero.x - screen.x, zero.y - screen.y, fieldSize.x / 2 - screen.x, fieldSize.y / 2 - screen.y, GetColor(50, 50, 50), true);
-	DrawBox((fieldSize.x / 2) - screen.x, zero.y - screen.y, fieldSize.x - screen.x, fieldSize.y / 2 - screen.y, GetColor(100, 100, 100), true);
-
-	DrawBox(zero.x - screen.x, fieldSize.y / 2 - screen.y, (fieldSize.x / 2) - screen.x, fieldSize.y - screen.y, GetColor(150, 150, 150), true);
-	DrawBox((fieldSize.x / 2) - screen.x, fieldSize.y / 2 - screen.y, fieldSize.x - screen.x, fieldSize.y - screen.y, GetColor(200, 200, 200), true);
-
-	DrawLine(
-		pos.x - screen.x, pos.y - screen.y,
-		pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
-		GetColor(255, 0, 0), 3);
-
-	DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
+	//DrawLine(
+	//	pos.x - screen.x, pos.y - screen.y,
+	//	pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
+	//	GetColor(255, 0, 0), 3);
 
 	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
 	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
@@ -96,22 +102,66 @@ void Player::Draw()
 
 	DrawFormatString(130, 180, GetColor(255, 0, 255), "angle:%f", angle);
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-	DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
-	DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SwordDraw();
 
-	if (attackFlag)
+	DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
+
+	if (attackStanceFlag && !attackFlag)
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 50);
+		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 255),false,3);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
+	if (attackStanceEffectFlag)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40);
+  		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackStanceEffectRadius, attackStanceEffectColor, false,3);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		if (attackStanceEffectTime >= 1.0f)
+		{
+			attackStanceEffectFlag = false;
+		}
+	}
+
+	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+	//DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
+	//DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
+	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	//if (attackFlag)
+	//{
+	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+	//	DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
+	//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	//}
+
 	for (size_t i = 0; i < hp; i++)
 	{
-		DrawBox(1036 + (20 * i), 275, 1056 + (20 * i), 312, GetColor(255, 0, 0), true);
+		DrawBox(1036 + (20 * i), 278, 1056 + (20 * i), 309, GetColor(255, 0, 0), true);
 	}
+
+	//Hpバーフレーム
+	DrawGraph(1135 - hpBarXRadius, 293 - hpBarYRadius, hpBarImg, true);
+	
+	//フレームのプレイヤー
+	if (damageEffectTime <= 0)
+	{
+		DrawRotaGraph(1135, 503, 1.3, 0.0, playerFrameImg[level], true);
+	}
+	else
+	{
+		DrawRotaGraph(1135, 503, 1.3, 0.0, damagePlayerImg[level], true);
+	}
+
+
+	//ダメージエフェクト
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, damageEffectTime);
+	SetDrawBright(255,0,0);
+	DrawRotaGraph(1135, 512, 1.0, 0.0, damageEffectImg, true);
+	SetDrawBright(255, 255, 255);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 Vec2 Player::GetPos()
@@ -142,6 +192,7 @@ int Player::GetAttackRadius()
 void Player::HPSub(int subNum)
 {
 	hp -= subNum;
+	damageEffectTime = 100;
 }
 
 void Player::HPAdd(int addNum)
@@ -174,36 +225,48 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 			case 0:
 				attackRadius = 239;
 				attackPower = 1;
-				maxAttackTime = 80;
-				attackDistance = 480;
+				maxAttackTime = 60;
+				attackDistance = 640;
 				levelUpDistance = 179;
+				attackStanceEffectColor = 0x2c080b;
+				swordMagnification = 0.91f;
+
 				level++;
 				break;
 
 			case 1:
 				attackRadius = 218;
 				attackPower = 1;
-				maxAttackTime = 70;
-				attackDistance = 560;
+				maxAttackTime = 58;
+				attackDistance = 663;
 				levelUpDistance = 158;
+				attackStanceEffectColor = 0x500f14;
+				swordMagnification = 0.81f;
+
 				level++;
 				break;
 
 			case 2:
 				attackRadius = 197;
 				attackPower = 2;
-				maxAttackTime = 60;
-				attackDistance = 640;
+				maxAttackTime = 52;
+				attackDistance = 706;
 				levelUpDistance = 137;
+				attackStanceEffectColor = 0x841821;
+				swordMagnification = 0.76f;
+
 				level++;
 				break;
 
 			case 3:
 				attackRadius = 176;
 				attackPower = 2;
-				maxAttackTime = 50;
-				attackDistance = 720;
+				maxAttackTime = 46;
+				attackDistance = 749;
 				levelUpDistance = 116;
+				attackStanceEffectColor = 0xb4172b;
+				swordMagnification = 0.66f;
+
 				level++;
 				break;
 
@@ -214,6 +277,9 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				maxAttackTime = 40;
 				attackDistance = 800;
 				levelUpDistance = 96;
+				attackStanceEffectColor = 0xcd3043;
+				swordMagnification = 0.60f;
+
 				level++;
 				break;
 
@@ -346,33 +412,46 @@ void Player::Attack()
 		case 0:
 			attackRadius = 239;
 			attackPower = 1;
-			maxAttackTime = 80;
-			attackDistance = 480;
+			maxAttackTime = 60;
+			attackDistance = 640;
 			levelUpDistance = 179;
+			attackStanceEffectColor = 0x2c080b;
+			swordMagnification = 0.91f;
+
 			break;
 
 		case 1:
 			attackRadius = 218;
 			attackPower = 1;
-			maxAttackTime = 70;
-			attackDistance = 560;
+			maxAttackTime = 58;
+			attackDistance = 663;
 			levelUpDistance = 158;
+			attackStanceEffectColor = 0x500f14;
+			swordMagnification = 0.81f;
+
+
 			break;
 
 		case 2:
 			attackRadius = 197;
 			attackPower = 2;
-			maxAttackTime = 60;
-			attackDistance = 640;
+			maxAttackTime = 52;
+			attackDistance = 706;
 			levelUpDistance = 137;
+			attackStanceEffectColor = 0x841821;
+			swordMagnification = 0.76f;
+
 			break;
 
 		case 3:
 			attackRadius = 176;
 			attackPower = 2;
-			maxAttackTime = 50;
-			attackDistance = 720;
+			maxAttackTime = 46;
+			attackDistance = 749;
 			levelUpDistance = 116;
+			attackStanceEffectColor = 0xb4172b;
+			swordMagnification = 0.66f;
+
 			break;
 
 		case 4:
@@ -382,6 +461,9 @@ void Player::Attack()
 			maxAttackTime = 40;
 			attackDistance = 800;
 			levelUpDistance = 96;
+			attackStanceEffectColor = 0xcd3043;
+			swordMagnification = 0.60f;
+
 			break;
 
 		default:
@@ -392,8 +474,28 @@ void Player::Attack()
 
 	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE);
 
+	if (key.GetKeyTrigger(KEY_INPUT_SPACE)&& !attackFlag)
+	{
+		attackStanceEffectFlag = true;
+
+		attackStanceEffectFrameTime = 0;
+		attackStanceEffectTime = 0;
+
+	}
+
+	if (attackStanceEffectFlag && !attackFlag)
+	{
+		attackStanceEffectFrameTime++;
+
+		attackStanceEffectTime = attackStanceEffectFrameTime / maxAttackStanceEffectTime;
+
+		//イージング
+		attackStanceEffectRadius = Ease::easeOutCubic(attackStanceEffectTime) * (levelUpDistance);
+	}
+
 	if (!attackFlag && key.GetKeyReleased(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
+		attackStanceEffectFlag = false;
 		attackFlag = true;
 		attackCameraFlag = true;
 		comboExtensionFlag = true;
@@ -437,4 +539,29 @@ void Player::AddCombo()
 	combo++;
 	comboExtensionTime = maxComboExtensionTime;
 	comboExtensionFlag = true;
+}
+
+void Player::SwordDraw()
+{
+	int posX = pos.x - screen.x;
+	int posY = pos.y - screen.y;
+
+	if (attackStanceFlag &&!attackFlag)
+	{
+		DrawRotaGraph2(posX, posY, 20, -10, swordMagnification, angle, swordImg, true);
+		DrawRotaGraph2(posX, posY, 20, 48, swordMagnification, angle, swordImg, true, false, true);
+	}
+
+	if (attackFlag)
+	{
+		int time = (attackFrameTime+15) / (maxAttackTime / static_cast<float>(5));
+		if (time >= 4)
+		{
+			time = 4;
+		}
+
+		DrawRotaGraph2(posX, posY, 320, 300, swordMagnification, angle, swordAnimationImg[time], true, true);
+		DrawRotaGraph2(posX, posY, 320, 30, swordMagnification, angle, swordAnimationImg[time], true , true, true);
+
+	}
 }

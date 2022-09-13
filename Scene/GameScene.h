@@ -35,5 +35,16 @@ private:
 	std::unique_ptr<EnemyPop> enemypop_;
 
 	int frameImg;
+	int frameYRadius = 410;
+	int frameXRadius = 690;
+
+	int playerBackImg;
+	int playerBackYRadius = 160;
+	int playerBackXRadius = 102;
+
+	int backScreenImg;
+	int backScreenYRadius = 720;
+	int backScreenXRadius = 1280;
+
 };
 
