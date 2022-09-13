@@ -88,6 +88,7 @@ private:
 	float attackStanceEffectTime = 0;
 	int maxAttackStanceEffectTime = 25 ;
 	bool attackStanceEffectFlag = false;
+	bool attackStanceEffectTriggerFlag = false;
 	float attackStanceEffectRadius = 0.0f;
 	unsigned int attackStanceEffectColor = 0x2c080b;
 
@@ -139,6 +140,8 @@ public:
 	int GetAttackPower();
 
 	int GetHp();
+
+	int GetLevel();
 
 	/// <summary>
 	/// çUåÇ

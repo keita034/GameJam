@@ -253,6 +253,8 @@ void Enemy::Update(Vec2 playerNpos)
 		smoke_->DieSmoke(pos_.x, pos_.y);
 		isDeath_ = true;
 		Score::GetInstance()->ScoreAdd(100);
+		Score::GetInstance()->AddEnemydestroy();
+
 	}
 
 	if (pos_.x < -MaxPos.x || pos_.x > fieldSize.x + MaxPos.x||
@@ -345,7 +347,6 @@ int Enemy::GetRadius()
 
 void Enemy::Death()
 {
-	Score::GetInstance()->ScoreAdd(100);
 	isDeath_ = true;
 }
 
