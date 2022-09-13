@@ -9,7 +9,7 @@ GameScene::GameScene()
 	player_ = std::make_unique<Player>();
 	enemypop_ = std::make_unique<EnemyPop>();
 
-
+	
 }
 
 void GameScene::Initialize(){
@@ -36,6 +36,12 @@ void GameScene::Initialize(){
 
 	playerBackImg = LoadGraph("Resources/player_background.png");
 	backScreenImg = LoadGraph("Resources/jimen.png");
+
+	backScreenGrandImg = LoadGraph("Resources/GameSceneBackGround.png");
+
+	score= Score::GetInstance();
+
+	score->Initialize(player_.get());
 }
 
 void GameScene::Update(){
@@ -58,9 +64,14 @@ void GameScene::Update(){
 	enemypop_.get()->CheckCollisions(player_.get());
 
 	player_->ComboUpdate();
+
+	score->Update();
+
 }
 
 void GameScene::Draw(){
+
+	DrawRotaGraph(1280 - player_->GetScreen().x, 720 - player_->GetScreen().y, 1.0, 0.0, backScreenGrandImg, true);
 
 	DrawGraph(1280 - backScreenXRadius - player_->GetScreen().x, 720 - backScreenYRadius - player_->GetScreen().y, backScreenImg, true);
 
@@ -71,11 +82,13 @@ void GameScene::Draw(){
 	//}
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
-	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
+
 
 	player_->Draw();
 
-	
+	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
+
+	score->Draw();
 }
 
 

@@ -911,6 +911,13 @@ void EnemyPop::CheckCollisions(Player* player_)
 				enemy->HPSub(player_->GetAttackPower());
 
 			}
+			else
+			{
+				if (!enemy->GetDamageFlag())
+				{
+					enemy->SetDamageFlag(true);
+				}
+			}
 		}
 	}
 }

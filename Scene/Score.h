@@ -12,9 +12,14 @@ private:
 	float magnification = 1.0f;
 	//ハイスコアかどうか
 	bool hignScoreFlag = false;
+	int combo = 0;
 	int maxCombo = 0;
 	int maxEnemydestroying = 0;
 	Player* player;
+	int hpBarImg;
+	int scoreImg = 0;
+	int scoreNumber[10];
+	int comboImg = 0;
 
 public:
 

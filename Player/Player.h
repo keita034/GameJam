@@ -88,10 +88,6 @@ private:
 	float attackStanceEffectRadius = 0.0f;
 	unsigned int attackStanceEffectColor = 0x2c080b;
 
-	int hpBarImg;
-	int hpBarYRadius = 20;
-	int hpBarXRadius = 108;
-
 	int playerFrameImg[5];
 
 	int damageEffectImg = 0;
@@ -138,6 +134,8 @@ public:
 	void HPAdd(int addNum);
 
 	int GetAttackPower();
+
+	int GetHp();
 
 	/// <summary>
 	/// çUåÇ

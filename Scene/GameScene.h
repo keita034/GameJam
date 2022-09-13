@@ -6,6 +6,7 @@
 #include<memory>
 #include<list>
 #include"EnemyPop.h"
+#include"Score.h"
 
 class GameScene
 {
@@ -50,5 +51,8 @@ private:
 	int backScreenYRadius = 720;
 	int backScreenXRadius = 1280;
 
+	int backScreenGrandImg = 0;
+
+	Score* score = nullptr;
 };
 

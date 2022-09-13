@@ -22,7 +22,6 @@ void Player::Initialize()
 	pos = { 1280.0f,720.0f };
 	angle = -DX_PI_F / 2;
 	playerImg = LoadGraph("Resources/playerTop01.png");
-	hpBarImg = LoadGraph("Resources/Hp_Bar.png");
 	LoadDivGraph("Resources/player_kurisuta_None.png", 5, 5, 1, 280, 320, playerFrameImg);
 	damageEffectImg = LoadGraph("Resources/DamageEfect.png");
 	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
@@ -69,11 +68,11 @@ void Player::Update()
 		//攻撃レベルが上がる距離
 		attackRadius = 239;
 		attackPower = 1;
-		maxAttackTime = 80;
-		attackDistance = 480;
+		maxAttackTime = 60;
+		attackDistance = 640;
 		levelUpDistance = 179;
 		attackStanceEffectColor = 0x2c080b;
-		swordMagnification = 0.84f;
+		swordMagnification = 0.91f;
 	}
 
 	if (damageEffectTime > 0)
@@ -113,7 +112,7 @@ void Player::Draw()
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
-	if (attackStanceEffectFlag)
+	if (attackStanceEffectFlag && !attackFlag)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40);
   		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackStanceEffectRadius, attackStanceEffectColor, false,3);
@@ -137,13 +136,7 @@ void Player::Draw()
 	//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	//}
 
-	for (size_t i = 0; i < hp; i++)
-	{
-		DrawBox(1036 + (20 * i), 278, 1056 + (20 * i), 309, GetColor(255, 0, 0), true);
-	}
 
-	//Hpバーフレーム
-	DrawGraph(1135 - hpBarXRadius, 293 - hpBarYRadius, hpBarImg, true);
 	
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
@@ -203,6 +196,11 @@ void Player::HPAdd(int addNum)
 int Player::GetAttackPower()
 {
 	return attackPower;
+}
+
+int Player::GetHp()
+{
+	return hp;
 }
 
 void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
@@ -279,8 +277,6 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				levelUpDistance = 96;
 				attackStanceEffectColor = 0xcd3043;
 				swordMagnification = 0.60f;
-
-				level++;
 				break;
 
 			default:
@@ -474,16 +470,20 @@ void Player::Attack()
 
 	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE);
 
-	if (key.GetKeyTrigger(KEY_INPUT_SPACE)&& !attackFlag)
+	if (key.GetKeyTrigger(KEY_INPUT_SPACE))
 	{
 		attackStanceEffectFlag = true;
-
 		attackStanceEffectFrameTime = 0;
 		attackStanceEffectTime = 0;
-
 	}
 
-	if (attackStanceEffectFlag && !attackFlag)
+	if (attackFlag)
+	{
+		attackStanceEffectFrameTime = 0;
+		attackStanceEffectTime = 0;
+	}
+
+	if (attackStanceEffectFlag)
 	{
 		attackStanceEffectFrameTime++;
 

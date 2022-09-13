@@ -226,22 +226,11 @@ void Enemy::Update(Vec2 playerNpos)
 		break;
 	}
 
-	if (!damageFlag)
-	{
-		damageInterval--;
-
-		if (damageInterval == 0)
-		{
-			damageInterval = maxDamageInterval;
-
-			damageFlag = true;
-
-		}
-	}
-
 	if (hp <= 0)
 	{
 		isDeath_ = true;
+		Score::GetInstance()->ScoreAdd(100);
+
 	}
 
 	if (pos_.x < -MaxPos.x || pos_.x > fieldSize.x + MaxPos.x||
@@ -326,6 +315,7 @@ int Enemy::GetRadius()
 
 void Enemy::Death()
 {
+	Score::GetInstance()->ScoreAdd(100);
 	isDeath_ = true;
 }
 
@@ -363,4 +353,9 @@ void Enemy::SetAngle(float angle_)
 bool Enemy::GetDamageFlag()
 {
 	return damageFlag;
+}
+
+void Enemy::SetDamageFlag(bool flag)
+{
+	damageFlag = flag;
 }

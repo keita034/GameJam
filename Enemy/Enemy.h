@@ -2,6 +2,7 @@
 #include "Util.h"
 #include "DxLib.h"
 #include"KeyBoardInput.h"
+#include"Score.h"
 
 enum Pattern
 {
@@ -66,6 +67,8 @@ public:
 	void SetAngle(float angle_);
 
 	bool GetDamageFlag();
+
+	void SetDamageFlag(bool flag);
 private:
 	// ƒƒ“ƒo[•Ï”
 	Vec2 zeroVec = { 0.0f,0.0f };
