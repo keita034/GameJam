@@ -17,6 +17,7 @@ void SceneManager::Initialize() {
 	smoke_ = new Smoke();
 	playerFootprints_ = new PlayerFootprints();
 	playerLevelUp_ = new PlayerLevelUp();
+	sound_ = new Sound();
 
 	//初期化処理
 	//titleScene_->Initialize();
@@ -26,6 +27,7 @@ void SceneManager::Initialize() {
 	smoke_->Initialize(siroGh);
 	playerFootprints_->Initialize();
 	playerLevelUp_->Initialize();
+	sound_->Initialize();
 
 }
 
@@ -45,7 +47,6 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 			playerLevelUp_->playerLevelUp(6);
 
 		}
-
 		//smoke_->Update();
 		TestMove();
 		playerFootprints_->Update(640, 360);
@@ -66,6 +67,10 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		pause_->Update();
 
+	
+		sound_->SetSound(pause_->GetSoundVolum());
+		sound_->TitleUpdate();
+		sound_->Updata();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 		Tutorial(keys, oldkeys);

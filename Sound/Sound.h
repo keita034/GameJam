@@ -1,0 +1,70 @@
+#pragma once
+
+
+class Sound {
+
+public:
+
+	Sound();
+
+	/// <summary>
+	/// ‰Šú‰»
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// ‰¹‚ÌXV
+	/// </summary>
+	void Updata();
+
+	/// <summary>
+	/// titleˆ—
+	/// </summary>
+	void TitleUpdate();
+
+	/// <summary>
+	/// gameSceneˆ—
+	/// </summary>
+	void gameSceneUpdate(int soundVolum);
+
+	/// <summary>
+	/// UIˆ—
+	/// </summary>
+	void SelectUpdate(int soundVolum);
+	void DecisionUpdate(int soundVolum);
+
+	/// <summary>
+	/// levelUpˆ—
+	/// </summary>
+	void levelUpdata(int level_,int soundVolum);
+
+	/// <summary>
+	/// AttackHitˆ—
+	/// </summary>
+	void AttackHitUpdata(int soundVolum);
+
+	void SetSound(int soundVolum);
+
+private:
+
+	int titleBGM = 0;
+	int gameBGM = 0;
+	int gameBGM2 = 0;
+	int level1 = 0;
+	int level2 = 0;
+	int level3 = 0;
+	int level4 = 0;
+	int level5 = 0;
+
+	int attackHit = 0;
+
+	int slsectSound = 0;
+	int UIDecision = 0;
+
+	int level = 0;
+
+	int swing = 0;
+
+	int volum = 200;
+	int volume = 0;
+};
