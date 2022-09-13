@@ -69,7 +69,6 @@ void GameScene::Update(){
 	
 	playerLevelUp_->Update(player_->GetPos().x, player_->GetPos().y);
 
-	smoke_->Update(0, 0);
 
 	enemypop_.get()->CheckCollisions(player_.get());
 
@@ -101,7 +100,6 @@ void GameScene::Draw(){
 	playerLevelUp_->Draw(player_->GetScreen());
 	player_->Draw();
 	
-	smoke_->Draw(player_->GetScreen());
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
 
 	score->Draw();

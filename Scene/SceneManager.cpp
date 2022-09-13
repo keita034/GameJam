@@ -60,7 +60,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		//Stage(keys, oldkeys);
+		Stage(keys, oldkeys);
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -170,6 +170,7 @@ void SceneManager::Title(char* keys, char* oldkeys) {
 		pal = pal + 5;
 		if (pal >= 255) {
 			scene_ = Scene::Blackout;
+			blackFlag = 0;
 		}
 	}
 
