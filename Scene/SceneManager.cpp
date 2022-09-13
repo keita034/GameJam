@@ -18,6 +18,7 @@ void SceneManager::Initialize() {
 	//初期化処理
 	titleScene_->Initialize();
 	gameScene_->Initialize();
+	resultScene_->Initialize();
 	//resultScene_->Initialize();
 	pause_->Initialize();
 	sound_->Initialize();
@@ -86,7 +87,15 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Result://リザルト
 		Result(keys, oldkeys);
-
+		resultScene_->Update();
+		if (resultScene_->GetChangeGame() == true)
+		{
+			scene_ = Scene::Stage;
+		}
+		if (resultScene_->GetChangeTitle() == true)
+		{
+			scene_ = Scene::Title;
+		}
 		break;
 	default:
 		break;
@@ -111,7 +120,7 @@ void SceneManager::Draw() {
 
 		break;
 	case SceneManager::Scene::Result://リザルト
-
+		resultScene_->Draw();
 		break;
 	default:
 		break;
