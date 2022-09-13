@@ -7,16 +7,12 @@ SceneManager::~SceneManager() {
 }
 
 void SceneManager::Initialize() {
-	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 
 	//newする
 	titleScene_ = new TitleScene();
 	gameScene_ = new GameScene();
 	resultScene_ = new ResultScene();
 	pause_ = new Pause();
-	smoke_ = new Smoke();
-	playerFootprints_ = new PlayerFootprints();
-	playerLevelUp_ = new PlayerLevelUp();
 	sound_ = new Sound();
 
 	//初期化処理
@@ -24,9 +20,6 @@ void SceneManager::Initialize() {
 	gameScene_->Initialize();
 	//resultScene_->Initialize();
 	pause_->Initialize();
-	smoke_->Initialize(siroGh);
-	playerFootprints_->Initialize();
-	playerLevelUp_->Initialize();
 	sound_->Initialize();
 
 }
@@ -56,15 +49,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 	case SceneManager::Scene::Stage://バトルステージ
 		Stage(keys, oldkeys);
 		//gameScene_->Update();
-		//smoke_->MakeEnemySmoke(300, 300);
-		if (key.GetKey(KEY_INPUT_SPACE)) {
-
-			playerLevelUp_->playerLevelUp(6);
-
-		}
-		//smoke_->Update();
-		playerFootprints_->Update(640, 360);
-		playerLevelUp_->Update(300, 300);
+	
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -110,9 +95,7 @@ void SceneManager::Draw() {
 	case SceneManager::Scene::Stage://バトルステージ
 		gameScene_->Draw();
 		pause_->Draw();
-		//smoke_->Draw();
-		playerFootprints_->Draw();
-		playerLevelUp_->Draw();
+
 		break;
 	case SceneManager::Scene::Result://リザルト
 

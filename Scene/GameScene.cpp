@@ -39,9 +39,35 @@ void GameScene::Initialize(){
 
 	backScreenGrandImg = LoadGraph("Resources/GameSceneBackGround.png");
 
+	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
+
+
 	score= Score::GetInstance();
 
+	smoke_ = new Smoke();
+	playerFootprints_ = new PlayerFootprints();
+	playerLevelUp_ = new PlayerLevelUp();
+
 	score->Initialize(player_.get());
+
+
+	smoke_->Initialize(siroGh);
+	playerFootprints_->Initialize();
+	playerLevelUp_->Initialize();
+
+	//smoke_->MakeEnemySmoke(300, 300);
+	if (key.GetKey(KEY_INPUT_SPACE)) {
+
+		playerLevelUp_->playerLevelUp(6);
+
+	}
+	//smoke_->Update();
+	playerFootprints_->Update(640, 360);
+	playerLevelUp_->Update(300, 300);
+
+	//smoke_->Draw();
+	playerFootprints_->Draw();
+	playerLevelUp_->Draw();
 }
 
 void GameScene::Update(){

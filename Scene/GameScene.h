@@ -7,6 +7,9 @@
 #include<list>
 #include"EnemyPop.h"
 #include"Score.h"
+#include"Smoke.h"
+#include"PlayerFootprints.h"
+#include"playerLevelUp.h"
 
 class GameScene
 {
@@ -39,6 +42,10 @@ private:
 	//std::list<std::unique_ptr<Enemy>>enemys_;
 	std::unique_ptr<EnemyPop> enemypop_;
 
+	Smoke* smoke_ = nullptr;
+	PlayerFootprints* playerFootprints_ = nullptr;
+	PlayerLevelUp* playerLevelUp_ = nullptr;
+
 	int frameImg;
 	int frameYRadius = 410;
 	int frameXRadius = 690;
@@ -54,5 +61,8 @@ private:
 	int backScreenGrandImg = 0;
 
 	Score* score = nullptr;
+
+	int siroGh;
+
 };
 

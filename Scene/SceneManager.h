@@ -4,9 +4,6 @@
 #include"GameScene.h"
 #include"ResultScene.h"
 #include"Pause.h"
-#include"Smoke.h"
-#include"PlayerFootprints.h"
-#include"playerLevelUp.h"
 #include"Sound.h"
 
 
@@ -95,9 +92,6 @@ private:
 	ResultScene* resultScene_ = nullptr;
 
 	Pause* pause_ = nullptr;
-	Smoke* smoke_ = nullptr;
-	PlayerFootprints* playerFootprints_ = nullptr;
-	PlayerLevelUp* playerLevelUp_ = nullptr;
 	Sound* sound_ = nullptr;
 
 
@@ -105,8 +99,6 @@ private:
 	int x = 300;
 	int y = 300;
 
-
-	int siroGh;
 
 	//パーティクル
 	int pal = 0;
