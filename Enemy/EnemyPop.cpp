@@ -14,7 +14,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 1080.0f + 100 * i ,240.0f }, 3.0f,3);
+			enemy->Initialize(HeightDown,{ 1080.0f + 100 * i ,240.0f }, 3.0f,3);
 			enemys_.push_back(std::move(enemy));
 		}
 

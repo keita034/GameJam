@@ -2,6 +2,7 @@
 #include "Util.h"
 #include "DxLib.h"
 #include"KeyBoardInput.h"
+
 enum Pattern
 {
 	HeightUp,       // 縦上
@@ -15,7 +16,17 @@ enum Pattern
 	Traking,        // 追尾
 	Center,         // 中心を通る
 	TrakingEnemy,   // 前にいる敵の後ろを追尾
+	RareEnemy_,           // レア敵
 	None,           // なにもない
+};
+
+enum DrawPattern
+{
+	Siratama,
+	Yubi,
+	Rare,
+	Snake,
+	SnakeBody
 };
 
 class Enemy
@@ -52,6 +63,8 @@ public:
 
 	void SetEnemyPos(Vec2& pos);
 
+	void SetAngle(float angle_);
+
 	bool GetDamageFlag();
 private:
 	// メンバー変数
@@ -83,5 +96,16 @@ private:
 
 	// 今の敵と前の敵とのベクトルの長さ
 	Vec2 tarkingEnemyPosLengthN = { 0,0 };
+
+
+
+	// 角度
+	float angle = 0.0f;
+
+	// アニメーションタイマー
+	float animetionTimer = 0.0f;
+
+	int  Siratamaflame = 0, Yubiflame = 0, RareEnemyFlame = 0, SnakeEnemyFlame = 0;
+
 };
 

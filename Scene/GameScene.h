@@ -27,7 +27,11 @@ public:
 	/// </summary>
 	void Draw();
 
-	
+	// リソースハンドル
+	static int Siratama1Handle[4], Siratama2Handle[4], Siratama3Handle[4];
+	static int Yubi1Handle[9], Yubi2Handle[9], Yubi3Handle[9];
+	static int RareEnemy1Handle[5], RareEnemy2Handle[5], RareEnemy3Handle[5];
+	static int SnakeEnemyHandle[2];
 
 private:
 	std::unique_ptr<Player> player_;
@@ -35,5 +39,7 @@ private:
 	std::unique_ptr<EnemyPop> enemypop_;
 
 	int frameImg;
+
+
 };
 

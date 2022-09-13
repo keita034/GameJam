@@ -6,7 +6,7 @@ void RareEnemy::RareEnemyInit(Vec2 pos)
 	rareEnemy = std::make_unique<Enemy>();
 
 	InitPos = pos;
-	rareEnemy->Initialize(None, { pos.x ,pos.y }, 3.0f,4);
+	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f,3);
 }
 
 void RareEnemy::RareEnemyUpdate(Player* player_)
@@ -17,7 +17,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 	switch (situation_)
 	{
 	case MoveLeftRight:
-		if (timer == 5 * 50)
+		if (timer == 25 * 50)
 		{
 			situation_ = TrakingPlayer;
 		}
@@ -40,6 +40,8 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		}
 
 		rareEnemy.get()->SetEnemyPos(Npos);
+
+		rareEnemy->SetAngle(0);
 		break;
 	case TrakingPlayer:
 		RareEnemyCheckCollisions(player_);
@@ -62,6 +64,8 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		Npos += velocity;
 		rareEnemy.get()->SetEnemyPos(Npos);
 
+		rareEnemy->SetAngle(atan2(player_->GetPos().y - rareEnemy.get()->GetPos().y, player_->GetPos().x - rareEnemy.get()->GetPos().x) + 1.5708);
+		
 		break;
 	case StopInFrontOfThePlayer:
 	{
@@ -102,6 +106,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 
 		angle += 0.07;
 
+		rareEnemy->SetAngle(atan2(player_->GetPos().y - rareEnemy.get()->GetPos().y, player_->GetPos().x - rareEnemy.get()->GetPos().x) + 1.5708);
 	}
 		break;
 	case Escape_:
@@ -119,7 +124,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		{
 			situation_ = MoveLeftRight;
 		}
-		
+		rareEnemy->SetAngle(atan2(InitPos.y - StopEnemyPos.y, InitPos.x - StopEnemyPos.x) + 1.5708);
 		break;
 	default:
 		break;
