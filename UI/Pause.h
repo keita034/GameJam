@@ -3,6 +3,8 @@
 #include <DxLib.h>
 #include"KeyBoardInput.h"
 #include"MouseInput.h"
+#include"Sound.h"
+
 
 class Pause
 {
@@ -44,6 +46,8 @@ public:
 
 	int GetFinish();
 
+	int GetSoundVolum();
+
 private:
 	// 画像などのリソースデータの変数宣言と読み込み
 	int MenuGh;
@@ -59,6 +63,8 @@ private:
 	int soundChangeGh;
 
 	Ease* ease_ = nullptr;
+
+	Sound* sound_ = nullptr;
 
 	//メンバ変数
 	float timer[7];
@@ -153,7 +159,14 @@ private:
 	int isSettingAndEsc = 0;
 	int isFinish = 0;
 
+	int soundFlagHit1 = 0;
+	int soundFlagHit2 = 0;
+	int soundFlagHit3 = 0;
+	int soundFlagHit4 = 0;
+	int soundFlagHit5 = 0;
+	int soundFlagHit6 = 0;
 
 	int isSoundChange = 0;
+	int soundVolume = 197;
 
 };

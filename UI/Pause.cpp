@@ -1,5 +1,6 @@
 #include"Pause.h"
 #include<math.h>
+#include"Sound.h"
 
 void Pause::Initialize() {
 	// 画像などのリソースデータの変数宣言と読み込み
@@ -17,6 +18,8 @@ void Pause::Initialize() {
 
 	//イージング初期化
 	ease_ = new Ease();
+
+	sound_ = new Sound();
 
 	MaxTimer[0] = 100.0f;
 	MaxTimer[1] = 90.0f;
@@ -163,69 +166,101 @@ void Pause::MenuSelect() {
 		if (soundY < y && y < soundY + 67) {
 			isHit = 1;
 			pal = 255; pal2 = 120; pal3 = 120;
+			if (soundFlagHit1 == 0) {
+				sound_->SelectUpdate(soundVolume);
+				soundFlagHit1 = 1;
+			}
 		}
 		else {
 			isHit = 0;
+			soundFlagHit1 = 0;
 		}
 	}
 	else {
 		isHit = 0;
+		soundFlagHit1 = 0;
 	}
 
 	if (ResetX < x && x < ResetX + 178) {
 		if (ResetY - 3 < y && y < ResetY + 67) {
 			isHit2 = 1;
 			pal = 120; pal2 = 255; pal3 = 120;
+			if (soundFlagHit2 == 0) {
+				sound_->SelectUpdate(soundVolume);
+				soundFlagHit2 = 1;
+			}
 		}
 		else {
 			isHit2 = 0;
+			soundFlagHit2 = 0;
 		}
 	}
 	else {
 		isHit2 = 0;
+		soundFlagHit2 = 0;
 	}
 
 	if (TitleX < x && x < TitleX + 178) {
 		if (TitleY - 3 < y && y < TitleY + 64) {
 			isHit3 = 1;
 			pal = 120; pal2 = 120; pal3 = 255;
+			if (soundFlagHit3 == 0) {
+				sound_->SelectUpdate(soundVolume);
+				soundFlagHit3 = 1;
+			}
 		}
 		else {
 			isHit3 = 0;
+			soundFlagHit3 = 0;
 		}
 	}
 	else {
 		isHit3 = 0;
+		soundFlagHit3 = 0;
 	}
 
 	if (GameOutX < x && x < GameOutX + 178) {
 		if (GameOutY < y && y < GameOutY + 64) {
 			isHit4 = 1;
-			pal = 120; pal2 = 120; pal3 = 120;
+			if (soundFlagHit4 == 0) {
+				sound_->SelectUpdate(soundVolume);
+				soundFlagHit4 = 1;
+			}
 		}
 		else {
 			isHit4 = 0;
+			soundFlagHit4 = 0;
 		}
 	}
 	else {
 		isHit4 = 0;
+		soundFlagHit4 = 0;
 	}
 
 	if (isSetting == 1) {
 		if (backLeftX < x && x < backRightX) {
 			if (backTopY < y && y < backDownY) {
 				isHit5 = 1;
+				if (soundFlagHit5 == 0) {
+					sound_->SelectUpdate(soundVolume);
+					soundFlagHit5 = 1;
+				}
 			}
 			else {
 				isHit5 = 0;
+				soundFlagHit5 = 0;
 			}
 		}
 		else {
 			isHit5 = 0;
+			soundFlagHit5 = 0;
 		}
 		if (soundBarLeftX < x && x < soundBarRightX) {
-			if (soundBarTopY - 32 < y && y < soundBarDownY +  32) {
+			if (soundBarTopY - 64 < y && y < soundBarDownY +  64) {
 				isHit6 = 1;
+				if (soundFlagHit6 == 0) {
+					soundFlagHit6 = 1;
+				}
 			}
 			else {
 				isHit6 = 0;
@@ -243,6 +278,7 @@ void Pause::MenuSelect() {
 			timer[5] = 0;
 			isSetting = 1;
 			pal5 = 70;
+			sound_->DecisionUpdate(soundVolume);
 		}
 	}
 	if (isHit4 == 1) {
@@ -256,6 +292,7 @@ void Pause::MenuSelect() {
 		if (mouse.GetCrickTrigger(MOUSE_INPUT_LEFT)) {
 			timer[5] = 0;
 			isSettingBack = 1;
+			sound_->DecisionUpdate(soundVolume);
 		}
 	}
 
@@ -343,6 +380,9 @@ void Pause::Draw() {
 		}
 	}
 
+	soundVolume = (keepSoundLeft - 590) / 2;
+
+	
 }
 
 void Pause::SetIsEsc(int isEsc) {
@@ -358,4 +398,9 @@ void Pause::TimerReset(int x) {
 int Pause::GetFinish() {
 
 	return isFinish;
+}
+
+int Pause::GetSoundVolum()
+{
+	return soundVolume;
 }
