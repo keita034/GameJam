@@ -19,7 +19,7 @@ void SceneManager::Initialize() {
 	playerLevelUp_ = new PlayerLevelUp();
 
 	//初期化処理
-	//titleScene_->Initialize();
+	titleScene_->Initialize();
 	gameScene_->Initialize();
 	//resultScene_->Initialize();
 	pause_->Initialize();
@@ -38,7 +38,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		break;
 	case SceneManager::Scene::Title://タイトル
 		//Title(keys, oldkeys);
-		gameScene_->Update();
+		titleScene_->Update();
+		//gameScene_->Update();
 		//smoke_->MakeEnemySmoke(300, 300);
 		if (key.GetKey(KEY_INPUT_SPACE)) {
 
@@ -94,7 +95,8 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
-		gameScene_->Draw();
+		titleScene_->Draw();
+		//gameScene_->Draw();
 		pause_->Draw();
 		//smoke_->Draw();
 		playerFootprints_->Draw();
