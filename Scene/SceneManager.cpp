@@ -88,7 +88,7 @@ void SceneManager::Draw() {
 	{
 	case SceneManager::Scene::Title://タイトル
 		titleScene_->Draw();
-
+		
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
 

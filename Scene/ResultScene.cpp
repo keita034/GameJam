@@ -65,7 +65,7 @@ void ResultScene::Draw()
 
 	DrawGraph(1038, 366, resultKyaraFlameHandle, true);
 	DrawRotaGraph(1135, 515, 1.3f, 0.0f, resultKyaraHandle, true);
-	DrawGraph(0, 0, flameHandle, true);
+	DrawGraph(-50, -50, flameHandle, true);
 }
 
 bool ResultScene::GetChangeTitle()
