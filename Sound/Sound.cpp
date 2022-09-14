@@ -36,22 +36,24 @@ void Sound::Initialize() {
 
 }
 
-void Sound::Updata() {
+void Sound::Updata(int x) {
 
-	ChangeVolumeSoundMem(volum, titleBGM);
-	ChangeVolumeSoundMem(volum, gameBGM);
-	ChangeVolumeSoundMem(volum, level1);
-	ChangeVolumeSoundMem(volum, level2);
-	ChangeVolumeSoundMem(volum, level3);
-	ChangeVolumeSoundMem(volum, level4);
-	ChangeVolumeSoundMem(volum, level5);
+	ChangeVolumeSoundMem(x, titleBGM);
+	ChangeVolumeSoundMem(x, gameBGM);
+	ChangeVolumeSoundMem(x, gameBGM2);
+	ChangeVolumeSoundMem(x, resultBGM);
+	ChangeVolumeSoundMem(x, level1);
+	ChangeVolumeSoundMem(x, level2);
+	ChangeVolumeSoundMem(x, level3);
+	ChangeVolumeSoundMem(x, level4); 
+	ChangeVolumeSoundMem(x, level5);
 
-	ChangeVolumeSoundMem(volum, slsectSound);
-	ChangeVolumeSoundMem(volum, UIDecision);
+	ChangeVolumeSoundMem(x, slsectSound);
+	ChangeVolumeSoundMem(x, UIDecision);
 
-	ChangeVolumeSoundMem(volum, swing);
-	ChangeVolumeSoundMem(volum, attackHit); 
-	ChangeVolumeSoundMem(volum, damage);
+	ChangeVolumeSoundMem(x, swing);
+	ChangeVolumeSoundMem(x, attackHit);
+	ChangeVolumeSoundMem(x, damage);
 
 }
 

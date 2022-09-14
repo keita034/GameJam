@@ -54,7 +54,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		risetOrTitle(pause_->GetRisetOrTitle());
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
-		sound_->Updata();
+		sound_->Updata(pause_->GetSoundVolum());
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -85,8 +85,9 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
-		sound_->Updata();
+		sound_->Updata(pause_->GetSoundVolum());
 
+		unti = pause_->GetSoundVolum();
 
 		if (gameScene_->GetFinish() == 1) {
 			pal += 5;
@@ -129,9 +130,9 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 
 		pause_->Update();
-		sound_->SetSound(pause_->GetSoundVolum());
+		sound_->SetSound(unti);
 		sound_->resultSceneUpdate();
-		sound_->Updata();
+		sound_->Updata(unti);
 
 		break;
 	case SceneManager::Scene::Initialize://初期化
