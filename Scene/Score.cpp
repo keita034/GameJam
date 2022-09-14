@@ -51,17 +51,17 @@ void Score::Update()
 
 void Score::Draw()
 {
-	DrawRotaGraph(1075, 73, 0.35, 0.0, scoreImg, true);
+	DrawRotaGraph(1040, 73, 0.35, 0.0, scoreImg, true);
 
 	int div = 1;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		int index = (int)score / div % 10;
 		DrawRotaGraph(1135 + (48*0.45) * (5 - 1 - i), 70, 0.45, 0.0, scoreNumber[index], true);
 		div = div * 10;
 	}
 
-	DrawRotaGraph(1075, 137, 0.35, 0.0, comboImg, true);
+	DrawRotaGraph(1040, 137, 0.35, 0.0, comboImg, true);
 
 	div = 1;
 	for (int i = 0; i < 5; i++)

@@ -259,10 +259,9 @@ void Enemy::Update(Vec2 playerNpos)
 		}
 		if (smokeTimer < 0) {
 			isDeath_ = true;
+			Score::GetInstance()->AddEnemydestroy();
 		}
-		Score::GetInstance()->ScoreAdd(100);
-		Score::GetInstance()->AddEnemydestroy();
-
+		Score::GetInstance()->ScoreAdd(50);
 	}
 
 	if (pos_.x < -MaxPos.x || pos_.x > fieldSize.x + MaxPos.x||
