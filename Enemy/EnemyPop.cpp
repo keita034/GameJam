@@ -7,6 +7,15 @@ EnemyPop::EnemyPop() {
 	smoke_ = new Smoke();
 }
 
+void EnemyPop::EnemyPopInitInit()
+{
+	Poptimer = 0;
+
+	enemys_.clear();
+	snakeEenmy_.release();
+	rareEenmy_.release();
+}
+
 void EnemyPop::EnemyPopInit()
 {
 	Poptimer += 1;

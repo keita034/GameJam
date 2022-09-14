@@ -2,13 +2,15 @@
 
 TitleScene::TitleScene()
 {
+	LoadDivGraph("Resources/TitleLogo-sheet.png", 32, 32, 1, 660, 100, TitleFontHandle);
+	TitleBackGrouhdHandle = LoadGraph("Resources/GameSceneBackGround.png");
+	pressFontHandle = LoadGraph("Resources/startSpace.png");
 }
 
 void TitleScene::Initialize()
 {
-	LoadDivGraph("Resources/TitleLogo-sheet.png", 32, 32, 1, 660, 100, TitleFontHandle);
-	TitleBackGrouhdHandle = LoadGraph("Resources/GameSceneBackGround.png");
-	pressFontHandle = LoadGraph("Resources/startSpace.png");
+	timer = 0;
+	TitleFlame = 0;
 }
 
 void TitleScene::Update()
