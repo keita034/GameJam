@@ -44,199 +44,204 @@ void Enemy::Update(Vec2 playerNpos)
 
 	smoke_->Update(pos_.x, pos_.y);
 
-	switch (pattern_)
+
+	if (hp >= 0)
 	{
-	case HeightUp:
-		
-		velocity_ = { 0,-speed_ };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
+		switch (pattern_)
 		{
-			Siratamaflame++;
-			animetionTimer = 0;
-		}
-		if (Siratamaflame >= 4)
-		{
-			Siratamaflame = 0;
-		}
-		break;
-	case HeightDown:
-		velocity_ = { 0,speed_ };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Siratamaflame++;
-			animetionTimer = 0;
-		}
-		if (Siratamaflame >= 4)
-		{
-			Siratamaflame = 0;
-		}
-		break;
-	case WidthL:
-		velocity_ = { -speed_,0 };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Siratamaflame++;
-			animetionTimer = 0;
-		}
-		if (Siratamaflame >= 4)
-		{
-			Siratamaflame = 0;
-		}
-		break;
-	case WidthR:
-		velocity_ = { speed_,0 };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Siratamaflame++;
-			animetionTimer = 0;
-		}
-		if (Siratamaflame >= 4)
-		{
-			Siratamaflame = 0;
-		}
-		break;
-	case UpperL:
-		velocity_ = { -speed_ / 2.0f, -speed_ / 2.0f };
-		pos_ += velocity_;
-		angle += 0.1;
+		case HeightUp:
 
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Yubiflame++;
-			animetionTimer = 0;
-		}
-		if (Yubiflame >= 9)
-		{
-			Yubiflame = 0;
-		}
-		break;
-	case UpperR:
-		velocity_ = { speed_ / 2.0f,-speed_ / 2.0f };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Yubiflame++;
-			animetionTimer = 0;
-		}
-		if (Yubiflame >= 9)
-		{
-			Yubiflame = 0;
-		}
-		break;
-	case DiagonallyDownL:
-		velocity_ = { -speed_ / 2.0f,speed_ / 2.0f };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Yubiflame++;
-			animetionTimer = 0;
-		}
-		if (Yubiflame >= 9)
-		{
-			Yubiflame = 0;
-		}
-		break;
-	case DiagonallyDownR:
-		velocity_ = { speed_ / 2.0f,speed_ / 2.0f };
-		pos_ += velocity_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Yubiflame++;
-			animetionTimer = 0;
-		}
-		if (Yubiflame >= 9)
-		{
-			Yubiflame = 0;
-		}
-		break;
-	case Traking:
-		// プレイヤーの現在の位置を取得とエネミーの位置でベクトルを作る
-		velocity_ = playerNpos - pos_;
+			velocity_ = { 0,-speed_ };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Siratamaflame++;
+				animetionTimer = 0;
+			}
+			if (Siratamaflame >= 4)
+			{
+				Siratamaflame = 0;
+			}
+			break;
+		case HeightDown:
+			velocity_ = { 0,speed_ };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Siratamaflame++;
+				animetionTimer = 0;
+			}
+			if (Siratamaflame >= 4)
+			{
+				Siratamaflame = 0;
+			}
+			break;
+		case WidthL:
+			velocity_ = { -speed_,0 };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Siratamaflame++;
+				animetionTimer = 0;
+			}
+			if (Siratamaflame >= 4)
+			{
+				Siratamaflame = 0;
+			}
+			break;
+		case WidthR:
+			velocity_ = { speed_,0 };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Siratamaflame++;
+				animetionTimer = 0;
+			}
+			if (Siratamaflame >= 4)
+			{
+				Siratamaflame = 0;
+			}
+			break;
+		case UpperL:
+			velocity_ = { -speed_ / 2.0f, -speed_ / 2.0f };
+			pos_ += velocity_;
+			angle += 0.1;
 
-		// 正規化した方向ベクトルをAngleに代入
-		angle = atan2(playerNpos.y - pos_.y, playerNpos.x - pos_.x);
-		angle += 1.5708;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Yubiflame++;
+				animetionTimer = 0;
+			}
+			if (Yubiflame >= 9)
+			{
+				Yubiflame = 0;
+			}
+			break;
+		case UpperR:
+			velocity_ = { speed_ / 2.0f,-speed_ / 2.0f };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Yubiflame++;
+				animetionTimer = 0;
+			}
+			if (Yubiflame >= 9)
+			{
+				Yubiflame = 0;
+			}
+			break;
+		case DiagonallyDownL:
+			velocity_ = { -speed_ / 2.0f,speed_ / 2.0f };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Yubiflame++;
+				animetionTimer = 0;
+			}
+			if (Yubiflame >= 9)
+			{
+				Yubiflame = 0;
+			}
+			break;
+		case DiagonallyDownR:
+			velocity_ = { speed_ / 2.0f,speed_ / 2.0f };
+			pos_ += velocity_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Yubiflame++;
+				animetionTimer = 0;
+			}
+			if (Yubiflame >= 9)
+			{
+				Yubiflame = 0;
+			}
+			break;
+		case Traking:
+			// プレイヤーの現在の位置を取得とエネミーの位置でベクトルを作る
+			velocity_ = playerNpos - pos_;
 
-		velocity_ = velocity_.Normalized();
-		velocity_ *= speed_;
-		pos_ += velocity_;
-		
-		break;
-	case Center:
-		pos_ += velocity_* speed_;
-		angle += 0.1;
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 20)
-		{
-			Yubiflame++;
-			animetionTimer = 0;
-		}
-		if (Yubiflame >= 9)
-		{
-			Yubiflame = 0;
-		}
-		break;
-	case TrakingEnemy:
-		tarkingEnemyPosLengthN= tarkingEnemyPos - pos_;
-		velocity_ = tarkingEnemyPos - pos_;
+			// 正規化した方向ベクトルをAngleに代入
+			angle = atan2(playerNpos.y - pos_.y, playerNpos.x - pos_.x);
+			angle += 1.5708;
 
-		// 正規化した方向ベクトルをAngleに代入
-		angle = atan2(tarkingEnemyPos.y - pos_.y, tarkingEnemyPos.x - pos_.x);
-		angle += 1.5708;
-
-		velocity_ = velocity_.Normalized();
-		if (tarkingEnemyPosLengthN.Length() >= tarkingEnemyPosLength.Length())
-		{
+			velocity_ = velocity_.Normalized();
 			velocity_ *= speed_;
-		}
-		
-		pos_ += velocity_;
-		break;
-	case RareEnemy_:
-		// アニメーション回す処理
-		animetionTimer++;
-		if (animetionTimer == 10)
-		{
-			RareEnemyFlame++;
-			animetionTimer = 0;
-		}
-		if (RareEnemyFlame >= 5)
-		{
-			RareEnemyFlame = 0;
-		}
+			pos_ += velocity_;
 
-		break;
-	default:
-		break;
+			break;
+		case Center:
+			pos_ += velocity_ * speed_;
+			angle += 0.1;
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 20)
+			{
+				Yubiflame++;
+				animetionTimer = 0;
+			}
+			if (Yubiflame >= 9)
+			{
+				Yubiflame = 0;
+			}
+			break;
+		case TrakingEnemy:
+			tarkingEnemyPosLengthN = tarkingEnemyPos - pos_;
+			velocity_ = tarkingEnemyPos - pos_;
+
+			// 正規化した方向ベクトルをAngleに代入
+			angle = atan2(tarkingEnemyPos.y - pos_.y, tarkingEnemyPos.x - pos_.x);
+			angle += 1.5708;
+
+			velocity_ = velocity_.Normalized();
+			if (tarkingEnemyPosLengthN.Length() >= tarkingEnemyPosLength.Length())
+			{
+				velocity_ *= speed_;
+			}
+
+			pos_ += velocity_;
+			break;
+		case RareEnemy_:
+			// アニメーション回す処理
+			animetionTimer++;
+			if (animetionTimer == 10)
+			{
+				RareEnemyFlame++;
+				animetionTimer = 0;
+			}
+			if (RareEnemyFlame >= 5)
+			{
+				RareEnemyFlame = 0;
+			}
+
+			break;
+		default:
+			break;
+		}
 	}
+	
 
 	if (hp <= 0)
 	{

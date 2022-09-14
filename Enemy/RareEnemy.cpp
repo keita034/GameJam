@@ -1,22 +1,29 @@
 #include "RareEnemy.h"
 #include <math.h>
 
-void RareEnemy::RareEnemyInit(Vec2 pos)
+void RareEnemy::RareEnemyInit(Vec2 pos, int siroGh)
 {
 	rareEnemy = std::make_unique<Enemy>();
 
+	smoke_ = new Smoke();
+	smoke_->Initialize(siroGh);
+	smoke_->MakeEnemySmoke();
+	smokeFlag = false;
+
 	InitPos = pos;
-	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f,3,0);
+	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f, 3, 0);
 }
 
 void RareEnemy::RareEnemyUpdate(Player* player_)
 {
 	timer++;
 	Vec2 Npos = rareEnemy.get()->GetPos();
-	rareEnemy->Update(player_->GetPos());
+	smoke_->Update(rareEnemy->GetPos().x, rareEnemy->GetPos().y);
+
 	switch (situation_)
 	{
 	case MoveLeftRight:
+		rareEnemy->Update(player_->GetPos());
 		if (timer == 25 * 50)
 		{
 			situation_ = TrakingPlayer;
@@ -44,6 +51,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		rareEnemy->SetAngle(0);
 		break;
 	case TrakingPlayer:
+		rareEnemy->Update(player_->GetPos());
 		RareEnemyCheckCollisions(player_);
 		// プレイヤーの現在の位置を取得とエネミーの位置でベクトルを作る
 		velocity = player_->GetPos() - rareEnemy.get()->GetPos();
@@ -69,6 +77,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 		break;
 	case StopInFrontOfThePlayer:
 	{
+		rareEnemy->Update(player_->GetPos());
 		RareEnemyCheckCollisions(player_);
 		if (StopinitFlag == true)
 		{
@@ -110,6 +119,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 	}
 		break;
 	case Escape_:
+		rareEnemy->Update(player_->GetPos());
 		RareEnemyCheckCollisions(player_);
 		velocity = InitPos - StopEnemyPos;
 		velocity = velocity.Normalized();
@@ -135,6 +145,7 @@ void RareEnemy::RareEnemyUpdate(Player* player_)
 void RareEnemy::RareEnemyDraw(Player* player_)
 {
 	rareEnemy.get()->Draw(player_->GetScreen());
+	smoke_->Draw(player_->GetScreen());
 }
 
 void RareEnemy::RareEnemyCheckCollisions(Player* player_)
@@ -154,8 +165,12 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 			if (rareEnemy->GetDamageFlag())
 			{
 				player_->AddCombo();
+				if (rareEnemy->GetisDie() <= 1)
+				{
+					smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
+				}
 			}
-
+			
 			rareEnemy->HPSub(player_->GetAttackPower());
 
 		}

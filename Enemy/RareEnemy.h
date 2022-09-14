@@ -5,6 +5,7 @@
 #include "Util.h"
 #include<memory>
 #include<list>
+#include"Smoke.h"
 
 // レア敵の動き
 enum situation
@@ -19,7 +20,7 @@ class RareEnemy
 {
 public:
 	// 初期化
-	void RareEnemyInit(Vec2 pos);
+	void RareEnemyInit(Vec2 pos,int siroGh);
 
 	// 更新処理
 	void RareEnemyUpdate(Player* player_);
@@ -46,6 +47,11 @@ private:
 	Vec2 center;
 	Vec2 vector;
 	Vec2 vector2;
+
+	// スモーク
+	Smoke* smoke_ = nullptr;
+	bool smokeFlag = false;
+
 	// レア敵
 	std::unique_ptr<Enemy> rareEnemy;
 
