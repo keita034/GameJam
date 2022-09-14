@@ -28,6 +28,11 @@ public:
 	void gameSceneUpdate();
 
 	/// <summary>
+	/// resultSceneˆ—
+	/// </summary>
+	void resultSceneUpdate();
+
+	/// <summary>
 	/// UIˆ—
 	/// </summary>
 	void SelectUpdate(int soundVolum);
@@ -56,6 +61,7 @@ private:
 	int titleBGM = 0;
 	int gameBGM = 0;
 	int gameBGM2 = 0;
+	int resultBGM = 0;
 	int level1 = 0;
 	int level2 = 0;
 	int level3 = 0;

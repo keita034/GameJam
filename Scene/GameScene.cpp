@@ -68,7 +68,6 @@ void GameScene::Update()
 	if (gameFinish > 0) {
 		gameFinish--;
 
-		player_->Update();
 
 		/*if (key.GetKeyTrigger(KEY_INPUT_0))
 		{
