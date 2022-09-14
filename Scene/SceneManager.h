@@ -73,6 +73,7 @@ public:
 		Initialize,//初期化シーン
 	};
 
+	void risetOrTitle(int x);
 
 	//テスト用関数
 	void TestMove();
@@ -115,6 +116,9 @@ private:
 	int blackFlag = 0;
 
 	int sceenSelect = 0;
+
+	int escGh = 0;
+
 
 };
 

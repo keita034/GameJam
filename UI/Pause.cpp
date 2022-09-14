@@ -34,6 +34,23 @@ void Pause::Initialize() {
 	keepSoundLeft = soundChangeLeftFinalX;
 	keepSoundRight = soundChangeRightFinalX;
 
+	selectSceen = 0;
+	menuXFinal = -400; soundXFinal = -500; ResetXFinal = -500; TitleXFinal = -500; GameOutXFinal = -300;
+	isSetting = 0;
+	isSettingBack = 0;
+	isSettingAndEsc = 0;
+	isSoundChange = 0;
+	menuX = -300;
+	menuY = 20;
+	soundX = -300;
+	soundY = 170;
+	ResetX = -300;
+	ResetY = 175 + 64;
+	TitleX = -300;
+	TitleY = 180 + 128;
+	GameOutX = -300;
+	GameOutY = 500;
+	isPause = 1;
 }
 
 void Pause::Update() {
@@ -285,6 +302,20 @@ void Pause::MenuSelect() {
 			sound_->DecisionUpdate(soundVolume);
 		}
 	}
+	if (isHit2 == 1) {
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
+			selectSceen = 1;
+			sound_->DecisionUpdate(soundVolume);
+		}
+	}
+	if (isHit3 == 1) {
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
+			selectSceen = 2;
+			sound_->DecisionUpdate(soundVolume);
+		}
+	}
 	if (isHit4 == 1) {
 		int Mouse = GetMouseInput();
 		if (Mouse && MOUSE_INPUT_LEFT) {
@@ -405,4 +436,9 @@ int Pause::GetFinish() {
 int Pause::GetSoundVolum()
 {
 	return soundVolume;
+}
+
+int Pause::GetRisetOrTitle()
+{
+	return selectSceen;
 }

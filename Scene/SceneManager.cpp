@@ -1,6 +1,8 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager() {}
+SceneManager::SceneManager() {
+	escGh = LoadGraph("Resources/MenuButton1.png");
+}
 
 SceneManager::~SceneManager() {
 
@@ -49,6 +51,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 
 		pause_->Update();
+		risetOrTitle(pause_->GetRisetOrTitle());
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
 		sound_->Updata();
@@ -73,14 +76,17 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 				isESC = 0;
 			}
 		}
-
+		if (isESC == 0) {
+			gameScene_->Update();
+		}
 		pause_->Update();
 		vx = pause_->GetSoundVolum();
+		risetOrTitle(pause_->GetRisetOrTitle());
+
 		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
 		sound_->Updata();
 
-		gameScene_->Update();
 
 		if (gameScene_->GetFinish() == 1) {
 			pal += 5;
@@ -106,7 +112,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 		if (sceenSelect == 1 || sceenSelect== 3) {
 			pal += 5;
-			if (pal > 255) {
+			if (pal >= 255) {
 				scene_ = Scene::Initialize;
 			}
 		}
@@ -134,16 +140,18 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		//ここにInitializeをぶち込む
 
 		gameScene_->Initialize();
-		
+		pause_->Initialize();
 
 		if (sceenSelect == 1) {
 			pal = 0;
 			sceenSelect = 0;
+			isESC = 0;
 			scene_ = Scene::Title;
 		}
 		else if (sceenSelect == 3) {
 			pal = 0;
 			sceenSelect = 0;
+			isESC = 0;
 			scene_ = Scene::Stage;
 		}
 		break;
@@ -160,6 +168,7 @@ void SceneManager::Draw() {
 	case SceneManager::Scene::Title://タイトル
 	
 		titleScene_->Draw();
+		DrawGraph(60, 60, escGh, true);
 		pause_->Draw();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -167,6 +176,7 @@ void SceneManager::Draw() {
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
 		gameScene_->Draw();
+		DrawGraph(60, 60, escGh, true);
 		pause_->Draw();
 
 		DrawFormatString(700, 300, GetColor(0, 0, 0), "%d", pal, true);
@@ -274,3 +284,24 @@ void SceneManager::TestMove() {
 
 }
 
+void SceneManager::risetOrTitle(int x) {
+	if (x == 1) {
+		if (pal < 255) {
+			pal += 5;
+		}
+		if (pal >= 255) {
+			sceenSelect = 3;
+			scene_ = Scene::Initialize;
+		}
+	}
+	else if (x == 2) {
+		if (pal < 255) {
+			pal += 5;
+		}
+		if (pal >= 255) {
+			sceenSelect = 1;
+			scene_ = Scene::Initialize;
+		}
+	}
+
+}

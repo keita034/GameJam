@@ -1,5 +1,6 @@
 #include "Score.h"
 #include"Player.h"
+#include<string>
 
 Score::Score()
 {
@@ -18,7 +19,7 @@ void Score::Initialize(Player* player)
 	Reset();
 }
 
-void Score::Update()
+void Score::Update(int time)
 {
 	maxCombo = max(player->GetCombo(), maxCombo);
 
@@ -54,13 +55,25 @@ void Score::Update()
 	{
 		hpAfterimage = player->GetHp();
 	}
+
+	gameTime = time / 50;
 }
 
 void Score::Draw()
 {
-	DrawRotaGraph(1040, 73, 0.35, 0.0, scoreImg, true);
-
 	int div = 1;
+	
+	div = 1;
+	for (int i = 0; i < std::to_string(gameTime).length(); i++)
+	{
+		int index =	gameTime / div % 10;
+		DrawRotaGraph(80 + (48 * 0.45) * (5 - 1 - i), 80, 0.45, 0.0, scoreNumber[index], true);
+		div = div * 10;
+	}
+
+	//スコア
+	DrawRotaGraph(1040, 73, 0.35, 0.0, scoreImg, true);
+	
 	for (int i = 0; i < 7; i++)
 	{
 		int index = (int)score / div % 10;
@@ -68,6 +81,7 @@ void Score::Draw()
 		div = div * 10;
 	}
 
+	//コンボ
 	DrawRotaGraph(1040, 137, 0.35, 0.0, comboImg, true);
 
 	div = 1;
@@ -77,8 +91,6 @@ void Score::Draw()
 		DrawRotaGraph(1135 + (48 * 0.45) * (5 - 1 - i), 135, 0.45, 0.0, scoreNumber[index], true);
 		div = div * 10;
 	}
-
-	DrawRotaGraph(1135, 293, 1.0, 0.0, hpBarImg, true);
 
 	DrawBox(1036, 278, 1036 + (20 * hpAfterimage), 309, GetColor(100, 0, 0), true);
 	DrawBox(1036, 278, 1036 + (20 * player->GetHp()), 309, GetColor(255, 0, 0), true);

@@ -48,6 +48,8 @@ public:
 
 	int GetSoundVolum();
 
+	int GetRisetOrTitle();
+
 private:
 	// 画像などのリソースデータの変数宣言と読み込み
 	int MenuGh;
@@ -169,4 +171,5 @@ private:
 	int isSoundChange = 0;
 	int soundVolume = 197;
 
+	int selectSceen = 0;
 };
