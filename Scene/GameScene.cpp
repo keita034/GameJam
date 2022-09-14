@@ -83,7 +83,7 @@ void GameScene::Update()
 
 		player_->ComboUpdate();
 
-		score->Update();
+		score->Update(gameFinish);
 
 		if (player_->DamageFlag())
 		{

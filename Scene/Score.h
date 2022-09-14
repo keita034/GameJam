@@ -24,13 +24,15 @@ private:
 	int scoreIntegerNum = 0;
 	float scoreDecimalNum = 0.0f;
 	int scoreMagnificationImg[2];
+
+	int gameTime;
 public:
 
 	//‰Šú‰»
 	void Initialize(Player* player );
 
 	// XV
-	void Update();
+	void Update(int time);
 
 	// •`‰æ
 	void Draw();
