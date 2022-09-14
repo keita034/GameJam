@@ -111,6 +111,23 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 			}
 		}
 
+		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
+			if (isESC == 0) {
+				pause_->TimerReset(0);
+				pause_->SetIsEsc(isESC);
+				isESC = 1;
+			}
+			else if (isESC == 1) {
+				pause_->TimerReset(0);
+				pause_->SetIsEsc(isESC);
+				isESC = 0;
+			}
+		}
+
+		pause_->Update();
+		sound_->SetSound(pause_->GetSoundVolum());
+		sound_->resultSceneUpdate();
+		sound_->Updata();
 
 		break;
 	case SceneManager::Scene::Initialize://‰Šú‰»

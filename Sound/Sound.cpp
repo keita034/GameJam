@@ -7,6 +7,7 @@ Sound::Sound() {
 	titleBGM = LoadSoundMem("Resources/titel.mp3");
 	gameBGM = LoadSoundMem("Resources/gameSceen_1.mp3");
 	gameBGM2 = LoadSoundMem("Resources/gameSceen_2.mp3");
+	resultBGM= LoadSoundMem("Resources/Result_Bgm.ogg");
 	level1 = LoadSoundMem("Resources/level.mp3");
 	level2 = LoadSoundMem("Resources/level2.mp3");
 	level3 = LoadSoundMem("Resources/level3.mp3");
@@ -54,6 +55,8 @@ void Sound::Updata() {
 
 
 void Sound::TitleUpdate() {
+	StopSoundMem(gameBGM);
+	StopSoundMem(resultBGM);
 	if (CheckSoundMem(titleBGM) == 0) {
 		PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, true);
 	}
@@ -61,8 +64,17 @@ void Sound::TitleUpdate() {
 
 void Sound::gameSceneUpdate() {
 	StopSoundMem(titleBGM);
+	StopSoundMem(resultBGM);
 	if (CheckSoundMem(gameBGM) == 0) {
 		PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
+	}
+}
+
+void Sound::resultSceneUpdate()
+{
+	StopSoundMem(gameBGM);
+	if (CheckSoundMem(resultBGM) == 0) {
+		PlaySoundMem(resultBGM, DX_PLAYTYPE_LOOP, true);
 	}
 }
 
