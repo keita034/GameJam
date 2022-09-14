@@ -103,12 +103,10 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		if (resultScene_->GetChangeGame() == true)
 		{
 			sceenSelect = 3;
-			scene_ = Scene::Initialize;
 		}
 		if (resultScene_->GetChangeTitle() == true)
 		{
 			sceenSelect = 1;
-			scene_ = Scene::Initialize;
 		}
 		if (sceenSelect == 1 || sceenSelect== 3) {
 			pal += 5;
