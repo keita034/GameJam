@@ -57,11 +57,15 @@ void GameScene::Initialize()
 
 	playerFootprints_->Initialize();
 
+	gameFinish = 5700;
+	finish = 0;
 
+}
 
 void GameScene::Update()
 {
-	player_->Update();
+	if (gameFinish > 0) {
+		gameFinish--;
 
 		/*if (key.GetKeyTrigger(KEY_INPUT_0))
 		{
@@ -70,51 +74,51 @@ void GameScene::Update()
 		enemypop_.get()->EnemyPopInit();
 		enemypop_.get()->EnemyPopUpdate(player_.get());
 
-	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y, player_->GetAngle());
+		playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y, player_->GetAngle());
 
 		enemypop_.get()->CheckCollisions(player_.get());
 
-	player_->ComboUpdate();
+		player_->ComboUpdate();
 
-	score->Update();
+		score->Update();
 
-	if (player_->DamageFlag())
-	{
-		if (shakeTime > 0)
+		if (player_->DamageFlag())
 		{
-			int shake = 20 - shakeTime;
-
-			if (shake < 0)
+			if (shakeTime > 0)
 			{
-				shake = 0;
+				int shake = 20 - shakeTime;
+
+				if (shake < 0)
+				{
+					shake = 0;
+				}
+
+				int shake2 = 10 - shakeTime / 3;
+
+				randX = GetRand((20 - shake)) - (10 - shake2);
+
+				randY = GetRand((20 - shake)) - (10 - shake2);
+
+				shakeTime--;
 			}
-
-			int shake2 = 10 - shakeTime / 3;
-
-			randX = GetRand((20 - shake)) - (10 - shake2);
-
-			randY = GetRand((20 - shake)) - (10 - shake2);
-
-			shakeTime--;
+			else
+			{
+				randX = 0;
+				randY = 0;
+			}
 		}
 		else
 		{
+			shakeTime = 20;
 			randX = 0;
 			randY = 0;
 		}
 	}
-	else
-	{
-		shakeTime = 20;
-		randX = 0;
-		randY = 0;
+	if (player_->GetHp() <= 0) {
+		gameFinish = 0;
 	}
-}
-		if (player_->GetHp() <= 0) {
-			gameFinish = 0;
-		}
 
-	}
+}
 
 void GameScene::Draw()
 {
@@ -143,7 +147,7 @@ void GameScene::Draw() {
 
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
-	
+
 	DrawGraph(640 - frameXRadius + randX, 360 - frameYRadius + randY, frameImg, true);
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameBarImg, true);
 
