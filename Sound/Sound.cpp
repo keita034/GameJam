@@ -21,6 +21,12 @@ Sound::Sound() {
 
 }
 
+Sound* Sound::GetInstance()
+{
+	static Sound instance;
+	return &instance;
+}
+
 void Sound::Initialize() {
 
 
@@ -38,7 +44,6 @@ void Sound::Updata(int vol) {
 	ChangeVolumeSoundMem(vol, level5);
 	ChangeVolumeSoundMem(vol, swing);
 	ChangeVolumeSoundMem(vol, attackHit);
-
 }
 
 
@@ -58,6 +63,7 @@ void Sound::gameSceneUpdate() {
 
 void Sound::SelectUpdate(int soundVolum) {
 
+	
 	PlaySoundMem(slsectSound, DX_PLAYTYPE_BACK, true);
 	ChangeVolumeSoundMem(volum, slsectSound);
 	DrawFormatString(600, 200, GetColor(0, 0, 0), "%d", soundVolum);
@@ -118,5 +124,7 @@ void Sound::Swing() {
 void Sound::SetSound(int soundVolum) {
 
 	volum = soundVolum;
+
+
 }
 

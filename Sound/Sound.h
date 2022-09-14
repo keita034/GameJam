@@ -5,7 +5,7 @@ class Sound {
 
 public:
 
-	Sound();
+	static Sound* GetInstance();
 
 	/// <summary>
 	/// ‰Šú‰»
@@ -50,6 +50,9 @@ public:
 
 private:
 
+	Sound();
+	~Sound() = default;
+
 	int titleBGM = 0;
 	int gameBGM = 0;
 	int gameBGM2 = 0;
@@ -69,5 +72,6 @@ private:
 	int swing = 0;
 
 	int volum = 200;
+	int volum3 = 0;
 	int volume = 0;
 };

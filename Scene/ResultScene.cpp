@@ -7,7 +7,7 @@ void ResultScene::Initialize()
 	flame1 = 1;
 	flame2 = 1;
 
-	sound_ = new Sound();
+	sound_ = Sound::GetInstance();
 	sound_->Initialize();
 
 	flameHandle, resultBackHandle, resultKyaraHandle, resultKyaraFlameHandle;
