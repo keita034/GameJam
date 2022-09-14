@@ -42,7 +42,6 @@ private:
 	//std::list<std::unique_ptr<Enemy>>enemys_;
 	std::unique_ptr<EnemyPop> enemypop_;
 
-	Smoke* smoke_ = nullptr;
 	PlayerFootprints* playerFootprints_ = nullptr;
 	PlayerLevelUp* playerLevelUp_ = nullptr;
 

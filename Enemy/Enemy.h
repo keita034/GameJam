@@ -3,6 +3,9 @@
 #include "DxLib.h"
 #include"KeyBoardInput.h"
 #include"Score.h"
+#include<memory>
+#include<list>
+#include"Smoke.h"
 
 enum Pattern
 {
@@ -40,7 +43,7 @@ public:
 	// メンバー関数
 
 	// 初期化関数
-	void Initialize(Pattern pattern,Vec2 pos,float speed,int hp_);
+	void Initialize(Pattern pattern,Vec2 pos,float speed,int hp_ ,int siroGh);
 
 	// 更新関数
 	void Update(Vec2 playerNpos);
@@ -68,8 +71,14 @@ public:
 
 	bool GetDamageFlag();
 
+	int GetHp();
+
 	void SetDamageFlag(bool flag);
 private:
+	//煙
+	//std::list<std::unique_ptr<Smoke>>smokes_;
+	Smoke* smoke_ = nullptr;
+
 	// メンバー変数
 	Vec2 zeroVec = { 0.0f,0.0f };
 	Vec2 MaxPos = { 700.0f,400.0f };

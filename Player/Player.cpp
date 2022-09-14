@@ -27,6 +27,8 @@ void Player::Initialize()
 	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
 	swordImg = LoadGraph("Resources/sword.png");
 	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
+	sound_ = new Sound();
+
 }
 
 void Player::Update()
@@ -107,6 +109,7 @@ void Player::Draw()
 
 	if (attackStanceFlag && !attackFlag)
 	{
+
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 50);
 		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 255),false,3);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -135,8 +138,6 @@ void Player::Draw()
 	//	DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
 	//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	//}
-
-
 	
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
@@ -147,7 +148,6 @@ void Player::Draw()
 	{
 		DrawRotaGraph(1135, 503, 1.3, 0.0, damagePlayerImg[level], true);
 	}
-
 
 	//ダメージエフェクト
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, damageEffectTime);
@@ -201,6 +201,10 @@ int Player::GetAttackPower()
 int Player::GetHp()
 {
 	return hp;
+}
+
+float Player::GetAngle() {
+	return angle;
 }
 
 void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
@@ -371,6 +375,7 @@ void Player::MoveLimit()
 		if (attackTime >= 1.0f)
 		{
 			attackFlag = false;
+			attackStanceEffectTriggerFlag = false;
 			attackFrameTime = 0;
 			attackInterval = maxAttackInterval;
 		}
@@ -468,10 +473,11 @@ void Player::Attack()
 		}
 	}
 
-	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE);
+	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE)&& attackInterval == 0;
 
-	if (key.GetKeyTrigger(KEY_INPUT_SPACE))
+	if (key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
+		attackStanceEffectTriggerFlag = true;
 		attackStanceEffectFlag = true;
 		attackStanceEffectFrameTime = 0;
 		attackStanceEffectTime = 0;
@@ -481,6 +487,17 @@ void Player::Attack()
 	{
 		attackStanceEffectFrameTime = 0;
 		attackStanceEffectTime = 0;
+	}
+
+	if (attackStanceFlag && !attackFlag)
+	{
+		if (!attackStanceEffectTriggerFlag)
+		{
+			attackStanceEffectTriggerFlag = true;
+			attackStanceEffectFlag = true;
+			attackStanceEffectFrameTime = 0;
+			attackStanceEffectTime = 0;
+		}
 	}
 
 	if (attackStanceEffectFlag)
@@ -499,10 +516,13 @@ void Player::Attack()
 		attackFlag = true;
 		attackCameraFlag = true;
 		comboExtensionFlag = true;
+		sound_->Swing();
 
 		attackBeginPos = pos;
 		attackDirectionVec = frontVec;
 		attackScreenBeginPos = screen;
+
+		attackInterval = -1;
 	}
 
 	if (attackInterval > 0)
@@ -564,4 +584,9 @@ void Player::SwordDraw()
 		DrawRotaGraph2(posX, posY, 320, 30, swordMagnification, angle, swordAnimationImg[time], true , true, true);
 
 	}
+}
+
+int Player::GetLevel()
+{
+	return level;
 }

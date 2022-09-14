@@ -1,6 +1,7 @@
 #pragma once
 #include "Util.h"
 #include "MouseInput.h"
+#include"Sound.h"
 
 class ResultScene
 {
@@ -32,5 +33,11 @@ private:
 	int resultButtonReplay[2], flame2 = 1;
 
 	bool changeTitle = false, changeGameScene = false;
+
+	Sound* sound_ = nullptr;
+
+	int hit1 = 0;
+	int hit2 = 0;
+
 };
 

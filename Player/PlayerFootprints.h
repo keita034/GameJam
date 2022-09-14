@@ -14,7 +14,7 @@ public:
 	/// <summary>
 	/// –ˆƒtƒŒ[ƒ€ˆ—
 	/// </summary>
-	void Update(int playerPosX ,int playerPosY);
+	void Update(int playerPosX ,int playerPosY,float angle_);
 
 	/// <summary>
 	/// •`‰æ
@@ -38,6 +38,13 @@ private:
 
 	Vec2 frontVec{ 0,0 };
 	Vec2 screenCentral = { 640.0f,360.0f };
-	double angle = 0;
+
+	int mousePosX = 0;
+	int mousePosY = 0;
+
+	float red[30];
+	float redDown[30];
+
+	double angle[30];
 
 };

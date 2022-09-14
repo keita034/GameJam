@@ -4,12 +4,15 @@
 #include"KeyBoardInput.h"
 #include"Ease.h"
 #include<cmath>
+#include"Sound.h"
 
 class Enemy;
 
 class Player
 {
 private:
+
+	Sound* sound_ = nullptr;
 
 	//ç¿ïW
 	Vec2 pos{};
@@ -85,6 +88,7 @@ private:
 	float attackStanceEffectTime = 0;
 	int maxAttackStanceEffectTime = 25 ;
 	bool attackStanceEffectFlag = false;
+	bool attackStanceEffectTriggerFlag = false;
 	float attackStanceEffectRadius = 0.0f;
 	unsigned int attackStanceEffectColor = 0x2c080b;
 
@@ -137,6 +141,8 @@ public:
 
 	int GetHp();
 
+	int GetLevel();
+
 	/// <summary>
 	/// çUåÇ
 	/// </summary>
@@ -151,6 +157,8 @@ public:
 
 	int GetCombo();
 	void AddCombo();
+
+	float GetAngle();
 
 private:
 	void SwordDraw();

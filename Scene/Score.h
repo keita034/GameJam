@@ -20,7 +20,10 @@ private:
 	int scoreImg = 0;
 	int scoreNumber[10];
 	int comboImg = 0;
-
+	float hpAfterimage = 1.0f;
+	int scoreIntegerNum = 0;
+	float scoreDecimalNum = 0.0f;
+	int scoreMagnificationImg[2];
 public:
 
 	//‰Šú‰»

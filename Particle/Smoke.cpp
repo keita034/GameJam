@@ -8,104 +8,114 @@ Smoke::Smoke() {
 
 void Smoke::Initialize(int siroGh_) {
 	siroGh = siroGh_;
+	for (int i = 0; i < 100; i++) {
+		smokeFlag[i] = 0;
+		AllTimer = 0;
+		pal = 0;
+	}
+}
 
+void Smoke::Update(float enemyPosX, float enemyPosY) {
+
+	if (drawTimer > 0) {
+		drawTimer--;
+	}
+
+	if (drawTimer == 0) {
+		for (int i = 0; i < 100; i++) {
+			if (MakeEnemyFlag[i] == 1) {
+				if (smokeFlag[i] == 0) {
+					frame++;
+
+					if (1 < frame) {
+						frame = 0;
+						break;
+					}
+					drawTimer = 1;
+					smokeFlag[i] = 1;
+					// アングルをランダムで指定
+					int angle = GetRandomRange(0, 360);
+					vecX[i] = cos(Radian(angle));
+					vecY[i] = sin(Radian(angle));
+					MakeEnemyFlag[i] = 0;
+
+				}
+			}
+		}
+	}
+	if (drawTimer == 0) {
+		for (int i = 0; i < 100; i++) {
+			if (dieFlag[i] == 1) {
+				if (smokeFlag[i] == 0) {
+					frame++;
+
+					if (1 < frame) {
+						frame = 0;
+						break;
+					}
+					drawTimer = 1;
+					smokeFlag[i] = 1;
+					// アングルをランダムで指定
+					int angle = GetRandomRange(0, 360);
+					vecX[i] = cos(Radian(angle));
+					vecY[i] = sin(Radian(angle));
+
+				}
+			}
+		}
+	}
+	AllTimer--;
+	pal = pal - 3;
+	for (int i = 0; i < 100; i++) {
+		if (smokeFlag[i] == 1) {
+
+
+			MakeEnemySmokeX[i] = enemyPosX;
+			MakeEnemySmokeY[i] = enemyPosY;
+
+
+			KeepVecX[i] += vecX[i] * 2;
+			KeepVecY[i] += vecY[i] * 1.5f;
+
+			y[i] -= 0.8;
+
+			MakeEnemySmokeX[i] += KeepVecX[i];
+			MakeEnemySmokeY[i] += KeepVecY[i];
+			MakeEnemySmokeY[i] += y[i];
+
+
+		}
+		if (AllTimer < 0) {
+			smokeFlag[i] = 0;
+			MakeEnemyFlag[i] = 0;
+			AllTimer = -1;
+		}
+	}
+	for (int i = 0; i < 100; i++) {
+		if (smokeFlag[i] == 1&& dieFlag[i] == 1) {
+
+			KeepVecX[i] += vecX[i] * 2;
+			KeepVecY[i] += vecY[i] * 1.5f;
+
+			y[i] -= 0.8;
+
+			MakeEnemySmokeX[i] += KeepVecX[i];
+			MakeEnemySmokeY[i] += KeepVecY[i];
+			MakeEnemySmokeY[i] += y[i];
+
+
+		}
+		if (AllTimer < 0) {
+			smokeFlag[i] = 0;
+			dieFlag[i] = 0;
+			AllTimer = -1;
+		}
+	}
 
 }
 
-void Smoke::Update() {
-
-	//左下に動く
-	if (dieFlag[0] == 1) {
-		DieSmokeX[0] += 0.5;
-		DieSmokeY[0] += 0.8;
-	}
-	//左に動く
-	if (dieFlag[1] == 1) {
-		DieSmokeX[1] += 1.2;
-		DieSmokeY[1] += 0;
-	}
-	//左上に動く
-	if (dieFlag[2] == 1) {
-		DieSmokeX[2] += 0.5;
-		DieSmokeY[2] += -0.5;
-	}
-	//上に動く
-	if (dieFlag[3] == 1) {
-		DieSmokeX[3] += 0;
-		DieSmokeY[3] += -1.3;
-	}
-	//右上に動く
-	if (dieFlag[4] == 1) {
-		DieSmokeX[4] += -0.5;
-		DieSmokeY[4] += -0.5;
-	}
-	//右に動く
-	if (dieFlag[5] == 1) {
-		DieSmokeX[5] += -1.2;
-		DieSmokeY[5] += 0;
-	}
-	//右下に動く
-	if (dieFlag[6] == 1) {
-		DieSmokeX[6] += -0.5;
-		DieSmokeY[6] += 0.8;
-	}
-	//下に動く
-	if (dieFlag[7] == 1) {
-		DieSmokeX[7] += 0;
-		DieSmokeY[7] += 0.8;
-	}
-
-	for (int i = 0; i < 10; i++) {
-		DieTimer[i]--;
-		DieSmokeY[i] -= 1.0;
-		DiePal[i] = DiePal[i] - 4;
-		if (DieTimer[i] < 0) {
-			dieFlag[i] = false;
-			DieTimer[i] = 0;
-		}
-	}
-
-
-	for (int i = 0; i < 10; i++) {
-
-		if (MakeBossFlag[i] == 1) {
-
-			MakeBossTimer[i]--;
-
-			if (MakeBossTimer[i] < 0) {
-				MakeBossSmokeFlag[i] = true;
-				MakeBossFlag[i] = false;
-				MakeBossTimer[i] = 0;
-			}
-
-
-		}
-
-	}
-
-	for (int i = 0; i < 10; i++) {
-
-		if (MakeEnemyFlag[i] == 1) {
-
-			MakeEnemyTimer[i]--;
-			MakeEnemyPal[i] = MakeEnemyPal[i] - 3;
-			MakeEnemySmokeY[i] -= 0.3f;
-			if (MakeEnemyTimer[i] < 0) {
-				MakeEnemyFlag[i] = false;
-				MakeEnemyTimer[i] = 0;
-			}
-
-
-		}
-
-	}
-
-
-
-}
-
-void Smoke::Draw() {
-	for (int i = 0; i < 10; i++) {
+void Smoke::Draw(Vec2 screen) {
+	/*for (int i = 0; i < 10; i++) {
 		if (dieFlag[i] == 1) {
 
 			SetDrawBright(50, 50, 50);
@@ -115,9 +125,9 @@ void Smoke::Draw() {
 			SetDrawBright(255, 255, 255);
 
 		}
-	}
+	}*/
 
-	for (int i = 0; i < 10; i++) {
+	/*for (int i = 0; i < 10; i++) {
 		if (MakeBossSmokeFlag[i] == 1) {
 
 			SetDrawBright(50, 50, 50);
@@ -127,14 +137,15 @@ void Smoke::Draw() {
 			SetDrawBright(255, 255, 255);
 
 		}
-	}
+	}*/
 
-	for (int i = 0; i < 10; i++) {
-		if (MakeEnemyFlag[i] == 1) {
+	for (int i = 0; i < 100; i++) {
+		if (smokeFlag[i] == 1) {
 
 			SetDrawBright(10, 10, 10);
-			SetDrawBlendMode(DX_BLENDMODE_ALPHA, MakeEnemyPal[i]);
-			DrawExtendGraph(MakeEnemySmokeX[i] - SmokeRadius - 64, MakeEnemySmokeY[i] - SmokeRadius - 64, MakeEnemySmokeX[i] + SmokeRadius + 64, MakeEnemySmokeY[i] + SmokeRadius + 64, siroGh, true);
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
+			DrawExtendGraph(MakeEnemySmokeX[i] - SmokeRadius - screen.x, MakeEnemySmokeY[i] - SmokeRadius - screen.y,
+				MakeEnemySmokeX[i] + SmokeRadius - screen.x, MakeEnemySmokeY[i] + SmokeRadius - screen.y, siroGh, true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 			SetDrawBright(255, 255, 255);
 
@@ -142,68 +153,66 @@ void Smoke::Draw() {
 	}
 
 
-	DrawFormatString(20, 120, GetColor(0, 0, 0), "%f", MakeBossSmokeX[0], true);
-	DrawFormatString(20, 140, GetColor(0, 0, 0), "%f", MakeBossSmokeY[1], true);
+	DrawFormatString(700, 200, GetColor(0, 0, 0), "%f", MakeEnemySmokeX[0], true);
+	DrawFormatString(700, 220, GetColor(0, 0, 0), "%f", MakeEnemySmokeY[0], true);
+	DrawFormatString(700, 240, GetColor(0, 0, 0), "%d", smokeFlag[0], true);
 }
 
-void Smoke::MakeEnemySmoke(int SmokePosX, int SmokePosY) {
+void Smoke::MakeEnemySmoke() {
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 100; i++) {
 
 		MakeEnemyFlag[i] = 1;
-		MakeEnemyTimer[i] = 60;
 		MakeEnemyPal[i] = 255;
+		AllTimer = 80;
 
-		//Smokeポジション
-		MakeEnemySmokeX[0] = SmokePosX;
-		MakeEnemySmokeY[0] = SmokePosY;
+		pal = 255;
+		MakeEnemySmokeX[i] = 0;
+		MakeEnemySmokeY[i] = 0;
 
-	}
+		vecX[i] = 0.0f;
+		vecY[i] = 0.0f;
 
-}
-
-
-void Smoke::MakeBossEnemySmoke(int SmokePosX, int SmokePosY) {
-
-	for (int i = 0; i < 10; i++) {
-
-		MakeBossFlag[i] = 1;
-		MakeBossTimer[i] = 5 + i * 5;
-		MakeBossPal[i] = 255;
-
-		//Smokeポジション
-		MakeBossSmokeX[0] = SmokePosX - 60;
-		MakeBossSmokeY[0] = SmokePosY + 70;
-
-		MakeBossSmokeX[1] = SmokePosX - 80;
-		MakeBossSmokeY[1] = SmokePosY;
-
-		MakeBossSmokeX[2] = SmokePosX - 60;
-		MakeBossSmokeY[2] = SmokePosY - 70;
-
-		MakeBossSmokeX[3] = SmokePosX + 60;
-		MakeBossSmokeY[3] = SmokePosY - 70;
-
-		MakeBossSmokeX[4] = SmokePosX + 80;
-		MakeBossSmokeY[4] = SmokePosY;
-
-		MakeBossSmokeX[5] = SmokePosX + 60;
-		MakeBossSmokeY[5] = SmokePosY + 70;
-
+		KeepVecX[i] = 0.0f;
+		KeepVecY[i] = 0.0f;
+		y[i] = 0;
 
 	}
 
 }
+
+
+//void Smoke::MakeBossEnemySmoke(int SmokePosX, int SmokePosY) {
+//
+//	for (int i = 0; i < 10; i++) {
+//
+//		MakeBossFlag[i] = 1;
+//		MakeBossTimer[i] = 5 + i * 5;
+//		MakeBossPal[i] = 255;
+//
+//		
+//
+//	}
+//
+//}
 
 
 void Smoke::DieSmoke(int SmokePosX, int SmokePosY) {
 
 	for (int i = 0; i < 9; i++) {
-		DieSmokeX[i] = SmokePosX;
-		DieSmokeY[i] = SmokePosY;
 		dieFlag[i] = 1;
-		DieTimer[i] = 60;
-		DiePal[i] = 255;
+		AllTimer = 80;
+
+		pal = 200;
+		MakeEnemySmokeX[i] = SmokePosX;
+		MakeEnemySmokeY[i] = SmokePosY;
+
+		vecX[i] = 0.0f;
+		vecY[i] = 0.0f;
+
+		KeepVecX[i] = 0.0f;
+		KeepVecY[i] = 0.0f;
+		y[i] = 0;
 	}
 
 

@@ -16,22 +16,22 @@ public:
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
-	void Update();
+	void Update(float enemyPosX, float enemyPosY);
 
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();
+	void Draw(Vec2 screen);
 
 	/// <summary>
 	/// 雑魚敵が生まれる時に出すスモーク
 	/// </summary>
-	void MakeEnemySmoke(int SmokePosX, int SmokePosY);
+	void MakeEnemySmoke();
 
 	/// <summary>
 	/// ボスが生まれる時に出すスモーク
 	/// </summary>
-	void MakeBossEnemySmoke(int SmokePosX, int SmokePosY);
+	void MakeBossEnemySmoke();
 
 	/// <summary>
 	/// 死んだときに出すスモーク
@@ -41,10 +41,11 @@ public:
 private:
 
 	int siroGh;
-
+	int AllTimer;
+	float pal = 0;
 	float MakeEnemySmokeX[100];
 	float MakeEnemySmokeY[100];
-
+	float y[100];
 	float MakeBossSmokeX[100];
 	float MakeBossSmokeY[100];
 
@@ -66,7 +67,7 @@ private:
 
 	int DiePal[300];
 
-	int SmokeRadius = 64;
+	int SmokeRadius = 48;
 
 	int frame = 0;
 	int maxFrame = 1;
@@ -79,6 +80,12 @@ private:
 	int NowSmoke = 0;
 	int NextSmoke = 0;
 
+	float vecX[300];
+	float vecY[300];
+	float KeepVecX[100];
+	float KeepVecY[100];
+	int smokeFlag[300];
+	int drawTimer = 2;
 	Vec2 randomPos;
 	Vec2 movePos;
 	Vec2 a;

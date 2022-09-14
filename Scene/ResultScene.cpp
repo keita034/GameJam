@@ -7,6 +7,9 @@ void ResultScene::Initialize()
 	flame1 = 1;
 	flame2 = 1;
 
+	sound_ = new Sound();
+	sound_->Initialize();
+
 	flameHandle, resultBackHandle, resultKyaraHandle, resultKyaraFlameHandle;
 	flameHandle = LoadGraph("Resources/Flame01.png");
 	resultBackHandle = LoadGraph("Resources/ResultBackGround.png");
@@ -24,31 +27,42 @@ void ResultScene::Initialize()
 void ResultScene::Update()
 {
 	mouse.Update();
-
+	changeTitle = false;
+	changeGameScene = false;
 	if (mouse.GetMouseX() >= 260 && mouse.GetMouseX() <= 478
 		&& mouse.GetMouseY() >= 488 && mouse.GetMouseY() <= 552)
 	{
+		if (hit1 == 0) {
+			hit1 = 1;
+			sound_->SelectUpdate(150);
+		}
 		flame1 = 0;
-		if (mouse.GetCrickTrigger(MOUSE_INPUT_LEFT))
-		{
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
 			changeTitle = true;
 		}
 	}
 	else
 	{
+		hit1 = 0;
 		flame1 = 1;
 	}
 	if (mouse.GetMouseX() >= 560 && mouse.GetMouseX() <= 778
 		&& mouse.GetMouseY() >= 488 && mouse.GetMouseY() <= 552)
 	{
+		if (hit2 == 0) {
+			hit2 = 1;
+			sound_->SelectUpdate(150);
+		}
 		flame2 = 0;
-		if (mouse.GetCrickTrigger(MOUSE_INPUT_LEFT))
-		{
+		int Mouse = GetMouseInput();
+		if (Mouse && MOUSE_INPUT_LEFT) {
 			changeGameScene = true;
 		}
 	}
 	else
 	{
+		hit2 = 0;
 		flame2 = 1;
 	}
 }

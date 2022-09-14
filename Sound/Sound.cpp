@@ -27,17 +27,17 @@ void Sound::Initialize() {
 
 }
 
-void Sound::Updata(){
-	
-	ChangeVolumeSoundMem(volum, titleBGM);
-	ChangeVolumeSoundMem(volum, gameBGM);
-	ChangeVolumeSoundMem(volum, level1);
-	ChangeVolumeSoundMem(volum, level2);
-	ChangeVolumeSoundMem(volum, level3);
-	ChangeVolumeSoundMem(volum, level4);
-	ChangeVolumeSoundMem(volum, level5);
-	ChangeVolumeSoundMem(volum, attackHit);
-	ChangeVolumeSoundMem(volum, swing);
+void Sound::Updata(int vol) {
+
+	ChangeVolumeSoundMem(vol, titleBGM);
+	ChangeVolumeSoundMem(vol, gameBGM);
+	ChangeVolumeSoundMem(vol, level1);
+	ChangeVolumeSoundMem(vol, level2);
+	ChangeVolumeSoundMem(vol, level3);
+	ChangeVolumeSoundMem(vol, level4);
+	ChangeVolumeSoundMem(vol, level5);
+	ChangeVolumeSoundMem(vol, swing);
+	ChangeVolumeSoundMem(vol, attackHit);
 
 }
 
@@ -70,7 +70,7 @@ void Sound::DecisionUpdate(int soundVolum) {
 	}
 }
 
-void Sound::levelUpdata(int level_,int soundVolum){
+void Sound::levelUpdata(int level_, int soundVolum) {
 	level = level_;
 
 	if (level == 2) {
@@ -100,16 +100,23 @@ void Sound::levelUpdata(int level_,int soundVolum){
 
 }
 
-void Sound::AttackHitUpdata(int soundVolum){
+void Sound::AttackHitUpdata(int soundVolum) {
 
-	if (CheckSoundMem(attackHit) == 0) {
-		PlaySoundMem(attackHit, DX_PLAYTYPE_BACK, true);
-	}
+	PlaySoundMem(attackHit, DX_PLAYTYPE_BACK, true);
+	ChangeVolumeSoundMem(volum, attackHit);
+}
+
+
+void Sound::Swing() {
+
+	PlaySoundMem(swing, DX_PLAYTYPE_BACK, true);
 
 }
 
-void Sound::SetSound(int soundVolum){
 
-	this->volum = soundVolum;
+
+void Sound::SetSound(int soundVolum) {
+
+	volum = soundVolum;
 }
 

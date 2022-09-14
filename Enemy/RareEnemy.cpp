@@ -6,7 +6,7 @@ void RareEnemy::RareEnemyInit(Vec2 pos)
 	rareEnemy = std::make_unique<Enemy>();
 
 	InitPos = pos;
-	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f,3);
+	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f,3,0);
 }
 
 void RareEnemy::RareEnemyUpdate(Player* player_)

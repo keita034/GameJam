@@ -10,14 +10,15 @@ Enemy::Enemy()
 	radius_ = 32;
 	pattern_ = HeightUp;
 	isDeath_ = false;
+	smoke_ = new Smoke();
 }
 
 Enemy::~Enemy()
 {
-	
+
 }
 
-void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_)
+void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_, int siroGh)
 {
 	pattern_ = pattern;
 	pos_ = pos;
@@ -28,10 +29,31 @@ void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_)
 	velocity_ = playerPos_ - pos_;
 	velocity_ = velocity_.Normalized();
 	tarkingEnemyPosLength = tarkingEnemyPos - pos_;
+
+	/*std::unique_ptr<Smoke> smoke_;
+	smoke_ = std::make_unique<Smoke>();
+
+	smoke_->Initialize(pos.x, pos.y, siroGh);
+	smokes_.push_back(std::move(smoke_));*/
+
+	smoke_->Initialize(siroGh);
+	smoke_->MakeEnemySmoke();
+
 }
 
 void Enemy::Update(Vec2 playerNpos)
 {
+	/*for (std::unique_ptr<Smoke>& smoke_ : smokes_)
+	{
+		smoke_->Update();
+	}
+	smokes_.remove_if([](std::unique_ptr<Smoke>& smoke_)
+		{
+			return smoke_->IsDeath();
+		});*/
+
+	smoke_->Update(pos_.x, pos_.y);
+
 	switch (pattern_)
 	{
 	case HeightUp:
@@ -228,8 +250,10 @@ void Enemy::Update(Vec2 playerNpos)
 
 	if (hp <= 0)
 	{
+		smoke_->DieSmoke(pos_.x, pos_.y);
 		isDeath_ = true;
 		Score::GetInstance()->ScoreAdd(100);
+		Score::GetInstance()->AddEnemydestroy();
 
 	}
 
@@ -242,6 +266,13 @@ void Enemy::Update(Vec2 playerNpos)
 
 void Enemy::Draw(Vec2 screen)
 {
+
+	/*for (std::unique_ptr<Smoke>& smoke : smokes_)
+	{
+		smoke->Draw(screen);
+	}*/
+
+
 	if (pattern_ >= HeightUp && pattern_ <= WidthR)
 	{
 		if (hp == 3)
@@ -295,6 +326,7 @@ void Enemy::Draw(Vec2 screen)
 			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y , 1.0f, angle, GameScene::RareEnemy3Handle[RareEnemyFlame], true);
 		}
 	}
+	smoke_->Draw(screen);
 	//DrawCircle(pos_.x - screen.x , pos_.y - screen.y , radius_, GetColor(255, 0, 255), true);
 }
 
@@ -315,7 +347,6 @@ int Enemy::GetRadius()
 
 void Enemy::Death()
 {
-	Score::GetInstance()->ScoreAdd(100);
 	isDeath_ = true;
 }
 
@@ -358,4 +389,8 @@ bool Enemy::GetDamageFlag()
 void Enemy::SetDamageFlag(bool flag)
 {
 	damageFlag = flag;
+}
+
+int Enemy::GetHp() {
+	return hp;
 }

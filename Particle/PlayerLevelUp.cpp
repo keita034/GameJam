@@ -97,43 +97,43 @@ void PlayerLevelUp::Update(int playerPosX, int playerPosY) {
 
 }
 
-void PlayerLevelUp::Draw() {
+void PlayerLevelUp::Draw(Vec2 screen) {
 	for (int i = 0; i < 50; i++) {
 		if (LevelAlive[i] == 1) {
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
-			DrawGraph(posX[i] - radius, posY[i] - radius, levelGh[miniCircleColor], true);
+			DrawGraph(posX[i] - radius - screen.x, posY[i] - radius - screen.y, levelGh[miniCircleColor], true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 
 			if (makeCircle == 1) {
 
 				if (playerLevel == 1) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, level1Circle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, level1Circle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 				else if (playerLevel == 2) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, level2Circle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, level2Circle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 				else if (playerLevel == 3) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, level3Circle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, level3Circle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 				else if (playerLevel == 4) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, level4Circle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, level4Circle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 				else if (playerLevel == 5) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, level5Circle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, level5Circle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 				else if (playerLevel == 6) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-					DrawGraph(circlePosX - circleRadius, circlePosY - circleRadius, levelDownCircle[circleNumber], true);
+					DrawGraph(circlePosX - circleRadius - screen.x, circlePosY - circleRadius - screen.y, levelDownCircle[circleNumber], true);
 					SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				}
 			}
@@ -144,7 +144,7 @@ void PlayerLevelUp::Draw() {
 void PlayerLevelUp::playerLevelUp(int Level_) {
 	playerLevel = Level_;
 	miniCircleColor = Level_ - 1;
-	for (int i = 0; i < 40; i++) {
+	for (int i = 0; i < 20; i++) {
 
 		isPlayerLevelUp[i] = 1;
 		LevelAlive[i] = 0;
@@ -158,7 +158,7 @@ void PlayerLevelUp::playerLevelUp(int Level_) {
 		KeepVecY[i] = 0.0f;
 
 
-		pal = 200;
+		pal = 255;
 		makeCircle = 1;
 
 	}
@@ -171,43 +171,43 @@ void PlayerLevelUp::CircleUpdata(int playerPosX, int playerPosY) {
 		circlePosX = playerPosX;
 		circlePosY = playerPosY;
 
-		if (AllTimer < 73) {
+		if (AllTimer < 53) {
 			circleNumber = 0;
 		}
-		if (AllTimer < 72) {
+		if (AllTimer < 52) {
 			circleNumber = 1;
 		}
-		if (AllTimer < 71) {
+		if (AllTimer < 51) {
 			circleNumber = 2;
 		}
-		if (AllTimer < 70) {
+		if (AllTimer < 50) {
 			circleNumber = 3;
 		}
-		if (AllTimer < 69) {
+		if (AllTimer < 49) {
 			circleNumber = 4;
 		}
-		if (AllTimer < 67) {
+		if (AllTimer < 47) {
 			circleNumber = 5;
 		}
-		if (AllTimer < 65) {
+		if (AllTimer < 45) {
 			circleNumber = 6;
 		}
-		if (AllTimer < 63) {
+		if (AllTimer < 43) {
 			circleNumber = 7;
 		}
-		if (AllTimer < 61) {
+		if (AllTimer < 41) {
 			circleNumber = 8;
 		}
-		if (AllTimer < 60) {
+		if (AllTimer < 40) {
 			circleNumber = 9;
 		}
-		if (AllTimer < 59) {
+		if (AllTimer < 33) {
 			circleNumber = 10;
 		}
-		if (AllTimer < 58) {
+		if (AllTimer < 38) {
 			circleNumber = 11;
 		}
-		if (AllTimer < 57) {
+		if (AllTimer < 37) {
 			makeCircle = 0;
 		}
 	}

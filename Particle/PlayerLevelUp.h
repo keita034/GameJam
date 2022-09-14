@@ -1,5 +1,6 @@
 #pragma once
 #include"DxLib.h"
+#include"Vec2.h"
 
 class PlayerLevelUp
 {
@@ -20,7 +21,7 @@ public:
 	/// <summary>
 	/// •`‰æ
 	/// </summary>
-	void Draw();
+	void Draw(Vec2 screen);
 
 	/// <summary>
 	/// Level‚ªã‚ª‚Á‚½
@@ -77,4 +78,6 @@ private:
 
 	int circleNumber = 0;
 	int levelGh[6];
+
+	int drawTimer = 2;
 };
