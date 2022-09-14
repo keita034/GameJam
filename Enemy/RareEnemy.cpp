@@ -152,7 +152,7 @@ void RareEnemy::RareEnemyDraw(Player* player_)
 
 void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 {
-	if (!rareEnemy->GetExistenceFlag())
+	if (rareEnemy->GetExistenceFlag())
 	{
 	//“G‚Æ©‹@
 		if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))

@@ -934,7 +934,7 @@ void EnemyPop::CheckCollisions(Player* player_)
 {
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
-		if (!enemy->GetExistenceFlag())
+		if (enemy->GetExistenceFlag())
 		{
 
 			//“G‚ÆŽ©‹@
