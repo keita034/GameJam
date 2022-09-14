@@ -80,7 +80,7 @@ private:
 	bool comboExtensionFlag = false;
 	int combo;
 
-	float levelUpExtensionTime = 50 * 3;
+	float levelUpExtensionTime = 50 * 3.8;
 	float maxLevelUpExtensionTime = levelUpExtensionTime;
 	bool levelUpExtensionFlag = false;
 

@@ -60,7 +60,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		Stage(keys, oldkeys);
+		//Stage(keys, oldkeys);
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -108,6 +108,7 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://タイトル
+	
 		titleScene_->Draw();
 		pause_->Draw();
 		break;

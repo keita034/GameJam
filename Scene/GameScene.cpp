@@ -40,6 +40,8 @@ void GameScene::Initialize(){
 
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 
+	operationAttackImg=LoadGraph("Resources/spaceAttack.png", true);
+	operationDirectionImg = LoadGraph("Resources/changeDirection.png", true);
 
 	score = Score::GetInstance();
 
@@ -101,6 +103,8 @@ void GameScene::Draw(){
 	player_->Draw();
 	
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
+	DrawGraph(80, 672, operationAttackImg, true);
+	DrawGraph(435, 672, operationDirectionImg, true);
 
 	score->Draw();
 }

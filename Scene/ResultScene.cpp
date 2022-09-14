@@ -1,5 +1,5 @@
 #include "ResultScene.h"
-
+#include "Score.h"
 void ResultScene::Initialize()
 {
 	changeGameScene = false;
@@ -76,6 +76,8 @@ void ResultScene::Draw()
 	DrawRotaGraph(260, 320, 0.7f, 0.0f, resultMaxComboFontHandle, true);
 	DrawRotaGraph(370, 520, 0.8f, 0.0f, resultButtonTitleHandle[flame1], true);
 	DrawRotaGraph(670, 520, 0.8f, 0.0f, resultButtonReplay[flame2], true);
+	Score::GetInstance()->ResultDraw();
+	
 
 	DrawGraph(1038, 366, resultKyaraFlameHandle, true);
 	DrawRotaGraph(1135, 515, 1.3f, 0.0f, resultKyaraHandle, true);

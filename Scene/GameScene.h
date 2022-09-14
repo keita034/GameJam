@@ -59,6 +59,10 @@ private:
 
 	int backScreenGrandImg = 0;
 
+	// 操作方法のリソースハンドル
+	int operationAttackImg;
+	int operationDirectionImg;
+
 	Score* score = nullptr;
 
 	int siroGh;
