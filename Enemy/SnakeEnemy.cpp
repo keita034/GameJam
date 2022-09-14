@@ -151,6 +151,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 						smoke_->DieSmoke(snakeEnemy[0].get()->GetPos().x, snakeEnemy[0].get()->GetPos().y);
 						sound_->AttackHitUpdata();
 						player_->AddCombo();
+						Score::GetInstance()->ScoreAdd(50000);
 					}
 					snakeEnemy[0]->HPSub(player_->GetAttackPower());
 				}

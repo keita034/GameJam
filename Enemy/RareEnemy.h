@@ -36,6 +36,9 @@ public:
 	// 死亡フラグの取得
 	bool IsDeath();
 
+	// レア敵の再出現タイマーセット
+	void SetTimer(int timer);
+
 private:
 	Vec2 InitPos = { 0,0 };
 	Vec2 velocity;

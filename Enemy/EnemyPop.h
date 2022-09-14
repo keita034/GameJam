@@ -44,6 +44,7 @@ private:
 
 	// Ö‚Ì“G
 	std::unique_ptr<SnakeEnemy> snakeEenmy_;
+	std::unique_ptr<SnakeEnemy> snakeEenmy2_;
 
 	// ƒŒƒA“G
 	std::unique_ptr<RareEnemy> rareEenmy_;

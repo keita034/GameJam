@@ -56,7 +56,7 @@ void Enemy::Update(Vec2 playerNpos)
 			angle += 0.1;
 			// アニメーション回す処理
 			animetionTimer++;
-			if (animetionTimer == 20)
+			if (animetionTimer == 5)
 			{
 				Siratamaflame++;
 				animetionTimer = 0;
@@ -72,7 +72,7 @@ void Enemy::Update(Vec2 playerNpos)
 			angle += 0.1;
 			// アニメーション回す処理
 			animetionTimer++;
-			if (animetionTimer == 20)
+			if (animetionTimer == 5)
 			{
 				Siratamaflame++;
 				animetionTimer = 0;
@@ -88,7 +88,7 @@ void Enemy::Update(Vec2 playerNpos)
 			angle += 0.1;
 			// アニメーション回す処理
 			animetionTimer++;
-			if (animetionTimer == 20)
+			if (animetionTimer == 5)
 			{
 				Siratamaflame++;
 				animetionTimer = 0;
@@ -104,7 +104,7 @@ void Enemy::Update(Vec2 playerNpos)
 			angle += 0.1;
 			// アニメーション回す処理
 			animetionTimer++;
-			if (animetionTimer == 20)
+			if (animetionTimer == 5)
 			{
 				Siratamaflame++;
 				animetionTimer = 0;
@@ -226,7 +226,7 @@ void Enemy::Update(Vec2 playerNpos)
 		case RareEnemy_:
 			// アニメーション回す処理
 			animetionTimer++;
-			if (animetionTimer == 10)
+			if (animetionTimer == 5)
 			{
 				RareEnemyFlame++;
 				animetionTimer = 0;
@@ -307,17 +307,17 @@ void Enemy::Draw(Vec2 screen)
 	}
 	if (pattern_ == RareEnemy_)
 	{
-		if (hp == 3)
+		if (hp <= 6 && hp >= 5)
 		{
-			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y , 1.0f, angle, GameScene::RareEnemy1Handle[RareEnemyFlame], true);
+			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y, 1.0f, angle, GameScene::RareEnemy1Handle[RareEnemyFlame], true);
 		}
-		if (hp == 2)
+		if (hp <= 4 && hp >= 3)
 		{
-			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y , 1.0f, angle, GameScene::RareEnemy2Handle[RareEnemyFlame], true);
+			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y, 1.0f, angle, GameScene::RareEnemy2Handle[RareEnemyFlame], true);
 		}
-		if (hp == 1)
+		if (hp <= 2 && hp >= 1)
 		{
-			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y , 1.0f, angle, GameScene::RareEnemy3Handle[RareEnemyFlame], true);
+			DrawRotaGraph(pos_.x - screen.x, pos_.y - screen.y, 1.0f, angle, GameScene::RareEnemy3Handle[RareEnemyFlame], true);
 		}
 	}
 	smoke_->Draw(screen);
