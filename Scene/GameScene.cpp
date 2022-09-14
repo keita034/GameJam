@@ -120,13 +120,6 @@ void GameScene::Update()
 
 }
 
-void GameScene::Draw()
-{
-	if (gameFinish <= 0) {
-		finish = 1;
-	}
-
-}
 
 void GameScene::Draw() {
 
