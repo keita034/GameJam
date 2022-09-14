@@ -27,7 +27,7 @@ private:
 	//角度
 	float angle = 0.0f;
 	//スピード
-	float speed = 5.0f;
+	float speed = 6.0f;
 	//正面ベクトル
 	Vec2 frontVec{};
 	Vec2 moveBuff{};
@@ -167,6 +167,10 @@ public:
 
 	bool DamageFlag();
 
+	bool GetLevelUpExtensionFlag();
+	int GetLevelUpExtensionTime();
+
+	unsigned int GetAttackStanceEffectColor();
 private:
 	void SwordDraw();
 };

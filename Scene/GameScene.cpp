@@ -173,14 +173,19 @@ void GameScene::Draw() {
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
 
+
+
 	DrawGraph(640 - frameXRadius + randX, 360 - frameYRadius + randY, frameImg, true);
+
+	score->Draw();
+
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameBarImg, true);
 
 	DrawGraph(80, 672, operationAttackImg, true);
 	DrawGraph(435, 672, operationDirectionImg, true);
 	DrawGraph(finishX, finishY, FinishGh, true);
 
-	score->Draw();
+
 }
 
 
