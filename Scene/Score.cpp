@@ -73,7 +73,8 @@ void Score::Draw()
 
 	//ÉXÉRÉA
 	DrawRotaGraph(1040, 73, 0.35, 0.0, scoreImg, true);
-	
+
+	div = 1;
 	for (int i = 0; i < 7; i++)
 	{
 		int index = (int)score / div % 10;
@@ -144,7 +145,7 @@ void Score::ResultInitialize()
 void Score::ResultDraw()
 {
 	int div = 1;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		int index = (int)score / div % 10;
 		DrawRotaGraph(560 + (48 * 0.45) * (5 - 1 - i), 220, 0.6, 0.0, scoreNumber[index], true);
