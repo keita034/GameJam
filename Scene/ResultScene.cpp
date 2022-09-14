@@ -1,5 +1,21 @@
 #include "ResultScene.h"
 #include "Score.h"
+ResultScene::ResultScene()
+{
+	flameHandle, resultBackHandle, resultKyaraHandle, resultKyaraFlameHandle;
+	flameHandle = LoadGraph("Resources/Flame01.png");
+	resultBackHandle = LoadGraph("Resources/ResultBackGround.png");
+	resultKyaraHandle = LoadGraph("Resources/player_smile.png");
+	resultKyaraFlameHandle = LoadGraph("Resources/player_background.png");
+	resultAccessoriesHandle = LoadGraph("Resources/Resultaccessories.png");
+	resultMojiFontHandle = LoadGraph("Resources/ResultMojiFont.png");
+	resultScoreFontHandle = LoadGraph("Resources/ResultScoreMojiFont.png");
+	resultMaxComboFontHandle = LoadGraph("Resources/ResultMaxComboMojiFont.png");
+
+	LoadDivGraph("Resources/ResultButton1.png", 2, 2, 1, 272, 80, resultButtonTitleHandle);
+	LoadDivGraph("Resources/ResultButton2.png", 2, 2, 1, 272, 80, resultButtonReplay);
+}
+
 void ResultScene::Initialize()
 {
 	changeGameScene = false;
@@ -10,18 +26,7 @@ void ResultScene::Initialize()
 	sound_ = Sound::GetInstance();
 	sound_->Initialize();
 
-	flameHandle, resultBackHandle, resultKyaraHandle, resultKyaraFlameHandle;
-	flameHandle = LoadGraph("Resources/Flame01.png");
-	resultBackHandle = LoadGraph("Resources/ResultBackGround.png");
-	resultKyaraHandle = LoadGraph("Resources/player_smile.png");
-	resultKyaraFlameHandle = LoadGraph("Resources/player_background.png");
-	resultAccessoriesHandle = LoadGraph("Resources/Resultaccessories.png");
-	resultMojiFontHandle = LoadGraph("Resources/ResultMojiFont.png");
-	resultScoreFontHandle= LoadGraph("Resources/ResultScoreMojiFont.png");
-	resultMaxComboFontHandle = LoadGraph("Resources/ResultMaxComboMojiFont.png");
 
-	LoadDivGraph("Resources/ResultButton1.png", 2, 2, 1, 272, 80, resultButtonTitleHandle);
-	LoadDivGraph("Resources/ResultButton2.png", 2, 2, 1, 272, 80, resultButtonReplay);
 }
 
 void ResultScene::Update()

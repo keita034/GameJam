@@ -6,6 +6,7 @@
 class ResultScene
 {
 public:
+	ResultScene();
 	/// <summary>
 	/// ‰Šú‰»
 	/// </summary>

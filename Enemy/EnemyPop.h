@@ -17,6 +17,9 @@ public:
 
 	EnemyPop();
 
+	// “Gƒ|ƒbƒvŠÇ—‚Ì‰Šú‰»
+	void EnemyPopInitInit();
+
 	// “G‚Ì‰Šú‰»
 	void EnemyPopInit();
 
