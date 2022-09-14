@@ -70,6 +70,7 @@ void Player::Initialize()
 	damageEffectTime = 0;
 	attackStanceEffectFrameTime = 0;
 	attackStanceEffectTime = 0;
+	level = 0;
 }
 
 
