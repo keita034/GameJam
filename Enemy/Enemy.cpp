@@ -267,12 +267,6 @@ void Enemy::Update(Vec2 playerNpos)
 void Enemy::Draw(Vec2 screen)
 {
 
-	/*for (std::unique_ptr<Smoke>& smoke : smokes_)
-	{
-		smoke->Draw(screen);
-	}*/
-
-
 	if (pattern_ >= HeightUp && pattern_ <= WidthR)
 	{
 		if (hp == 3)
@@ -327,7 +321,6 @@ void Enemy::Draw(Vec2 screen)
 		}
 	}
 	smoke_->Draw(screen);
-	//DrawCircle(pos_.x - screen.x , pos_.y - screen.y , radius_, GetColor(255, 0, 255), true);
 }
 
 bool Enemy::IsDeath()

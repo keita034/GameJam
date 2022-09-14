@@ -42,9 +42,6 @@ void Score::Update(int time)
 	case 4:
 		magnification = 1.40f;
 		break;
-	case 5:
-		magnification = 1.50f;
-		break;
 	}
 
 	if (hpAfterimage > player->GetHp())
@@ -143,6 +140,11 @@ void Score::Draw()
 void Score::ScoreAdd(int score)
 {
 	this->score += score * magnification;;
+
+	if (this->score > 9999999)
+	{
+		this->score = 9999999;
+	}
 }
 
 void Score::ResultInitialize()
@@ -170,8 +172,6 @@ void Score::ResultDraw()
 		DrawRotaGraph(560 + (48 * 0.45) * (5 - 1 - i), 320, 0.6, 0.0, scoreNumber[index], true);
 		div = div * 10;
 	}
-
-
 }
 
 void Score::AddEnemydestroy()

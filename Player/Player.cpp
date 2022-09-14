@@ -533,6 +533,11 @@ void Player::AddCombo()
 	combo++;
 	comboExtensionTime = maxComboExtensionTime;
 	comboExtensionFlag = true;
+
+	if (combo > 99999)
+	{
+		combo = 99999;
+	}
 }
 
 void Player::SwordDraw()

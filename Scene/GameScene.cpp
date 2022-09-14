@@ -74,12 +74,6 @@ void GameScene::Update()
 	if (gameFinish > 0) {
 		gameFinish--;
 
-
-		/*if (key.GetKeyTrigger(KEY_INPUT_0))
-		{
-			enemypop_.get()->EnemyPopInit();
-		}*/
-
 		player_->Update();
 
 		enemypop_.get()->EnemyPopInit();
@@ -157,23 +151,11 @@ void GameScene::Draw() {
 	DrawGraph(1280 - backScreenXRadius - player_->GetScreen().x, 720 - backScreenYRadius - player_->GetScreen().y, backScreenImg, true);
 
 	enemypop_.get()->EnemyPopDraw(player_.get());
-	//for (std::unique_ptr<Enemy>& enemy : enemys_)
-	//{
-	//	enemy->Draw(player_->GetScreen());
-	//}
-
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
-	DrawFormatString(700, 140, GetColor(0, 0, 0), "%f", finishY, true);
-	DrawFormatString(700, 200, GetColor(0, 0, 0), "%f", easeTimer, true);
-	DrawFormatString(700, 220, GetColor(0, 0, 0), "%f", easeMaxTimer, true);
-	DrawFormatString(700, 240, GetColor(0, 0, 0), "%f", finishYFinishY, true);
-
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
-
-
 
 	DrawGraph(640 - frameXRadius + randX, 360 - frameYRadius + randY, frameImg, true);
 
@@ -184,8 +166,6 @@ void GameScene::Draw() {
 	DrawGraph(80, 672, operationAttackImg, true);
 	DrawGraph(435, 672, operationDirectionImg, true);
 	DrawGraph(finishX, finishY, FinishGh, true);
-
-
 }
 
 
