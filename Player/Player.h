@@ -84,7 +84,7 @@ private:
 	bool comboExtensionFlag = false;
 	int combo;
 
-	float levelUpExtensionTime = 50 * 3;
+	float levelUpExtensionTime = 50 * 3.8;
 	float maxLevelUpExtensionTime = levelUpExtensionTime;
 	bool levelUpExtensionFlag = false;
 
@@ -108,9 +108,10 @@ private:
 
 	float swordMagnification = 0.91f;
 
+	bool damageFlag = false;
 public:
 
-	Player() = default;
+	Player();
 	~Player() = default;
 
 	/// <summary>
@@ -163,6 +164,8 @@ public:
 	void AddCombo();
 
 	float GetAngle();
+
+	bool DamageFlag();
 
 private:
 	void SwordDraw();

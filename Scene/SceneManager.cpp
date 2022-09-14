@@ -139,6 +139,7 @@ void SceneManager::Draw() {
 	switch (scene_)
 	{
 	case SceneManager::Scene::Title://ƒ^ƒCƒgƒ‹
+	
 		titleScene_->Draw();
 		pause_->Draw();
 		break;

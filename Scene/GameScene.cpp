@@ -9,11 +9,8 @@ GameScene::GameScene()
 	player_ = std::make_unique<Player>();
 	enemypop_ = std::make_unique<EnemyPop>();
 
-}
-
-void GameScene::Initialize() {
-	player_->Initialize();
-	frameImg = LoadGraph("Resources/Flame.png");
+	frameImg = LoadGraph("Resources/Flame01.png");
+	frameBarImg = LoadGraph("Resources/Flame_bar.png");
 
 	// 白玉の敵のグラフハンドル
 	LoadDivGraph("Resources/siratama01.png", 4, 4, 1, 128, 128, Siratama1Handle);
@@ -40,6 +37,14 @@ void GameScene::Initialize() {
 
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 
+	operationAttackImg = LoadGraph("Resources/spaceAttack.png", true);
+	operationDirectionImg = LoadGraph("Resources/changeDirection.png", true);
+
+}
+
+void GameScene::Initialize()
+{
+	player_->Initialize();
 
 	score = Score::GetInstance();
 
@@ -50,17 +55,11 @@ void GameScene::Initialize() {
 
 	playerFootprints_->Initialize();
 
-	gameFinish = 5200;
-	finish = 0;
-}
-
-void GameScene::Update() {
-
-	if (gameFinish > 0) {
-		gameFinish--;
 
 
-		player_->Update();
+void GameScene::Update()
+{
+	player_->Update();
 
 		/*if (key.GetKeyTrigger(KEY_INPUT_0))
 		{
@@ -69,23 +68,54 @@ void GameScene::Update() {
 		enemypop_.get()->EnemyPopInit();
 		enemypop_.get()->EnemyPopUpdate(player_.get());
 
-		playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y, player_->GetAngle());
-
+	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y, player_->GetAngle());
 
 		enemypop_.get()->CheckCollisions(player_.get());
 
+	player_->ComboUpdate();
 
+	score->Update();
 
-		player_->ComboUpdate();
+	if (player_->DamageFlag())
+	{
+		if (shakeTime > 0)
+		{
+			int shake = 20 - shakeTime;
 
-		score->Update();
+			if (shake < 0)
+			{
+				shake = 0;
+			}
 
+			int shake2 = 10 - shakeTime / 3;
+
+			randX = GetRand((20 - shake)) - (10 - shake2);
+
+			randY = GetRand((20 - shake)) - (10 - shake2);
+
+			shakeTime--;
+		}
+		else
+		{
+			randX = 0;
+			randY = 0;
+		}
+	}
+	else
+	{
+		shakeTime = 20;
+		randX = 0;
+		randY = 0;
+	}
+}
 		if (player_->GetHp() <= 0) {
 			gameFinish = 0;
 		}
 
 	}
 
+void GameScene::Draw()
+{
 	if (gameFinish <= 0) {
 		finish = 1;
 	}
@@ -111,8 +141,12 @@ void GameScene::Draw() {
 
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
+	
+	DrawGraph(640 - frameXRadius + randX, 360 - frameYRadius + randY, frameImg, true);
+	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameBarImg, true);
 
-	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
+	DrawGraph(80, 672, operationAttackImg, true);
+	DrawGraph(435, 672, operationDirectionImg, true);
 
 	score->Draw();
 }

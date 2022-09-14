@@ -49,13 +49,14 @@ private:
 	std::unique_ptr<EnemyPop> enemypop_;
 
 	PlayerFootprints* playerFootprints_ = nullptr;
-	int frameImg;
+	int frameImg = 0;
+	int frameBarImg = 0;
 	int frameYRadius = 410;
 	int frameXRadius = 690;
 
-	int playerBackImg;
-	int playerBackYRadius = 160;
-	int playerBackXRadius = 102;
+	int playerBackImg = 0;
+	int playerBackYRadius = 185;
+	int playerBackXRadius = 125;
 
 	int backScreenImg;
 	int backScreenYRadius = 720;
@@ -63,9 +64,18 @@ private:
 
 	int backScreenGrandImg = 0;
 
+	// 操作方法のリソースハンドル
+	int operationAttackImg;
+	int operationDirectionImg;
+
 	Score* score = nullptr;
 
-	int siroGh;
+	int siroGh = 0;
+
+	int shakeTime = 20;
+
+	int randX = 0;
+	int randY = 0;
 
 	int gameFinish = 5000;
 
