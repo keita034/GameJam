@@ -168,7 +168,7 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 			{
 				player_->AddCombo();
 				sound_->AttackHitUpdata();
-
+				smoke_->DamageSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
 				if (rareEnemy->GetisDie() <= 1)
 				{
 					smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);

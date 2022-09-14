@@ -188,9 +188,9 @@ void Smoke::Draw(Vec2 screen) {
 		if (smokeFlag[i] == 1) {
 
 			if (damageFlag[i] == 1) {
-				SetDrawBright(100, 10, 10);
+				SetDrawBright(230, 10, 10);
 				SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
-				DrawRotaGraph(MakeEnemySmokeX[i] - screen.x, MakeEnemySmokeY[i] - screen.y, 1.0, 0.0, siroGh, true);
+				DrawRotaGraph(MakeEnemySmokeX[i] - screen.x, MakeEnemySmokeY[i] - screen.y, 0.3, 0.0, siroGh, true);
 				SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 				SetDrawBright(255, 255, 255);
 			}
@@ -251,8 +251,7 @@ void Smoke::MakeEnemySmoke() {
 void Smoke::DamageSmoke(int SmokePosX, int SmokePosY) {
 
 	for (int i = 0; i < 9; i++) {
-		dieFlag[i] = 1;
-		damageFlag[i] = dieFlag[i];
+		damageFlag[i] = 1;
 		AllTimer = 80;
 
 		pal = 200;
