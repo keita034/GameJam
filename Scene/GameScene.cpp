@@ -71,6 +71,9 @@ void GameScene::Update()
 		{
 			enemypop_.get()->EnemyPopInit();
 		}*/
+
+		player_->Update();
+
 		enemypop_.get()->EnemyPopInit();
 		enemypop_.get()->EnemyPopUpdate(player_.get());
 
@@ -113,9 +116,13 @@ void GameScene::Update()
 			randX = 0;
 			randY = 0;
 		}
+
+		if (player_->GetHp() <= 0) {
+			gameFinish = 0;
+		}
 	}
-	if (player_->GetHp() <= 0) {
-		gameFinish = 0;
+	if (gameFinish <= 0) {
+		finish = 1;
 	}
 
 }
