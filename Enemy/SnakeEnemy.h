@@ -6,6 +6,8 @@
 #include<memory>
 #include<list>
 #include"Smoke.h"
+#include"Sound.h"
+#include"Pause.h"
 
 class SnakeEnemy
 {
@@ -41,5 +43,9 @@ private:
 	int smokeTimer = 0;
 
 	int isEnemyDie[5];
+
+	//‰¹ƒƒbƒJ
+	Sound* sound_ = nullptr;
+	Pause* pause_ = nullptr;
 };
 

@@ -5,6 +5,8 @@ void RareEnemy::RareEnemyInit(Vec2 pos, int siroGh)
 {
 	rareEnemy = std::make_unique<Enemy>();
 
+	sound_ = Sound::GetInstance();
+	pause_ = new Pause();
 	smoke_ = new Smoke();
 	smoke_->Initialize(siroGh);
 	smoke_->MakeEnemySmoke();
@@ -165,6 +167,8 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 			if (rareEnemy->GetDamageFlag())
 			{
 				player_->AddCombo();
+				sound_->AttackHitUpdata();
+
 				if (rareEnemy->GetisDie() <= 1)
 				{
 					smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);

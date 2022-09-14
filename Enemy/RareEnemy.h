@@ -6,6 +6,8 @@
 #include<memory>
 #include<list>
 #include"Smoke.h"
+#include"Sound.h"
+#include"Pause.h"
 
 // レア敵の動き
 enum situation
@@ -66,5 +68,9 @@ private:
 
 	// 横移動フラグ
 	bool MoveLeftRightFlag = false;
+
+	//音ワッカ
+	Sound* sound_ = nullptr;
+	Pause* pause_ = nullptr;
 };
 
