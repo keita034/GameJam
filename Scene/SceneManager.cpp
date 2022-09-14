@@ -116,6 +116,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 	case SceneManager::Scene::Initialize://‰Šú‰»
 		//‚±‚±‚ÉInitialize‚ð‚Ô‚¿ž‚Þ
 
+		gameScene_->Initialize();
+		
 
 		if (sceenSelect == 1) {
 			pal = 0;

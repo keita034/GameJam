@@ -52,7 +52,7 @@ private:
 	//最大攻撃インターバル
 	int maxAttackInterval = 20;
 	//攻撃距離
-	int attackDistance = 640;;
+	int attackDistance = 640;
 	//攻撃フラグ
 	bool attackFlag = false;
 	bool attackStanceFlag = false;
@@ -82,7 +82,7 @@ private:
 	float comboExtensionTime = 50 * 3;
 	float maxComboExtensionTime = comboExtensionTime;
 	bool comboExtensionFlag = false;
-	int combo;
+	int combo = 0;
 
 	float levelUpExtensionTime = 50 * 3.8;
 	float maxLevelUpExtensionTime = levelUpExtensionTime;
