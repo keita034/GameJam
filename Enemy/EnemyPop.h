@@ -50,5 +50,9 @@ private:
 	Pause* pause_ = nullptr;
 
 	Smoke* smoke_ = nullptr;
+
+	int smokeTimer = 0;
+
+	int isEnemyDie = 0;
 };
 

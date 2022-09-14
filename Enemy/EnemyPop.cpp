@@ -98,7 +98,7 @@ void EnemyPop::EnemyPopInit()
 	if (Poptimer == 13 * 50)
 	{
 		snakeEenmy_ = std::make_unique<SnakeEnemy>();
-		snakeEenmy_.get()->SnakeEnemyPop({ 1080.0f ,240.0f });
+		snakeEenmy_.get()->SnakeEnemyPop({ 1080.0f ,240.0f },siroGh);
 	}
 
 	// 4ウェーブ目(17秒)

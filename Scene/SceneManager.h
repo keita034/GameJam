@@ -40,7 +40,7 @@ public:
 	/// <summary>
 	/// 暗転シーン
 	/// </summary>
-	void Blackout(char* keys, char* oldkeys);
+	void Blackout();
 
 	/// <summary>
 	/// タイトル
@@ -55,7 +55,7 @@ public:
 	/// <summary>
 	/// バトルステージ
 	/// </summary>
-	void Stage(char* keys, char* oldkeys);
+	void Stage();
 
 	/// <summary>
 	/// リザルト
@@ -70,6 +70,7 @@ public:
 		Tutorial,//チュートリアル
 		Stage,//バトルステージ
 		Result,//リザルト
+		Initialize,//初期化シーン
 	};
 
 
@@ -112,5 +113,8 @@ private:
 	int isFinish = 0;
 
 	int blackFlag = 0;
+
+	int sceenSelect = 0;
+
 };
 

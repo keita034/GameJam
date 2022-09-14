@@ -30,11 +30,7 @@ void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_, int siroG
 	velocity_ = velocity_.Normalized();
 	tarkingEnemyPosLength = tarkingEnemyPos - pos_;
 
-	/*std::unique_ptr<Smoke> smoke_;
-	smoke_ = std::make_unique<Smoke>();
 
-	smoke_->Initialize(pos.x, pos.y, siroGh);
-	smokes_.push_back(std::move(smoke_));*/
 
 	smokeTimer = 40;
 
@@ -45,14 +41,6 @@ void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_, int siroG
 
 void Enemy::Update(Vec2 playerNpos)
 {
-	/*for (std::unique_ptr<Smoke>& smoke_ : smokes_)
-	{
-		smoke_->Update();
-	}
-	smokes_.remove_if([](std::unique_ptr<Smoke>& smoke_)
-		{
-			return smoke_->IsDeath();
-		});*/
 
 	smoke_->Update(pos_.x, pos_.y);
 

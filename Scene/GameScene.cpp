@@ -11,7 +11,7 @@ GameScene::GameScene()
 
 }
 
-void GameScene::Initialize(){
+void GameScene::Initialize() {
 	player_->Initialize();
 	frameImg = LoadGraph("Resources/Flame.png");
 
@@ -49,34 +49,50 @@ void GameScene::Initialize(){
 	score->Initialize(player_.get());
 
 	playerFootprints_->Initialize();
-	
 
+	gameFinish = 5200;
+	finish = 0;
 }
 
-void GameScene::Update(){
-	player_->Update();
+void GameScene::Update() {
 
-	/*if (key.GetKeyTrigger(KEY_INPUT_0))
-	{
+	if (gameFinish > 0) {
+		gameFinish--;
+
+
+		player_->Update();
+
+		/*if (key.GetKeyTrigger(KEY_INPUT_0))
+		{
+			enemypop_.get()->EnemyPopInit();
+		}*/
 		enemypop_.get()->EnemyPopInit();
-	}*/
-	enemypop_.get()->EnemyPopInit();
-	enemypop_.get()->EnemyPopUpdate(player_.get());
+		enemypop_.get()->EnemyPopUpdate(player_.get());
 
-	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y,player_->GetAngle());
+		playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y, player_->GetAngle());
 
 
-	enemypop_.get()->CheckCollisions(player_.get());
+		enemypop_.get()->CheckCollisions(player_.get());
 
 
 
-	player_->ComboUpdate();
+		player_->ComboUpdate();
 
-	score->Update();
+		score->Update();
+
+		if (player_->GetHp() <= 0) {
+			gameFinish = 0;
+		}
+
+	}
+
+	if (gameFinish <= 0) {
+		finish = 1;
+	}
 
 }
 
-void GameScene::Draw(){
+void GameScene::Draw() {
 
 	DrawRotaGraph(1280 - player_->GetScreen().x, 720 - player_->GetScreen().y, 1.0, 0.0, backScreenGrandImg, true);
 
@@ -91,15 +107,17 @@ void GameScene::Draw(){
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
-	DrawFormatString(700, 140, GetColor(0, 0, 0), "%f", player_->GetScreen().x, true);
-	DrawFormatString(700, 160, GetColor(0, 0, 0), "%f", player_->GetScreen().y, true);
+	DrawFormatString(700, 140, GetColor(0, 0, 0), "%d", gameFinish, true);
 
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
-	
+
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);
 
 	score->Draw();
 }
 
 
+int GameScene::GetFinish() {
+	return finish;
+}

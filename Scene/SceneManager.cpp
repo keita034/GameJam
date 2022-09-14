@@ -28,7 +28,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 	switch (scene_) {
 	case SceneManager::Scene::Blackout://暗転シーン
-		Blackout(keys, oldkeys);
+		Blackout();
 
 		break;
 	case SceneManager::Scene::Title://タイトル
@@ -51,7 +51,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		pause_->Update();
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
-		sound_->Updata(pause_->GetSoundVolum());
+		sound_->Updata();
 
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -59,7 +59,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		//Stage(keys, oldkeys);
+		Stage();
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {
@@ -78,22 +78,54 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		vx = pause_->GetSoundVolum();
 		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
-		sound_->Updata(vx);
+		sound_->Updata();
 
 		gameScene_->Update();
 
+		if (gameScene_->GetFinish() == 1) {
+			pal += 5;
+			if (pal > 255) {
+				scene_ = Scene::Blackout;
+			}
+		}
 
 		break;
 	case SceneManager::Scene::Result://リザルト
 		Result(keys, oldkeys);
+
 		resultScene_->Update();
 		if (resultScene_->GetChangeGame() == true)
 		{
-			scene_ = Scene::Stage;
+			sceenSelect = 3;
+			scene_ = Scene::Initialize;
 		}
 		if (resultScene_->GetChangeTitle() == true)
 		{
+			sceenSelect = 1;
+			scene_ = Scene::Initialize;
+		}
+		if (sceenSelect == 1 || sceenSelect== 3) {
+			pal += 5;
+			if (pal > 255) {
+				scene_ = Scene::Initialize;
+			}
+		}
+
+
+		break;
+	case SceneManager::Scene::Initialize://初期化
+		//ここにInitializeをぶち込む
+
+
+		if (sceenSelect == 1) {
+			pal = 0;
+			sceenSelect = 0;
 			scene_ = Scene::Title;
+		}
+		else if (sceenSelect == 3) {
+			pal = 0;
+			sceenSelect = 0;
+			scene_ = Scene::Stage;
 		}
 		break;
 	default:
@@ -117,9 +149,13 @@ void SceneManager::Draw() {
 		gameScene_->Draw();
 		pause_->Draw();
 
+		DrawFormatString(700, 300, GetColor(0, 0, 0), "%d", pal, true);
 		break;
 	case SceneManager::Scene::Result://リザルト
 		resultScene_->Draw();
+		break;
+	case SceneManager::Scene::Initialize://初期化
+		
 		break;
 	default:
 		break;
@@ -133,10 +169,9 @@ void SceneManager::Draw() {
 
 
 //シーン切り替え
-void SceneManager::Blackout(char* keys, char* oldkeys) {
+void SceneManager::Blackout() {
 	if (isBlackOut == 0) {
 		isBlackOut = 1;
-		pal = 255;
 	}
 	else if (isBlackOut == 1) {
 		if (pal < 255) {
@@ -182,11 +217,9 @@ void SceneManager::Tutorial(char* keys, char* oldkeys) {
 	}
 }
 
-void SceneManager::Stage(char* keys, char* oldkeys) {
+void SceneManager::Stage() {
 	justBefore = 3;
-	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
-		scene_ = Scene::Blackout;
-	}
+	
 }
 
 void SceneManager::Result(char* keys, char* oldkeys) {
@@ -220,3 +253,4 @@ void SceneManager::TestMove() {
 	}
 
 }
+

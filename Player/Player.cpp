@@ -2,6 +2,7 @@
 #include"Enemy.h"
 #include"Collision.h"
 
+
 bool Complement(float& x1, float x2, float flame)//ˆÚ“®•âŠ®
 {
 	float distanceX = x2 - x1;//‹——£‚ğo‚·

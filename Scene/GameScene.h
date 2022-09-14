@@ -30,6 +30,13 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 終わったり終わらなかったり
+	/// </summary>
+
+	void SetFinish(int f);
+	int GetFinish();
+
 	// リソースハンドル
 	static int Siratama1Handle[4], Siratama2Handle[4], Siratama3Handle[4];
 	static int Yubi1Handle[9], Yubi2Handle[9], Yubi3Handle[9];
@@ -60,5 +67,8 @@ private:
 
 	int siroGh;
 
+	int gameFinish = 5000;
+
+	int finish = 0;
 };
 

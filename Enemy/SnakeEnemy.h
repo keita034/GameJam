@@ -5,11 +5,13 @@
 #include "Util.h"
 #include<memory>
 #include<list>
+#include"Smoke.h"
+
 class SnakeEnemy
 {
 public:
 	// ‚É‚å‚ë‚É‚å‚ë“G‚Ì‚ğ¶¬
-	void SnakeEnemyPop(Vec2 pos);
+	void SnakeEnemyPop(Vec2 pos, int siroGh);
 
 	// ‚É‚å‚ë‚É‚å‚ë“G‚ÌXVˆ—
 	void SnakeEnemyUpdate(Player* player_);
@@ -26,6 +28,7 @@ public:
 private:
 	// ‚É‚å‚ë‚É‚å‚ë“G—p‚Ì”z—ñ
 	std::unique_ptr<Enemy> snakeEnemy[5];
+	Smoke* smoke_ = nullptr;
 
 	// ‚É‚å‚ë‚É‚å‚ë‚Ì‘Ì‚ª€‚ñ‚¾”
 	int deathNum = 0;
@@ -33,5 +36,10 @@ private:
 	// ‚É‚å‚ë‚É‚å‚ë‚Æ‚Ì“–‚½‚è”»’è‚ğ‚Æ‚éŠÔŠu
 	int collisionTimer = 0;
 	int collisionInterval = 18;
+
+
+	int smokeTimer = 0;
+
+	int isEnemyDie[5];
 };
 

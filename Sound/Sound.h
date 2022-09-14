@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// ‰¹‚ÌXV
 	/// </summary>
-	void Updata(int vol);
+	void Updata();
 
 	/// <summary>
 	/// titleˆ—
