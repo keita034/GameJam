@@ -28,7 +28,9 @@ void Player::Initialize()
 	swordImg = LoadGraph("Resources/sword.png");
 	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
 	sound_ = new Sound();
+	playerLevelUp_ = new PlayerLevelUp();
 
+	playerLevelUp_->Initialize();
 }
 
 void Player::Update()
@@ -83,10 +85,14 @@ void Player::Update()
 	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
+
+	playerLevelUp_->Update(pos.x, pos.y);
 }
 
 void Player::Draw()
 {
+
+	playerLevelUp_->Draw(screen);
 	//DrawLine(
 	//	pos.x - screen.x, pos.y - screen.y,
 	//	pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
@@ -234,6 +240,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				swordMagnification = 0.91f;
 
 				level++;
+				playerLevelUp_->playerLevelUp(level);
 				break;
 
 			case 1:
@@ -246,6 +253,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				swordMagnification = 0.81f;
 
 				level++;
+				playerLevelUp_->playerLevelUp(level);
 				break;
 
 			case 2:
@@ -258,6 +266,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				swordMagnification = 0.76f;
 
 				level++;
+				playerLevelUp_->playerLevelUp(level);
 				break;
 
 			case 3:
@@ -270,6 +279,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				swordMagnification = 0.66f;
 
 				level++;
+				playerLevelUp_->playerLevelUp(level);
 				break;
 
 			case 4:

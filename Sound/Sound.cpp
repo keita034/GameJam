@@ -59,7 +59,7 @@ void Sound::gameSceneUpdate() {
 void Sound::SelectUpdate(int soundVolum) {
 
 	PlaySoundMem(slsectSound, DX_PLAYTYPE_BACK, true);
-	ChangeVolumeSoundMem(soundVolum, slsectSound);
+	ChangeVolumeSoundMem(volum, slsectSound);
 	DrawFormatString(600, 200, GetColor(0, 0, 0), "%d", soundVolum);
 }
 

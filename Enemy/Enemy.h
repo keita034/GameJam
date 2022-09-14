@@ -71,7 +71,7 @@ public:
 
 	bool GetDamageFlag();
 
-	int GetHp();
+	int GetisDie();
 
 	void SetDamageFlag(bool flag);
 private:
@@ -118,6 +118,10 @@ private:
 	float animetionTimer = 0.0f;
 
 	int  Siratamaflame = 0, Yubiflame = 0, RareEnemyFlame = 0, SnakeEnemyFlame = 0;
+
+	int smokeTimer = 0;
+
+	int isEnemyDie = 0;
 
 };
 

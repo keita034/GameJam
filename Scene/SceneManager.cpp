@@ -19,7 +19,6 @@ void SceneManager::Initialize() {
 	titleScene_->Initialize();
 	gameScene_->Initialize();
 	resultScene_->Initialize();
-	//resultScene_->Initialize();
 	pause_->Initialize();
 	sound_->Initialize();
 
@@ -60,7 +59,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
-		Stage(keys, oldkeys);
+		//Stage(keys, oldkeys);
 
 		if (key.GetKeyTrigger(KEY_INPUT_ESCAPE)) {
 			if (isESC == 0) {

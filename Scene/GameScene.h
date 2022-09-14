@@ -9,7 +9,6 @@
 #include"Score.h"
 #include"Smoke.h"
 #include"PlayerFootprints.h"
-#include"playerLevelUp.h"
 
 class GameScene
 {
@@ -43,8 +42,6 @@ private:
 	std::unique_ptr<EnemyPop> enemypop_;
 
 	PlayerFootprints* playerFootprints_ = nullptr;
-	PlayerLevelUp* playerLevelUp_ = nullptr;
-
 	int frameImg;
 	int frameYRadius = 410;
 	int frameXRadius = 690;
