@@ -39,6 +39,10 @@ GameScene::GameScene()
 
 	operationAttackImg = LoadGraph("Resources/spaceAttack.png", true);
 	operationDirectionImg = LoadGraph("Resources/changeDirection.png", true);
+	
+	score = Score::GetInstance();
+
+	playerFootprints_ = new PlayerFootprints();
 
 }
 
@@ -46,12 +50,9 @@ void GameScene::Initialize()
 {
 	player_->Initialize();
 
-	score = Score::GetInstance();
-
 	enemypop_->EnemyPopInitInit();
 
 	//smoke_ = new Smoke();
-	playerFootprints_ = new PlayerFootprints();
 
 	score->Initialize(player_.get());
 
@@ -72,8 +73,6 @@ void GameScene::Update()
 		{
 			enemypop_.get()->EnemyPopInit();
 		}*/
-
-		player_->Update();
 
 		enemypop_.get()->EnemyPopInit();
 		enemypop_.get()->EnemyPopUpdate(player_.get());

@@ -49,7 +49,7 @@ public:
 	void Reset();
 
 private:
-	Score() = default;
+	Score();
 	~Score() = default;
 
 };
