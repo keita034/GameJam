@@ -97,7 +97,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		break;
 	case SceneManager::Scene::Result://ƒŠƒUƒ‹ƒg
-		Result(keys, oldkeys);
+		
 
 		resultScene_->Update();
 		if (resultScene_->GetChangeGame() == true)
