@@ -149,12 +149,14 @@ void GameScene::Draw() {
 	DrawRotaGraph(1280 - player_->GetScreen().x, 720 - player_->GetScreen().y, 1.0, 0.0, backScreenGrandImg, true);
 
 	DrawGraph(1280 - backScreenXRadius - player_->GetScreen().x, 720 - backScreenYRadius - player_->GetScreen().y, backScreenImg, true);
+	
+	playerFootprints_->Draw(player_->GetScreen());
 
 	enemypop_.get()->EnemyPopDraw(player_.get());
 
+
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
-	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
 
 	DrawGraph(640 - frameXRadius + randX, 360 - frameYRadius + randY, frameImg, true);
