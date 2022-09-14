@@ -126,7 +126,7 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 				MakeEnemySmokeY[i] += y[i];
 
 				MakeDamageEnemySmokeX[i] += KeepVecX[i];
-				MakeDamageEnemySmokeY[i] += KeepVecY[i]; 
+				MakeDamageEnemySmokeY[i] += KeepVecY[i];
 
 			}
 			if (AllTimer < 0) {
@@ -189,7 +189,7 @@ void Smoke::Draw(Vec2 screen) {
 			SetDrawBright(100, 10, 10);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
 			DrawExtendGraph(MakeDamageEnemySmokeX[i] - SmokeRadius + 16 - screen.x, MakeDamageEnemySmokeY[i] - SmokeRadius + 16 - screen.y,
-				MakeDamageEnemySmokeX[i] + SmokeRadius - 16 - screen.x, MakeDamageEnemySmokeY[i] + - 16 - screen.y, siroGh, true);
+				MakeDamageEnemySmokeX[i] + SmokeRadius - 16 - screen.x, MakeDamageEnemySmokeY[i] + -16 - screen.y, siroGh, true);
 			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 			SetDrawBright(255, 255, 255);
 
@@ -246,21 +246,21 @@ void Smoke::MakeEnemySmoke() {
 void Smoke::DamageSmoke(int SmokePosX, int SmokePosY) {
 
 	for (int i = 0; i < 9; i++) {
-		if (damageFlag[i] == 0) {
-			damageFlag[i] = 1;
-			AllTimer = 50;
 
-			pal = 200;
-			MakeDamageEnemySmokeX[i] = SmokePosX;
-			MakeDamageEnemySmokeY[i] = SmokePosY;
+		damageFlag[i] = 1;
+		AllTimer = 50;
 
-			vecX[i] = 0.0f;
-			vecY[i] = 0.0f;
+		pal = 200;
+		MakeDamageEnemySmokeX[i] = SmokePosX;
+		MakeDamageEnemySmokeY[i] = SmokePosY;
 
-			KeepVecX[i] = 0.0f;
-			KeepVecY[i] = 0.0f;
-			y[i] = 0;
-		}
+		vecX[i] = 0.0f;
+		vecY[i] = 0.0f;
+
+		KeepVecX[i] = 0.0f;
+		KeepVecY[i] = 0.0f;
+		y[i] = 0;
+
 	}
 
 

@@ -8,9 +8,9 @@
 
 class Pause
 {
+public:
 	Pause();
 
-public:
 	//関数の制作
 
 	/// <summary>
@@ -52,6 +52,7 @@ public:
 	int GetRisetOrTitle();
 
 private:
+
 	// 画像などのリソースデータの変数宣言と読み込み
 	int MenuGh;
 	int SoundGh;
