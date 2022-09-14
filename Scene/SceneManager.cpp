@@ -139,7 +139,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		gameScene_->Initialize();
 		pause_->Initialize();
-
+		titleScene_->Initialize();
 		if (sceenSelect == 1) {
 			pal = 0;
 			sceenSelect = 0;

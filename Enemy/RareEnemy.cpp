@@ -13,7 +13,7 @@ void RareEnemy::RareEnemyInit(Vec2 pos, int siroGh)
 	smokeFlag = false;
 
 	InitPos = pos;
-	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f, 3, 0);
+	rareEnemy->Initialize(RareEnemy_, { pos.x ,pos.y }, 3.0f, 6, 0);
 }
 
 void RareEnemy::RareEnemyUpdate(Player* player_)
@@ -172,6 +172,7 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 				if (rareEnemy->GetisDie() <= 1)
 				{
 					smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
+					Score::GetInstance()->ScoreAdd(150000);
 				}
 			}
 			
@@ -191,4 +192,9 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 bool RareEnemy::IsDeath()
 {
 	return rareEnemy->IsDeath();
+}
+
+void RareEnemy::SetTimer(int timer)
+{
+	this->timer = timer;
 }

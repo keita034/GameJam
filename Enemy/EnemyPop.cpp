@@ -360,6 +360,8 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(Center, { 2240.0f ,173.0f + 173.0f*i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
+
+		rareEenmy_->SetTimer(0);
 	}
 
 	// 11ウェーブ目(60秒)
@@ -613,6 +615,8 @@ void EnemyPop::EnemyPopInit()
 	// 17ウェーブ目(90秒)--------------ここから絶対殺すマン
 	if (Poptimer == 90 * 50)
 	{
+		snakeEenmy2_ = std::make_unique<SnakeEnemy>();
+		snakeEenmy2_.get()->SnakeEnemyPop({ 1080.0f ,240.0f }, siroGh);
 		for (int i = 0; i < 10; i++)
 		{
 			std::unique_ptr<Enemy> enemy;
@@ -660,6 +664,7 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
+		
 
 		for (int i = 0; i < 10; i++)
 		{
@@ -851,7 +856,20 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 		}
 		
 	}
-
+	if (Poptimer >= 90 * 50)
+	{
+		if (snakeEenmy2_ != nullptr)
+		{
+			if (snakeEenmy2_->GetDeathCount() >= 5)
+			{
+				snakeEenmy2_.release();
+			}
+			if (snakeEenmy2_ != nullptr)
+			{
+				snakeEenmy2_->SnakeEnemyUpdate(player_);
+			}
+		}
+	}
 
 	Enemy* tmpEnemy = nullptr;
 
@@ -897,7 +915,13 @@ void EnemyPop::EnemyPopDraw(Player* player_)
 			snakeEenmy_.get()->SnakeEnemyDraw(player_);
 		}
 	}
-
+	if (Poptimer >= 90 * 50)
+	{
+		if (snakeEenmy2_ != nullptr)
+		{
+			snakeEenmy2_.get()->SnakeEnemyDraw(player_);
+		}
+	}
 	//DrawFormatString(100, 100, GetColor(255, 255, 255), "time=%d", Poptimer / 50);
 }
 
