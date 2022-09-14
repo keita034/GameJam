@@ -48,6 +48,11 @@ public:
 	/// </summary>
 	void AttackHitUpdata();
 
+	/// <summary>
+	/// damage
+	/// </summary>
+	void Damage();
+
 	void Swing();
 
 
@@ -67,6 +72,8 @@ private:
 	int level3 = 0;
 	int level4 = 0;
 	int level5 = 0;
+
+	int damage = 0;
 
 	int attackHit = 0;
 

@@ -20,6 +20,8 @@ Sound::Sound() {
 	slsectSound = LoadSoundMem("Resources/selectUI.mp3");
 	UIDecision = LoadSoundMem("Resources/UIDecision.mp3");
 
+	damage = LoadSoundMem("Resources/blood.mp3");
+
 }
 
 Sound* Sound::GetInstance()
@@ -48,7 +50,8 @@ void Sound::Updata() {
 	ChangeVolumeSoundMem(volum, UIDecision);
 
 	ChangeVolumeSoundMem(volum, swing);
-	ChangeVolumeSoundMem(volum, attackHit);
+	ChangeVolumeSoundMem(volum, attackHit); 
+	ChangeVolumeSoundMem(volum, damage);
 
 }
 
@@ -133,11 +136,14 @@ void Sound::Swing() {
 
 }
 
-
+void Sound::Damage() {
+	PlaySoundMem(damage, DX_PLAYTYPE_BACK, true);
+}
 
 void Sound::SetSound(int soundVolum) {
 
 	volum = soundVolum;
 
 }
+
 

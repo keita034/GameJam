@@ -224,6 +224,7 @@ int Player::GetAttackRadius()
 
 void Player::HPSub(int subNum)
 {
+	sound_->Damage();
 	hp -= subNum;
 	damageEffectTime = 100;
 	damageFlag = true;
