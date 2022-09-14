@@ -167,6 +167,10 @@ public:
 
 	bool DamageFlag();
 
+	bool GetLevelUpExtensionFlag();
+	int GetLevelUpExtensionTime();
+
+	unsigned int GetAttackStanceEffectColor();
 private:
 	void SwordDraw();
 };

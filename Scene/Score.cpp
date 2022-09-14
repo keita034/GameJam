@@ -63,6 +63,18 @@ void Score::Draw()
 {
 	int div = 1;
 	
+	if (player->GetLevelUpExtensionFlag())
+	{
+		if (player->GetLevelUpExtensionTime() > 50 * 3.8)
+		{
+			DrawBox(1133, 221, 1133 + (0.5 * 50 * 3.8), 237, player->GetAttackStanceEffectColor(), true);
+		}
+		else
+		{
+			DrawBox(1133, 221, 1133 + (0.5 * player->GetLevelUpExtensionTime()), 237, player->GetAttackStanceEffectColor(), true);
+		}
+	}
+
 	div = 1;
 	for (int i = 0; i < std::to_string(gameTime).length(); i++)
 	{
@@ -94,7 +106,7 @@ void Score::Draw()
 	}
 
 	DrawBox(1036, 278, 1036 + (20 * hpAfterimage), 309, GetColor(100, 0, 0), true);
-	DrawBox(1036, 278, 1036 + (20 * player->GetHp()), 309, GetColor(255, 0, 0), true);
+	DrawBox(1036, 278, 1036 + (20 * player->GetHp()), 309, 0x3cb53e, true);
 
 	//Hpバーフレーム
 	DrawRotaGraph(1135, 293, 1.0, 0.0, hpBarImg, true);
