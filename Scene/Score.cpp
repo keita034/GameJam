@@ -1,14 +1,21 @@
 #include "Score.h"
 #include"Player.h"
 
-void Score::Initialize(Player* player)
+Score::Score()
 {
-	this->player = player;
 	hpBarImg = LoadGraph("Resources/Hp_Bar.png");
 	scoreImg = LoadGraph("Resources/score_mojiFont.png");
 	comboImg = LoadGraph("Resources/combo_mojiFont.png");
 	LoadDivGraph("Resources/score_Num_font.png", 10, 10, 1, 48, 64, scoreNumber, true);
 	LoadDivGraph("Resources/Combo_x.Font.png", 2, 2, 1, 48, 48, scoreMagnificationImg, true);
+}
+
+
+void Score::Initialize(Player* player)
+{
+	this->player = player;
+	
+	Reset();
 }
 
 void Score::Update()
@@ -124,14 +131,6 @@ void Score::ResultInitialize()
 
 void Score::ResultDraw()
 {
-	//if (hignScoreFlag)
-	//{
-
-	//}
-	//else
-	//{
-
-	//}
 	int div = 1;
 	for (int i = 0; i < 5; i++)
 	{
@@ -171,4 +170,5 @@ void Score::Reset()
 	hignScoreFlag = false;
 	maxCombo = 0;
 	maxEnemydestroying = 0;
+	combo = 0;
 }

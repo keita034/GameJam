@@ -37,7 +37,41 @@ void Player::Initialize()
 	angle = -DX_PI_F / 2;
 	
 	playerLevelUp_->Initialize();
+
+	angle = 0.0f;
+	hp = 10;
+	screen = { 760.0f,360.0f };
+	screenInit = { 520.0f,360.0f };
+	attackTime = 0;
+	attackFrameTime = 0;
+	maxAttackTime = 60;
+	attackInterval = 0;
+	attackDistance = 640;
+	attackFlag = false;
+	attackStanceFlag = false;
+	oldAttackFlag = false;
+	attackRadius = 239;
+	attackPower = 1;
+	attackCameraFlag = false;
+	levelUpDistance = 179;
+	finalLevel = false;
+	comboExtensionTime = 50 * 3;
+	comboExtensionFlag = false;
+	combo = 0;
+	levelUpExtensionTime = 50 * 3.8;
+	levelUpExtensionFlag = false;
+	attackStanceEffectFlag = false;
+	attackStanceEffectTriggerFlag = false;
+	attackStanceEffectRadius = 0.0f;
+	attackStanceEffectColor = 0x2c080b;
+	damageFlag = false;
+	swordMagnification = 0.91f;
+	damageEffectImg = 0;
+	damageEffectTime = 0;
+	attackStanceEffectFrameTime = 0;
+	attackStanceEffectTime = 0;
 }
+
 
 void Player::Update()
 {
@@ -92,6 +126,11 @@ void Player::Update()
 	else
 	{
 		damageFlag = false;
+	}
+
+	if (hp <= 0)
+	{
+		hp = 0;
 	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
