@@ -109,7 +109,11 @@ private:
 	float swordMagnification = 0.91f;
 
 	bool damageFlag = false;
+
+	
 public:
+
+	int shakeTime = 20;
 
 	Player();
 	~Player() = default;

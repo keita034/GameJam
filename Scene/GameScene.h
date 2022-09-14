@@ -73,8 +73,6 @@ private:
 	Ease* ease_ = nullptr;
 	int siroGh = 0;
 
-	int shakeTime = 20;
-
 	int randX = 0;
 	int randY = 0;
 

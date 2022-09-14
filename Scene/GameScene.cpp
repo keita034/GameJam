@@ -89,22 +89,22 @@ void GameScene::Update()
 
 		if (player_->DamageFlag())
 		{
-			if (shakeTime > 0)
+			if (player_->shakeTime > 0)
 			{
-				int shake = 20 - shakeTime;
+				int shake = 20 - player_->shakeTime;
 
 				if (shake < 0)
 				{
 					shake = 0;
 				}
 
-				int shake2 = 10 - shakeTime / 3;
+				int shake2 = 10 - player_->shakeTime / 3;
 
 				randX = GetRand((20 - shake)) - (10 - shake2);
 
 				randY = GetRand((20 - shake)) - (10 - shake2);
 
-				shakeTime--;
+				player_->shakeTime--;
 			}
 			else
 			{
@@ -114,7 +114,7 @@ void GameScene::Update()
 		}
 		else
 		{
-			shakeTime = 20;
+			player_->shakeTime = 20;
 			randX = 0;
 			randY = 0;
 		}

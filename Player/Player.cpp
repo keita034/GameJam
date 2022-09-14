@@ -71,6 +71,7 @@ void Player::Initialize()
 	attackStanceEffectFrameTime = 0;
 	attackStanceEffectTime = 0;
 	level = 0;
+	shakeTime = 20;
 }
 
 
@@ -228,6 +229,7 @@ void Player::HPSub(int subNum)
 	hp -= subNum;
 	damageEffectTime = 100;
 	damageFlag = true;
+	shakeTime = 20;
 }
 
 void Player::HPAdd(int addNum)
