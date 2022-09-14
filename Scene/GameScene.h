@@ -79,6 +79,8 @@ private:
 
 	int gameFinish = 5000;
 
+
+
 	int finish = 0;
 };
 

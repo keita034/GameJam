@@ -51,6 +51,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 
 		pause_->Update();
+		risetOrTitle(pause_->GetRisetOrTitle());
 		sound_->SetSound(pause_->GetSoundVolum());
 		sound_->TitleUpdate();
 		sound_->Updata();
@@ -80,6 +81,8 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 		pause_->Update();
 		vx = pause_->GetSoundVolum();
+		risetOrTitle(pause_->GetRisetOrTitle());
+
 		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
 		sound_->Updata();
@@ -109,7 +112,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		}
 		if (sceenSelect == 1 || sceenSelect== 3) {
 			pal += 5;
-			if (pal > 255) {
+			if (pal >= 255) {
 				scene_ = Scene::Initialize;
 			}
 		}
@@ -142,11 +145,13 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		if (sceenSelect == 1) {
 			pal = 0;
 			sceenSelect = 0;
+			isESC = 0;
 			scene_ = Scene::Title;
 		}
 		else if (sceenSelect == 3) {
 			pal = 0;
 			sceenSelect = 0;
+			isESC = 0;
 			scene_ = Scene::Stage;
 		}
 		break;
@@ -279,3 +284,24 @@ void SceneManager::TestMove() {
 
 }
 
+void SceneManager::risetOrTitle(int x) {
+	if (x == 1) {
+		if (pal < 255) {
+			pal += 5;
+		}
+		if (pal >= 255) {
+			sceenSelect = 3;
+			scene_ = Scene::Initialize;
+		}
+	}
+	else if (x == 2) {
+		if (pal < 255) {
+			pal += 5;
+		}
+		if (pal >= 255) {
+			sceenSelect = 1;
+			scene_ = Scene::Initialize;
+		}
+	}
+
+}
