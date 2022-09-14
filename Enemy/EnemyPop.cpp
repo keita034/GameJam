@@ -361,7 +361,11 @@ void EnemyPop::EnemyPopInit()
 			enemys_.push_back(std::move(enemy));
 		}
 
-		rareEenmy_->SetTimer(0);
+		if (rareEenmy_ != nullptr)
+		{
+			rareEenmy_->SetTimer(0);
+		}
+
 	}
 
 	// 11ウェーブ目(60秒)
