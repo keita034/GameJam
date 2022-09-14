@@ -2,6 +2,20 @@
 #include"Enemy.h"
 #include"Collision.h"
 
+
+Player::Player()
+{
+	playerImg = LoadGraph("Resources/playerTop01.png");
+	LoadDivGraph("Resources/player_kurisuta_None.png", 5, 5, 1, 280, 320, playerFrameImg);
+	damageEffectImg = LoadGraph("Resources/DamageEfect.png");
+	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
+	swordImg = LoadGraph("Resources/sword.png");
+	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
+
+	playerLevelUp_ = new PlayerLevelUp();
+	sound_ = Sound::GetInstance();
+}
+
 bool Complement(float& x1, float x2, float flame)//移動補完
 {
 	float distanceX = x2 - x1;//距離を出す
@@ -21,16 +35,7 @@ void Player::Initialize()
 {
 	pos = { 1280.0f,720.0f };
 	angle = -DX_PI_F / 2;
-	playerImg = LoadGraph("Resources/playerTop01.png");
-	LoadDivGraph("Resources/player_kurisuta_None.png", 5, 5, 1, 280, 320, playerFrameImg);
-	damageEffectImg = LoadGraph("Resources/DamageEfect.png");
-	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
-	swordImg = LoadGraph("Resources/sword.png");
-	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
-
-	playerLevelUp_ = new PlayerLevelUp();
-	sound_ = Sound::GetInstance();
-
+	
 	playerLevelUp_->Initialize();
 }
 
@@ -84,6 +89,10 @@ void Player::Update()
 	{
 		damageEffectTime -= 2;
 	}
+	else
+	{
+		damageFlag = false;
+	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
 
@@ -112,20 +121,30 @@ void Player::Draw()
 
 	SwordDraw();
 
-	DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
+	//フレームのプレイヤー
+	if (damageEffectTime <= 0)
+	{
+		DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
+	}
+	else
+	{
+		SetDrawBright(100, 0, 0);
+		DrawRotaGraph3(pos.x - screen.x, pos.y - screen.y, 64, 64, 0.8, 0.8, angle, playerImg, true);
+		SetDrawBright(255, 255, 255);
+	}
 
 	if (attackStanceFlag && !attackFlag)
 	{
 
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 50);
-		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 255),false,3);
+		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 255), false, 3);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
 	if (attackStanceEffectFlag && !attackFlag)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40);
-  		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackStanceEffectRadius, attackStanceEffectColor, false,3);
+		DrawCircle(pos.x - screen.x, pos.y - screen.y, attackStanceEffectRadius, attackStanceEffectColor, false, 3);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 		if (attackStanceEffectTime >= 1.0f)
@@ -145,7 +164,7 @@ void Player::Draw()
 	//	DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
 	//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	//}
-	
+
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
 	{
@@ -158,7 +177,7 @@ void Player::Draw()
 
 	//ダメージエフェクト
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, damageEffectTime);
-	SetDrawBright(255,0,0);
+	SetDrawBright(255, 0, 0);
 	DrawRotaGraph(1135, 512, 1.0, 0.0, damageEffectImg, true);
 	SetDrawBright(255, 255, 255);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -193,6 +212,7 @@ void Player::HPSub(int subNum)
 {
 	hp -= subNum;
 	damageEffectTime = 100;
+	damageFlag = true;
 }
 
 void Player::HPAdd(int addNum)
@@ -210,7 +230,8 @@ int Player::GetHp()
 	return hp;
 }
 
-float Player::GetAngle() {
+float Player::GetAngle()
+{
 	return angle;
 }
 
@@ -406,85 +427,7 @@ bool Player::AttackTriggerFlag()
 
 void Player::Attack()
 {
-
-	if (key.GetKeyTrigger(KEY_INPUT_UP))
-	{
-		level++;
-	}
-
-	if (key.GetKeyTrigger(KEY_INPUT_DOWN))
-	{
-		level--;
-	}
-
-	if (key.GetKeyTrigger(KEY_INPUT_RETURN))
-	{
-		switch (level)
-		{
-		case 0:
-			attackRadius = 239;
-			attackPower = 1;
-			maxAttackTime = 60;
-			attackDistance = 640;
-			levelUpDistance = 179;
-			attackStanceEffectColor = 0x2c080b;
-			swordMagnification = 0.91f;
-
-			break;
-
-		case 1:
-			attackRadius = 218;
-			attackPower = 1;
-			maxAttackTime = 58;
-			attackDistance = 663;
-			levelUpDistance = 158;
-			attackStanceEffectColor = 0x500f14;
-			swordMagnification = 0.81f;
-
-
-			break;
-
-		case 2:
-			attackRadius = 197;
-			attackPower = 2;
-			maxAttackTime = 52;
-			attackDistance = 706;
-			levelUpDistance = 137;
-			attackStanceEffectColor = 0x841821;
-			swordMagnification = 0.76f;
-
-			break;
-
-		case 3:
-			attackRadius = 176;
-			attackPower = 2;
-			maxAttackTime = 46;
-			attackDistance = 749;
-			levelUpDistance = 116;
-			attackStanceEffectColor = 0xb4172b;
-			swordMagnification = 0.66f;
-
-			break;
-
-		case 4:
-			finalLevel = true;
-			attackRadius = 155;
-			attackPower = 3;
-			maxAttackTime = 40;
-			attackDistance = 800;
-			levelUpDistance = 96;
-			attackStanceEffectColor = 0xcd3043;
-			swordMagnification = 0.60f;
-
-			break;
-
-		default:
-
-			break;
-		}
-	}
-
-	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE)&& attackInterval == 0;
+	attackStanceFlag = key.GetKey(KEY_INPUT_SPACE) && attackInterval == 0;
 
 	if (key.GetKeyTrigger(KEY_INPUT_SPACE) && attackInterval == 0)
 	{
@@ -577,7 +520,7 @@ void Player::SwordDraw()
 	int posX = pos.x - screen.x;
 	int posY = pos.y - screen.y;
 
-	if (attackStanceFlag &&!attackFlag)
+	if (attackStanceFlag && !attackFlag)
 	{
 		DrawRotaGraph2(posX, posY, 20, -10, swordMagnification, angle, swordImg, true);
 		DrawRotaGraph2(posX, posY, 20, 48, swordMagnification, angle, swordImg, true, false, true);
@@ -585,19 +528,23 @@ void Player::SwordDraw()
 
 	if (attackFlag)
 	{
-		int time = (attackFrameTime+15) / (maxAttackTime / static_cast<float>(5));
+		int time = (attackFrameTime + 15) / (maxAttackTime / static_cast<float>(5));
 		if (time >= 4)
 		{
 			time = 4;
 		}
 
 		DrawRotaGraph2(posX, posY, 320, 300, swordMagnification, angle, swordAnimationImg[time], true, true);
-		DrawRotaGraph2(posX, posY, 320, 30, swordMagnification, angle, swordAnimationImg[time], true , true, true);
-
+		DrawRotaGraph2(posX, posY, 320, 30, swordMagnification, angle, swordAnimationImg[time], true, true, true);
 	}
 }
 
 int Player::GetLevel()
 {
 	return level;
+}
+
+bool Player::DamageFlag()
+{
+	return damageFlag;
 }

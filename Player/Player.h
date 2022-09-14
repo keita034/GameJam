@@ -108,9 +108,10 @@ private:
 
 	float swordMagnification = 0.91f;
 
+	bool damageFlag = false;
 public:
 
-	Player() = default;
+	Player();
 	~Player() = default;
 
 	/// <summary>
@@ -163,6 +164,8 @@ public:
 	void AddCombo();
 
 	float GetAngle();
+
+	bool DamageFlag();
 
 private:
 	void SwordDraw();
