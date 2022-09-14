@@ -8,6 +8,7 @@
 
 class Pause
 {
+	Pause();
 
 public:
 	//ŠÖ”‚Ì§ì

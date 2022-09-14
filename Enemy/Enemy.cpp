@@ -348,7 +348,7 @@ void Enemy::HPSub(int subNum)
 	if (damageFlag)
 	{
 		hp -= subNum;
-
+		smoke_->DamageSmoke(pos_.x, pos_.y);
 		damageFlag = false;
 	}
 

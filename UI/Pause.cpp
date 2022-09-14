@@ -2,7 +2,7 @@
 #include<math.h>
 #include"Sound.h"
 
-void Pause::Initialize() {
+Pause::Pause() {
 	// 画像などのリソースデータの変数宣言と読み込み
 	MenuGh = LoadGraph("Resources/Menu.png", true);
 	SoundGh = LoadGraph("Resources/Sound.png", true);
@@ -16,6 +16,14 @@ void Pause::Initialize() {
 	soundBarGh = LoadGraph("Resources/soundBar.png", true);
 	soundChangeGh = LoadGraph("Resources/soundChange.png", true);
 
+	soundChangeLeftFinalX = 1000 - 16;
+	soundChangeRightFinalX = 1000 + 16;
+	keepSoundLeft = soundChangeLeftFinalX;
+	keepSoundRight = soundChangeRightFinalX;
+}
+
+void Pause::Initialize() {
+
 	//イージング初期化
 	ease_ = new Ease();
 
@@ -28,11 +36,6 @@ void Pause::Initialize() {
 	MaxTimer[4] = 120.0f;
 	MaxTimer[5] = 20.0f;
 	MaxTimer[6] = 120.0f;
-
-	soundChangeLeftFinalX = 1000 - 16;
-	soundChangeRightFinalX = 1000 + 16;
-	keepSoundLeft = soundChangeLeftFinalX;
-	keepSoundRight = soundChangeRightFinalX;
 
 	selectSceen = 0;
 	menuXFinal = -400; soundXFinal = -500; ResetXFinal = -500; TitleXFinal = -500; GameOutXFinal = -300;

@@ -36,6 +36,11 @@ public:
 	/// <summary>
 	/// 死んだときに出すスモーク
 	/// </summary>
+	void DamageSmoke(int SmokePosX, int SmokePosY);
+
+	/// <summary>
+	/// 死んだときに出すスモーク
+	/// </summary>
 	void DieSmoke(int SmokePosX,int SmokePosY);
 
 private:
@@ -46,6 +51,10 @@ private:
 	float MakeEnemySmokeX[100];
 	float MakeEnemySmokeY[100];
 	float y[100];
+
+	float MakeDamageEnemySmokeX[100];
+	float MakeDamageEnemySmokeY[100];
+
 	float MakeBossSmokeX[100];
 	float MakeBossSmokeY[100];
 
@@ -56,6 +65,8 @@ private:
 
 	float randX[300];
 	float randY[300];
+
+	int damageFlag[300];
 
 	int MakeEnemyPal[300];
 	int MakeBossPal[300];

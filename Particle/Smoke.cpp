@@ -64,6 +64,27 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 			}
 		}
 	}
+	if (drawTimer == 0) {
+		for (int i = 0; i < 100; i++) {
+			if (damageFlag[i] == 1) {
+				if (smokeFlag[i] == 0) {
+					frame++;
+
+					if (1 < frame) {
+						frame = 0;
+						break;
+					}
+					drawTimer = 1;
+					smokeFlag[i] = 1;
+					// アングルをランダムで指定
+					int angle = GetRandomRange(0, 360);
+					vecX[i] = cos(Radian(angle));
+					vecY[i] = sin(Radian(angle));
+
+				}
+			}
+		}
+	}
 	AllTimer--;
 	pal = pal - 3;
 	for (int i = 0; i < 100; i++) {
@@ -104,11 +125,33 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 				MakeEnemySmokeY[i] += KeepVecY[i];
 				MakeEnemySmokeY[i] += y[i];
 
+				MakeDamageEnemySmokeX[i] += KeepVecX[i];
+				MakeDamageEnemySmokeY[i] += KeepVecY[i]; 
 
 			}
 			if (AllTimer < 0) {
 				smokeFlag[i] = 0;
 				dieFlag[i] = 0;
+				AllTimer = -1;
+			}
+		}
+	}
+	for (int i = 0; i < 100; i++) {
+		if (smokeFlag[i] == 1) {
+			if (damageFlag[i] == 1) {
+
+				KeepVecX[i] += vecX[i] * 2;
+				KeepVecY[i] += vecY[i] * 1.5f;
+
+				y[i] -= 0.8;
+
+				MakeDamageEnemySmokeX[i] += KeepVecX[i];
+				MakeDamageEnemySmokeY[i] += KeepVecY[i];
+
+			}
+			if (AllTimer < 0) {
+				damageFlag[i] = 0;
+				smokeFlag[i] = 0;
 				AllTimer = -1;
 			}
 		}
@@ -142,6 +185,13 @@ void Smoke::Draw(Vec2 screen) {
 
 	for (int i = 0; i < 100; i++) {
 		if (smokeFlag[i] == 1) {
+
+			SetDrawBright(100, 10, 10);
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
+			DrawExtendGraph(MakeDamageEnemySmokeX[i] - SmokeRadius + 16 - screen.x, MakeDamageEnemySmokeY[i] - SmokeRadius + 16 - screen.y,
+				MakeDamageEnemySmokeX[i] + SmokeRadius - 16 - screen.x, MakeDamageEnemySmokeY[i] + - 16 - screen.y, siroGh, true);
+			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+			SetDrawBright(255, 255, 255);
 
 			SetDrawBright(10, 10, 10);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
@@ -193,6 +243,28 @@ void Smoke::MakeEnemySmoke() {
 //
 //}
 
+void Smoke::DamageSmoke(int SmokePosX, int SmokePosY) {
+
+	for (int i = 0; i < 9; i++) {
+		if (damageFlag[i] == 0) {
+			damageFlag[i] = 1;
+			AllTimer = 50;
+
+			pal = 200;
+			MakeDamageEnemySmokeX[i] = SmokePosX;
+			MakeDamageEnemySmokeY[i] = SmokePosY;
+
+			vecX[i] = 0.0f;
+			vecY[i] = 0.0f;
+
+			KeepVecX[i] = 0.0f;
+			KeepVecY[i] = 0.0f;
+			y[i] = 0;
+		}
+	}
+
+
+}
 
 void Smoke::DieSmoke(int SmokePosX, int SmokePosY) {
 
