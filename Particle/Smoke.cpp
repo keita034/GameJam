@@ -12,6 +12,9 @@ void Smoke::Initialize(int siroGh_) {
 		smokeFlag[i] = 0;
 		AllTimer = 0;
 		pal = 0;
+		damageFlag[i] = 0;
+		MakeEnemySmokeX[i] = 0;
+		MakeEnemySmokeY[i] = 0;
 	}
 }
 
@@ -34,7 +37,7 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 					drawTimer = 1;
 					smokeFlag[i] = 1;
 					// アングルをランダムで指定
-					int angle = GetRandomRange(0, 360);
+					float angle = GetRand_(1, 359);
 					vecX[i] = cos(Radian(angle));
 					vecY[i] = sin(Radian(angle));
 					MakeEnemyFlag[i] = 0;
@@ -56,9 +59,10 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 					drawTimer = 1;
 					smokeFlag[i] = 1;
 					// アングルをランダムで指定
-					int angle = GetRandomRange(0, 360);
+					float angle = GetRand_(1, 359);
+					
 					vecX[i] = cos(Radian(angle));
-					vecY[i] = sin(Radian(angle));
+   					vecY[i] = sin(Radian(angle));
 
 				}
 			}
@@ -77,7 +81,7 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 					drawTimer = 1;
 					smokeFlag[i] = 1;
 					// アングルをランダムで指定
-					int angle = GetRandomRange(0, 360);
+					float angle = GetRand_(1, 359);
 					vecX[i] = cos(Radian(angle));
 					vecY[i] = sin(Radian(angle));
 
@@ -124,9 +128,6 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 				MakeEnemySmokeX[i] += KeepVecX[i];
 				MakeEnemySmokeY[i] += KeepVecY[i];
 				MakeEnemySmokeY[i] += y[i];
-
-				MakeDamageEnemySmokeX[i] += KeepVecX[i];
-				MakeDamageEnemySmokeY[i] += KeepVecY[i];
 
 			}
 			if (AllTimer < 0) {
@@ -186,19 +187,22 @@ void Smoke::Draw(Vec2 screen) {
 	for (int i = 0; i < 100; i++) {
 		if (smokeFlag[i] == 1) {
 
-			SetDrawBright(100, 10, 10);
-			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
-			DrawExtendGraph(MakeDamageEnemySmokeX[i] - SmokeRadius + 16 - screen.x, MakeDamageEnemySmokeY[i] - SmokeRadius + 16 - screen.y,
-				MakeDamageEnemySmokeX[i] + SmokeRadius - 16 - screen.x, MakeDamageEnemySmokeY[i] + -16 - screen.y, siroGh, true);
-			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-			SetDrawBright(255, 255, 255);
+			if (damageFlag[i] == 1) {
+				SetDrawBright(230, 10, 10);
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
+				DrawRotaGraph(MakeEnemySmokeX[i] - screen.x, MakeEnemySmokeY[i] - screen.y, 0.3, 0.0, siroGh, true);
+				SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+				SetDrawBright(255, 255, 255);
+			}
 
-			SetDrawBright(10, 10, 10);
-			SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
-			DrawExtendGraph(MakeEnemySmokeX[i] - SmokeRadius - screen.x, MakeEnemySmokeY[i] - SmokeRadius - screen.y,
-				MakeEnemySmokeX[i] + SmokeRadius - screen.x, MakeEnemySmokeY[i] + SmokeRadius - screen.y, siroGh, true);
-			SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-			SetDrawBright(255, 255, 255);
+			if (dieFlag[i] == 1 || MakeEnemyFlag[i] == 1) {
+				SetDrawBright(10, 10, 10);
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA, pal);
+				DrawExtendGraph(MakeEnemySmokeX[i] - SmokeRadius - screen.x, MakeEnemySmokeY[i] - SmokeRadius - screen.y,
+					MakeEnemySmokeX[i] + SmokeRadius - screen.x, MakeEnemySmokeY[i] + SmokeRadius - screen.y, siroGh, true);
+				SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+				SetDrawBright(255, 255, 255);
+			}
 
 		}
 	}
@@ -219,6 +223,7 @@ void Smoke::MakeEnemySmoke() {
 
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
+
 
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
@@ -246,23 +251,24 @@ void Smoke::MakeEnemySmoke() {
 void Smoke::DamageSmoke(int SmokePosX, int SmokePosY) {
 
 	for (int i = 0; i < 9; i++) {
-
 		damageFlag[i] = 1;
-		AllTimer = 50;
+		AllTimer = 80;
 
 		pal = 200;
-		MakeDamageEnemySmokeX[i] = SmokePosX;
-		MakeDamageEnemySmokeY[i] = SmokePosY;
+		MakeEnemySmokeX[i] = SmokePosX;
+		MakeEnemySmokeY[i] = SmokePosY;
 
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
 
+		float angle = GetRand_(1, 359);
+		vecX[i] = cos(Radian(angle));
+		vecY[i] = sin(Radian(angle));
+
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
 		y[i] = 0;
-
 	}
-
 
 }
 
@@ -278,7 +284,9 @@ void Smoke::DieSmoke(int SmokePosX, int SmokePosY) {
 
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
-
+		float angle = GetRand_(1, 359);
+		vecX[i] = cos(Radian(angle));
+		vecY[i] = sin(Radian(angle));
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
 		y[i] = 0;

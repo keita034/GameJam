@@ -1,6 +1,7 @@
 #pragma once
 #include <DxLib.h>
 #include"Vec2.h"
+#include<random>
 
 class Smoke {
 
@@ -42,6 +43,20 @@ public:
 	/// 死んだときに出すスモーク
 	/// </summary>
 	void DieSmoke(int SmokePosX,int SmokePosY);
+
+	// ランダムな値を取得
+	float GetRand_(float min, float max)
+	{
+		// 乱数生成器
+		static std::random_device rd;
+		static std::default_random_engine eng(rd());
+
+		// 分布生成器
+		std::uniform_real_distribution<float> get_rand_uni_real(min, max);
+
+		// 乱数を生成
+		return get_rand_uni_real(eng);
+	}
 
 private:
 
