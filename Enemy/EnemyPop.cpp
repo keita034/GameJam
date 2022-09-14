@@ -62,7 +62,7 @@ void EnemyPop::EnemyPopInit()
 
 		//-----------------------------------------------ƒŒƒA“G
 		rareEenmy_= std::make_unique<RareEnemy>();
-		rareEenmy_.get()->RareEnemyInit({ 1280, -70 });
+		rareEenmy_.get()->RareEnemyInit({ 1280, -70 },siroGh);
 	}
 
 	// ‚QƒEƒF[ƒu–Ú(‚V•b)

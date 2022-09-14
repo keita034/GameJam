@@ -13,7 +13,7 @@ void SnakeEnemy::SnakeEnemyPop(Vec2 pos, int siroGh)
 		Vec2 EPos = snakeEnemy[j].get()->GetPos();
 		snakeEnemy[i].get()->SetTrakingEnemyPos(EPos);
 		snakeEnemy[i]->Initialize(TrakingEnemy, { pos.x + 75 * i ,pos.y }, 3.0f, 1, 0);
-		isEnemyDie[i] = 0;
+		//isEnemyDie[i] = 0;
 	}
 }
 

@@ -129,10 +129,6 @@ void Player::Update()
 		damageFlag = false;
 	}
 
-	if (hp <= 0)
-	{
-		hp = 0;
-	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
 
@@ -143,23 +139,13 @@ void Player::Draw()
 {
 
 	playerLevelUp_->Draw(screen);
-	//DrawLine(
-	//	pos.x - screen.x, pos.y - screen.y,
-	//	pos.x + frontVec.x * 100 - screen.x, pos.y + frontVec.y * 100 - screen.y,
-	//	GetColor(255, 0, 0), 3);
-
-	DrawFormatString(130, 60, GetColor(255, 0, 255), "Pos:%f,%f", pos.x, pos.y);
-	DrawFormatString(130, 80, GetColor(255, 0, 255), "Screen:%f,%f", screen.x, screen.y);
-
-	DrawFormatString(130, 100, GetColor(255, 0, 255), "comboExtensionTime:%f", comboExtensionTime);
-	DrawFormatString(130, 120, GetColor(255, 0, 255), "combo:%d", combo);
-
-	DrawFormatString(130, 140, GetColor(255, 0, 255), "levelUpExtensionTime:%f", levelUpExtensionTime);
-	DrawFormatString(130, 160, GetColor(255, 0, 255), "Level:%d", level);
-
-	DrawFormatString(130, 180, GetColor(255, 0, 255), "angle:%f", angle);
 
 	SwordDraw();
+
+	if (hp <= 0)
+	{
+		hp = 0;
+	}
 
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
@@ -192,18 +178,6 @@ void Player::Draw()
 			attackStanceEffectFlag = false;
 		}
 	}
-
-	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-	//DrawCircle(pos.x - screen.x, pos.y - screen.y, levelUpDistance, GetColor(255, 155, 0));
-	//DrawCircle(pos.x - screen.x, pos.y - screen.y, radius, GetColor(255, 0, 0));
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-
-	//if (attackFlag)
-	//{
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-	//	DrawCircle(pos.x - screen.x, pos.y - screen.y, attackRadius, GetColor(255, 255, 0));
-	//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	//}
 
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
