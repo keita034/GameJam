@@ -2,7 +2,7 @@
 #include"SceneManager.h"
 #include"KeyBoardInput.h"
 // ウィンドウのタイトルに表示する文字列
-const char TITLE[] = "2021_Blood Slash";
+const char TITLE[] = "2021_BloodSlash";
 
 // ウィンドウ横幅
 const int WIN_WIDTH = 1280;
