@@ -66,7 +66,6 @@ void Player::Initialize()
 	attackStanceEffectColor = 0x2c080b;
 	damageFlag = false;
 	swordMagnification = 0.91f;
-	damageEffectImg = 0;
 	damageEffectTime = 0;
 	attackStanceEffectFrameTime = 0;
 	attackStanceEffectTime = 0;
@@ -193,7 +192,7 @@ void Player::Draw()
 	//ダメージエフェクト
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, damageEffectTime);
 	SetDrawBright(255, 0, 0);
-	DrawRotaGraph(1135, 512, 1.0, 0.0, damageEffectImg, true);
+	DrawRotaGraph(1135, 515, 1.0, 0.0, damageEffectImg, true);
 	SetDrawBright(255, 255, 255);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
