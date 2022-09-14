@@ -78,14 +78,13 @@ void Sound::resultSceneUpdate()
 	}
 }
 
-void Sound::SelectUpdate(int soundVolum) {
+void Sound::SelectUpdate() {
 
 
 	PlaySoundMem(slsectSound, DX_PLAYTYPE_BACK, true);
-	DrawFormatString(600, 200, GetColor(0, 0, 0), "%d", soundVolum);
 }
 
-void Sound::DecisionUpdate(int soundVolum) {
+void Sound::DecisionUpdate() {
 	if (CheckSoundMem(UIDecision) == 0) {
 		PlaySoundMem(UIDecision, DX_PLAYTYPE_BACK, true);
 	}
@@ -122,7 +121,7 @@ void Sound::levelUpdata(int level_) {
 
 }
 
-void Sound::AttackHitUpdata(int soundVolum) {
+void Sound::AttackHitUpdata() {
 
 	PlaySoundMem(attackHit, DX_PLAYTYPE_BACK, true);
 }

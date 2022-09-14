@@ -921,8 +921,7 @@ void EnemyPop::CheckCollisions(Player* player_)
 				if (enemy->GetDamageFlag())
 				{
 					player_->AddCombo();
-					int x = pause_->GetSoundVolum();
-					sound_->AttackHitUpdata(x);
+					sound_->AttackHitUpdata();
 				}
 
 				enemy->HPSub(player_->GetAttackPower());

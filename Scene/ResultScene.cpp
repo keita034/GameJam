@@ -39,7 +39,7 @@ void ResultScene::Update()
 	{
 		if (hit1 == 0) {
 			hit1 = 1;
-			sound_->SelectUpdate(150);
+			sound_->SelectUpdate();
 		}
 		flame1 = 0;
 		int Mouse = GetMouseInput();
@@ -57,7 +57,7 @@ void ResultScene::Update()
 	{
 		if (hit2 == 0) {
 			hit2 = 1;
-			sound_->SelectUpdate(150);
+			sound_->SelectUpdate();
 		}
 		flame2 = 0;
 		int Mouse = GetMouseInput();

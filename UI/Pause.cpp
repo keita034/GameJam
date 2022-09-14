@@ -188,7 +188,7 @@ void Pause::MenuSelect() {
 				isHit = 1;
 				pal = 255; pal2 = 120; pal3 = 120;
 				if (soundFlagHit1 == 0) {
-					sound_->SelectUpdate(soundVolume);
+					sound_->SelectUpdate();
 					soundFlagHit1 = 1;
 				}
 			}
@@ -207,7 +207,7 @@ void Pause::MenuSelect() {
 				isHit2 = 1;
 				pal = 120; pal2 = 255; pal3 = 120;
 				if (soundFlagHit2 == 0) {
-					sound_->SelectUpdate(soundVolume);
+					sound_->SelectUpdate();
 					soundFlagHit2 = 1;
 				}
 			}
@@ -226,7 +226,7 @@ void Pause::MenuSelect() {
 				isHit3 = 1;
 				pal = 120; pal2 = 120; pal3 = 255;
 				if (soundFlagHit3 == 0) {
-					sound_->SelectUpdate(soundVolume);
+					sound_->SelectUpdate();
 					soundFlagHit3 = 1;
 				}
 			}
@@ -244,7 +244,7 @@ void Pause::MenuSelect() {
 			if (GameOutY < y && y < GameOutY + 64) {
 				isHit4 = 1;
 				if (soundFlagHit4 == 0) {
-					sound_->SelectUpdate(soundVolume);
+					sound_->SelectUpdate();
 					soundFlagHit4 = 1;
 				}
 			}
@@ -263,7 +263,7 @@ void Pause::MenuSelect() {
 			if (backTopY < y && y < backDownY) {
 				isHit5 = 1;
 				if (soundFlagHit5 == 0) {
-					sound_->SelectUpdate(soundVolume);
+					sound_->SelectUpdate();
 					soundFlagHit5 = 1;
 				}
 			}
@@ -299,21 +299,21 @@ void Pause::MenuSelect() {
 			timer[5] = 0;
 			isSetting = 1;
 			pal5 = 70;
-			sound_->DecisionUpdate(soundVolume);
+			sound_->DecisionUpdate();
 		}
 	}
 	if (isHit2 == 1) {
 		int Mouse = GetMouseInput();
 		if (Mouse && MOUSE_INPUT_LEFT) {
 			selectSceen = 1;
-			sound_->DecisionUpdate(soundVolume);
+			sound_->DecisionUpdate();
 		}
 	}
 	if (isHit3 == 1) {
 		int Mouse = GetMouseInput();
 		if (Mouse && MOUSE_INPUT_LEFT) {
 			selectSceen = 2;
-			sound_->DecisionUpdate(soundVolume);
+			sound_->DecisionUpdate();
 		}
 	}
 	if (isHit4 == 1) {
@@ -327,7 +327,7 @@ void Pause::MenuSelect() {
 		if (mouse.GetCrickTrigger(MOUSE_INPUT_LEFT)) {
 			timer[5] = 0;
 			isSettingBack = 1;
-			sound_->DecisionUpdate(soundVolume);
+			sound_->DecisionUpdate();
 		}
 	}
 

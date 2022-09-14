@@ -58,7 +58,7 @@ void GameScene::Initialize()
 
 	playerFootprints_->Initialize();
 
-	gameFinish = 100;
+	gameFinish = 5500;
 	finish = 0;
 	changeFinish = 0;
 	finishX = 300;

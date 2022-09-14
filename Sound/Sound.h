@@ -35,8 +35,8 @@ public:
 	/// <summary>
 	/// UIˆ—
 	/// </summary>
-	void SelectUpdate(int soundVolum);
-	void DecisionUpdate(int soundVolum);
+	void SelectUpdate();
+	void DecisionUpdate();
 
 	/// <summary>
 	/// levelUpˆ—
@@ -46,7 +46,7 @@ public:
 	/// <summary>
 	/// AttackHitˆ—
 	/// </summary>
-	void AttackHitUpdata(int soundVolum);
+	void AttackHitUpdata();
 
 	void Swing();
 
