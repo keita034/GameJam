@@ -153,10 +153,6 @@ void Smoke::Draw(Vec2 screen) {
 		}
 	}
 
-
-	DrawFormatString(700, 200, GetColor(0, 0, 0), "%f", MakeEnemySmokeX[0], true);
-	DrawFormatString(700, 220, GetColor(0, 0, 0), "%f", MakeEnemySmokeY[0], true);
-	DrawFormatString(700, 240, GetColor(0, 0, 0), "%d", smokeFlag[0], true);
 }
 
 void Smoke::MakeEnemySmoke() {

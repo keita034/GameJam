@@ -9,6 +9,7 @@
 #include"Score.h"
 #include"Smoke.h"
 #include"PlayerFootprints.h"
+#include"Ease.h"
 
 class GameScene
 {
@@ -69,7 +70,7 @@ private:
 	int operationDirectionImg;
 
 	Score* score = nullptr;
-
+	Ease* ease_ = nullptr;
 	int siroGh = 0;
 
 	int shakeTime = 20;
@@ -79,7 +80,17 @@ private:
 
 	int gameFinish = 5000;
 
+	int FinishGh = 0;
+	int changeFinish = 0;
+	int change = 0;
 
+	float finishX;
+	float finishY;
+	float finishXFinishX;
+	float finishYFinishY;
+
+	float easeTimer;
+	float easeMaxTimer;
 
 	int finish = 0;
 };

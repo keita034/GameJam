@@ -36,6 +36,7 @@ GameScene::GameScene()
 	backScreenGrandImg = LoadGraph("Resources/GameSceneBackGround.png");
 
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
+	FinishGh = LoadGraph("Resources/FinshFont.png", true);
 
 	operationAttackImg = LoadGraph("Resources/spaceAttack.png", true);
 	operationDirectionImg = LoadGraph("Resources/changeDirection.png", true);
@@ -43,7 +44,8 @@ GameScene::GameScene()
 	score = Score::GetInstance();
 
 	playerFootprints_ = new PlayerFootprints();
-
+	//イージング初期化
+	ease_ = new Ease();
 }
 
 void GameScene::Initialize()
@@ -56,9 +58,15 @@ void GameScene::Initialize()
 
 	playerFootprints_->Initialize();
 
-	gameFinish = 5700;
+	gameFinish = 100;
 	finish = 0;
-
+	changeFinish = 0;
+	finishX = 300;
+	finishY = -350;
+	easeTimer = 0;
+	finishYFinishY = 250;
+	easeMaxTimer = 100;
+	change = 0;
 }
 
 void GameScene::Update()
@@ -121,10 +129,24 @@ void GameScene::Update()
 			gameFinish = 0;
 		}
 	}
+
+
 	if (gameFinish <= 0) {
+		changeFinish = 1;
+	}
+	if (changeFinish == 1) {
+		if (easeTimer < easeMaxTimer) {
+			easeTimer++;
+		}
+	}
+	if (easeTimer >= 100) {
+		change = 1;
+		easeTimer = 0;
+		finishYFinishY = -300;
 		finish = 1;
 	}
 
+	finishY = finishY + (finishYFinishY - finishY) * ease_->easeInOutCubic(easeTimer / easeMaxTimer);
 }
 
 
@@ -143,7 +165,10 @@ void GameScene::Draw() {
 
 	DrawGraph(1136 - playerBackXRadius, 510 - playerBackYRadius, playerBackImg, true);
 
-	DrawFormatString(700, 140, GetColor(0, 0, 0), "%d", gameFinish, true);
+	DrawFormatString(700, 140, GetColor(0, 0, 0), "%f", finishY, true);
+	DrawFormatString(700, 200, GetColor(0, 0, 0), "%f", easeTimer, true);
+	DrawFormatString(700, 220, GetColor(0, 0, 0), "%f", easeMaxTimer, true);
+	DrawFormatString(700, 240, GetColor(0, 0, 0), "%f", finishYFinishY, true);
 
 	playerFootprints_->Draw(player_->GetScreen());
 	player_->Draw();
@@ -153,6 +178,7 @@ void GameScene::Draw() {
 
 	DrawGraph(80, 672, operationAttackImg, true);
 	DrawGraph(435, 672, operationDirectionImg, true);
+	DrawGraph(finishX, finishY, FinishGh, true);
 
 	score->Draw();
 }

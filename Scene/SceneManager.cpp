@@ -90,7 +90,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 
 		if (gameScene_->GetFinish() == 1) {
 			pal += 5;
-			if (pal > 255) {
+			if (pal >= 255) {
 				scene_ = Scene::Blackout;
 			}
 		}
@@ -179,7 +179,6 @@ void SceneManager::Draw() {
 		DrawGraph(60, 60, escGh, true);
 		pause_->Draw();
 
-		DrawFormatString(700, 300, GetColor(0, 0, 0), "%d", pal, true);
 		break;
 	case SceneManager::Scene::Result://ƒŠƒUƒ‹ƒg
 		resultScene_->Draw();
@@ -227,8 +226,10 @@ void SceneManager::Blackout() {
 void SceneManager::Title(char* keys, char* oldkeys) {
 	justBefore = 2;
 	if (keys[KEY_INPUT_SPACE] == 1 && oldkeys[KEY_INPUT_SPACE] == 0) {
-		blackFlag = 1;
-		pal = 0;
+		if (blackFlag == 0) {
+			blackFlag = 1;
+			pal = 0;
+		}
 	}
 	if (blackFlag == 1) {
 		pal = pal + 5;
