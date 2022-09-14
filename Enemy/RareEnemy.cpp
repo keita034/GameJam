@@ -152,38 +152,41 @@ void RareEnemy::RareEnemyDraw(Player* player_)
 
 void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 {
+	if (!rareEnemy->GetExistenceFlag())
+	{
 	//“G‚ÆŽ©‹@
-	if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
-	{
-		player_->HPSub(1);
-		rareEnemy->Death();
-	}
-
-	if (player_->GetAttackFlag())
-	{
-		//Ž©‹@‚ÌUŒ‚‚Æ“G
-		if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
+		if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
 		{
-			if (rareEnemy->GetDamageFlag())
-			{
-				player_->AddCombo();
-				sound_->AttackHitUpdata();
-				smoke_->DamageSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
-				if (rareEnemy->GetisDie() <= 1)
-				{
-					smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
-					Score::GetInstance()->ScoreAdd(150000);
-				}
-			}
-			
-			rareEnemy->HPSub(player_->GetAttackPower());
-
+			player_->HPSub(1);
+			rareEnemy->Death();
 		}
-		else
+
+		if (player_->GetAttackFlag())
 		{
-			if (!rareEnemy->GetDamageFlag())
+			//Ž©‹@‚ÌUŒ‚‚Æ“G
+			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), rareEnemy->GetPos(), rareEnemy->GetRadius()))
 			{
-				rareEnemy->SetDamageFlag(true);
+				if (rareEnemy->GetDamageFlag())
+				{
+					player_->AddCombo();
+					sound_->AttackHitUpdata();
+					smoke_->DamageSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
+					if (rareEnemy->GetisDie() <= 1)
+					{
+						smoke_->DieSmoke(rareEnemy.get()->GetPos().x, rareEnemy.get()->GetPos().y);
+						Score::GetInstance()->ScoreAdd(150000);
+					}
+				}
+
+				rareEnemy->HPSub(player_->GetAttackPower());
+
+			}
+			else
+			{
+				if (!rareEnemy->GetDamageFlag())
+				{
+					rareEnemy->SetDamageFlag(true);
+				}
 			}
 		}
 	}

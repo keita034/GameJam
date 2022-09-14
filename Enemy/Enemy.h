@@ -74,6 +74,8 @@ public:
 	int GetisDie();
 
 	void SetDamageFlag(bool flag);
+
+	bool GetExistenceFlag();
 private:
 	//‰Œ
 	//std::list<std::unique_ptr<Smoke>>smokes_;
@@ -122,6 +124,8 @@ private:
 	int smokeTimer = 0;
 
 	int isEnemyDie = 0;
+
+	bool existenceFlag = true;
 
 };
 

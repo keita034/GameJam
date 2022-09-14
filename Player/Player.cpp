@@ -343,7 +343,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 
 			if (finalLevel && levelUpExtensionTime < 0)
 			{
-				levelUpExtensionTime += 0.1f;
+				levelUpExtensionTime += 50 * 0.1f;
 			}
 		}
 	}

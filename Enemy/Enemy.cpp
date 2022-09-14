@@ -31,7 +31,7 @@ void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_, int siroG
 	tarkingEnemyPosLength = tarkingEnemyPos - pos_;
 
 
-
+	existenceFlag = true;
 	smokeTimer = 40;
 
 	smoke_->Initialize(siroGh);
@@ -245,6 +245,7 @@ void Enemy::Update(Vec2 playerNpos)
 
 	if (hp <= 0)
 	{
+		existenceFlag = false;
 		smokeTimer--;
 		if (isEnemyDie == 0) {
 			smoke_->DieSmoke(pos_.x, pos_.y);
@@ -382,6 +383,11 @@ bool Enemy::GetDamageFlag()
 void Enemy::SetDamageFlag(bool flag)
 {
 	damageFlag = flag;
+}
+
+bool Enemy::GetExistenceFlag()
+{
+	return existenceFlag;
 }
 
 int Enemy::GetisDie() {

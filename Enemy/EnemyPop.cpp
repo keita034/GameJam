@@ -1,6 +1,7 @@
 #include "EnemyPop.h"
 
-EnemyPop::EnemyPop() {
+EnemyPop::EnemyPop()
+{
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 	sound_ = Sound::GetInstance();
 	pause_ = new Pause();
@@ -29,7 +30,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown,{ 1080.0f + 100 * i ,240.0f }, 3.0f,3, siroGh);
+			enemy->Initialize(HeightDown, { 1080.0f + 100 * i ,240.0f }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 
 		}
@@ -61,8 +62,8 @@ void EnemyPop::EnemyPopInit()
 		}
 
 		//-----------------------------------------------ÉåÉAìG
-		rareEenmy_= std::make_unique<RareEnemy>();
-		rareEenmy_.get()->RareEnemyInit({ 1280, -70 },siroGh);
+		rareEenmy_ = std::make_unique<RareEnemy>();
+		rareEenmy_.get()->RareEnemyInit({ 1280, -70 }, siroGh);
 	}
 
 	// ÇQÉEÉFÅ[Éuñ⁄(ÇVïb)
@@ -107,7 +108,7 @@ void EnemyPop::EnemyPopInit()
 	if (Poptimer == 13 * 50)
 	{
 		snakeEenmy_ = std::make_unique<SnakeEnemy>();
-		snakeEenmy_.get()->SnakeEnemyPop({ 1080.0f ,240.0f },siroGh);
+		snakeEenmy_.get()->SnakeEnemyPop({ 1080.0f ,240.0f }, siroGh);
 	}
 
 	// 4ÉEÉFÅ[Éuñ⁄(17ïb)
@@ -118,7 +119,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f,3, siroGh);
+			enemy->Initialize(DiagonallyDownR, { 180.0f + 100 * i ,540.0f - 100 * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -126,7 +127,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f,3, siroGh);
+			enemy->Initialize(DiagonallyDownL, { 2380.0f - 100 * i ,540.0f - 100 * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -134,7 +135,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f,3, siroGh);
+			enemy->Initialize(UpperR, { 180.0f + 100 * i ,540.0f + 100 * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 3; i++)
@@ -142,7 +143,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f,3, siroGh);
+			enemy->Initialize(UpperL, { 2380.0f - 100 * i ,540.0f + 100 * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		// --------------------------------îíã 
@@ -151,7 +152,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightDown, { 1055.0f + 150 * i ,440.0f }, 3.0f,3, siroGh);
+			enemy->Initialize(HeightDown, { 1055.0f + 150 * i ,440.0f }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 4; i++)
@@ -159,13 +160,13 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(HeightUp, { 1055.0f + 150 * i ,1040.0f }, 3.0f,3, siroGh);
+			enemy->Initialize(HeightUp, { 1055.0f + 150 * i ,1040.0f }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 	}
 
 	// 5ÉEÉFÅ[Éuñ⁄(23ïb)
-	if (Poptimer == 23 * 50) 
+	if (Poptimer == 23 * 50)
 	{
 		for (int i = 0; i < 5; i++)
 		{
@@ -349,7 +350,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(Center, { 220.0f ,173.0f + 173.0f*i }, 3.0f, 3, siroGh);
+			enemy->Initialize(Center, { 220.0f ,173.0f + 173.0f * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 		for (int i = 0; i < 6; i++)
@@ -357,7 +358,7 @@ void EnemyPop::EnemyPopInit()
 			std::unique_ptr<Enemy> enemy;
 			enemy = std::make_unique<Enemy>();
 
-			enemy->Initialize(Center, { 2240.0f ,173.0f + 173.0f*i }, 3.0f, 3, siroGh);
+			enemy->Initialize(Center, { 2240.0f ,173.0f + 173.0f * i }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
 
@@ -577,7 +578,7 @@ void EnemyPop::EnemyPopInit()
 	}
 
 	// 16ÉEÉFÅ[Éuñ⁄(85ïb)
-	if (Poptimer == 85 * 50) 
+	if (Poptimer == 85 * 50)
 	{
 		for (int i = 0; i < 2; i++)
 		{
@@ -668,7 +669,7 @@ void EnemyPop::EnemyPopInit()
 			enemy->Initialize(HeightDown, { 230.4f + 230.4f * i ,100.0f }, 3.0f, 3, siroGh);
 			enemys_.push_back(std::move(enemy));
 		}
-		
+
 
 		for (int i = 0; i < 10; i++)
 		{
@@ -815,17 +816,17 @@ void EnemyPop::EnemyPopInit()
 	}
 }
 
-void EnemyPop::EnemyPopUpdate(Player *player_)
+void EnemyPop::EnemyPopUpdate(Player* player_)
 {
 
 	Vec2 playerToEnemy = { 900.0f,900.0f };
 
 	enemys_.remove_if([](std::unique_ptr<Enemy>& enemy)
-	{
+		{
 			return enemy->IsDeath();
-	});
+		});
 
-	
+
 
 	player_->Attack();
 
@@ -838,7 +839,7 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 				rareEenmy_.release();
 			}
 		}
-		if (rareEenmy_!= nullptr)
+		if (rareEenmy_ != nullptr)
 		{
 			rareEenmy_.get()->RareEnemyUpdate(player_);
 		}
@@ -851,14 +852,14 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 			if (snakeEenmy_->GetDeathCount() >= 5)
 			{
 				snakeEenmy_.release();
-			
+
 			}
 			if (snakeEenmy_ != nullptr)
 			{
 				snakeEenmy_->SnakeEnemyUpdate(player_);
 			}
 		}
-		
+
 	}
 	if (Poptimer >= 90 * 50)
 	{
@@ -893,8 +894,8 @@ void EnemyPop::EnemyPopUpdate(Player *player_)
 			}
 		}
 	}
-	
-	player_->LevelUpdate(playerToEnemy,tmpEnemy);
+
+	player_->LevelUpdate(playerToEnemy, tmpEnemy);
 
 	player_->MoveLimit();
 }
@@ -933,33 +934,36 @@ void EnemyPop::CheckCollisions(Player* player_)
 {
 	for (std::unique_ptr<Enemy>& enemy : enemys_)
 	{
-
-		//ìGÇ∆é©ã@
-		if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
+		if (!enemy->GetExistenceFlag())
 		{
-			player_->HPSub(1);
-			enemy->Death();
-		}
 
-		if (player_->GetAttackFlag())
-		{
-			//é©ã@ÇÃçUåÇÇ∆ìG
-			if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), enemy->GetPos(), enemy->GetRadius()))
+			//ìGÇ∆é©ã@
+			if (!player_->GetAttackFlag() && CheckSphere2Sphere(player_->GetPos(), player_->GetRadius(), enemy->GetPos(), enemy->GetRadius()))
 			{
-				if (enemy->GetDamageFlag())
-				{
-					player_->AddCombo();
-					sound_->AttackHitUpdata();
-				}
-
-				enemy->HPSub(player_->GetAttackPower());
-
+				player_->HPSub(1);
+				enemy->Death();
 			}
-			else
+
+			if (player_->GetAttackFlag())
 			{
-				if (!enemy->GetDamageFlag())
+				//é©ã@ÇÃçUåÇÇ∆ìG
+				if (CheckSphere2Sphere(player_->GetPos(), player_->GetAttackRadius(), enemy->GetPos(), enemy->GetRadius()))
 				{
-					enemy->SetDamageFlag(true);
+					if (enemy->GetDamageFlag())
+					{
+						player_->AddCombo();
+						sound_->AttackHitUpdata();
+					}
+
+					enemy->HPSub(player_->GetAttackPower());
+
+				}
+				else
+				{
+					if (!enemy->GetDamageFlag())
+					{
+						enemy->SetDamageFlag(true);
+					}
 				}
 			}
 		}
