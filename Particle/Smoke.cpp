@@ -224,6 +224,7 @@ void Smoke::MakeEnemySmoke() {
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
 
+
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
 		y[i] = 0;
@@ -261,6 +262,10 @@ void Smoke::DamageSmoke(int SmokePosX, int SmokePosY) {
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
 
+		float angle = GetRand_(1, 359);
+		vecX[i] = cos(Radian(angle));
+		vecY[i] = sin(Radian(angle));
+
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
 		y[i] = 0;
@@ -280,7 +285,9 @@ void Smoke::DieSmoke(int SmokePosX, int SmokePosY) {
 
 		vecX[i] = 0.0f;
 		vecY[i] = 0.0f;
-
+		float angle = GetRand_(1, 359);
+		vecX[i] = cos(Radian(angle));
+		vecY[i] = sin(Radian(angle));
 		KeepVecX[i] = 0.0f;
 		KeepVecY[i] = 0.0f;
 		y[i] = 0;
