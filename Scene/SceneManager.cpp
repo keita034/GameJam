@@ -13,7 +13,7 @@ void SceneManager::Initialize() {
 	gameScene_ = new GameScene();
 	resultScene_ = new ResultScene();
 	pause_ = new Pause();
-	sound_ = new Sound();
+	sound_ = Sound::GetInstance();
 
 	//‰Šú‰»ˆ—
 	titleScene_->Initialize();

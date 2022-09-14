@@ -27,7 +27,7 @@ void Player::Initialize()
 	LoadDivGraph("Resources/player_damege.png", 5, 5, 1, 280, 320, damagePlayerImg);
 	swordImg = LoadGraph("Resources/sword.png");
 	LoadDivGraph("Resources/swordSwing3205526.png", 5, 1, 5, 526, 320, swordAnimationImg);
-	sound_ = new Sound();
+	sound_ = Sound::GetInstance();
 
 }
 

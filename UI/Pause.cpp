@@ -19,7 +19,7 @@ void Pause::Initialize() {
 	//イージング初期化
 	ease_ = new Ease();
 
-	sound_ = new Sound();
+	sound_ = Sound::GetInstance();
 
 	MaxTimer[0] = 100.0f;
 	MaxTimer[1] = 90.0f;
