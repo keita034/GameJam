@@ -568,3 +568,18 @@ bool Player::DamageFlag()
 {
 	return damageFlag;
 }
+
+bool Player::GetLevelUpExtensionFlag()
+{
+	return levelUpExtensionFlag;
+}
+
+int Player::GetLevelUpExtensionTime()
+{
+	return levelUpExtensionTime;
+}
+
+unsigned int Player::GetAttackStanceEffectColor()
+{
+	return attackStanceEffectColor;
+}

@@ -1,6 +1,8 @@
 #include "SnakeEnemy.h"
 void SnakeEnemy::SnakeEnemyPop(Vec2 pos, int siroGh)
 {
+	sound_ = Sound::GetInstance();
+	pause_ = new Pause();
 	snakeEnemy[0] = std::make_unique<Enemy>();
 	snakeEnemy[0]->Initialize(Traking, { pos.x ,pos.y }, 3.0f, 1, 0);
 	smoke_ = new Smoke();
@@ -107,7 +109,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					if (snakeEnemy[4]->GetDamageFlag())
 					{
 						smoke_->DieSmoke(snakeEnemy[4].get()->GetPos().x, snakeEnemy[4].get()->GetPos().y);
-
+						sound_->AttackHitUpdata();
 						player_->AddCombo();
 					}
 					snakeEnemy[4]->HPSub(player_->GetAttackPower());
@@ -117,7 +119,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					if (snakeEnemy[3]->GetDamageFlag())
 					{
 						smoke_->DieSmoke(snakeEnemy[3].get()->GetPos().x, snakeEnemy[3].get()->GetPos().y);
-
+						sound_->AttackHitUpdata();
 						player_->AddCombo();
 					}
 					snakeEnemy[3]->HPSub(player_->GetAttackPower());
@@ -127,6 +129,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					if (snakeEnemy[2]->GetDamageFlag())
 					{
 						smoke_->DieSmoke(snakeEnemy[2].get()->GetPos().x, snakeEnemy[2].get()->GetPos().y);
+						sound_->AttackHitUpdata();
 						player_->AddCombo();
 					}
 					snakeEnemy[2]->HPSub(player_->GetAttackPower());
@@ -136,7 +139,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					if (snakeEnemy[1]->GetDamageFlag())
 					{
 						smoke_->DieSmoke(snakeEnemy[1].get()->GetPos().x, snakeEnemy[1].get()->GetPos().y);
-
+						sound_->AttackHitUpdata();
 						player_->AddCombo();
 					}
 					snakeEnemy[1]->HPSub(player_->GetAttackPower());
@@ -146,6 +149,7 @@ void SnakeEnemy::SnakeEnemyCheckCollisions(Player* player_)
 					if (snakeEnemy[0]->GetDamageFlag())
 					{
 						smoke_->DieSmoke(snakeEnemy[0].get()->GetPos().x, snakeEnemy[0].get()->GetPos().y);
+						sound_->AttackHitUpdata();
 						player_->AddCombo();
 					}
 					snakeEnemy[0]->HPSub(player_->GetAttackPower());
