@@ -159,6 +159,13 @@ void RareEnemy::RareEnemyCheckCollisions(Player* player_)
 			rareEnemy->HPSub(player_->GetAttackPower());
 
 		}
+		else
+		{
+			if (!rareEnemy->GetDamageFlag())
+			{
+				rareEnemy->SetDamageFlag(true);
+			}
+		}
 	}
 }
 
