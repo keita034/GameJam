@@ -68,7 +68,7 @@ void Sound::gameSceneUpdate() {
 
 void Sound::SelectUpdate(int soundVolum) {
 
-	
+
 	PlaySoundMem(slsectSound, DX_PLAYTYPE_BACK, true);
 	DrawFormatString(600, 200, GetColor(0, 0, 0), "%d", soundVolum);
 }
@@ -79,28 +79,33 @@ void Sound::DecisionUpdate(int soundVolum) {
 	}
 }
 
-void Sound::levelUpdata(int level_, int soundVolum) {
+void Sound::levelUpdata(int level_) {
 	level = level_;
 
-	if (level == 2) {
-		if (CheckSoundMem(level2) == 0) {
-			PlaySoundMem(level2, DX_PLAYTYPE_BACK, true);
-		}
+	if (level == 1) {
+
+		PlaySoundMem(level1, DX_PLAYTYPE_BACK, true);
+
+	}
+	else if (level == 2) {
+
+		PlaySoundMem(level2, DX_PLAYTYPE_BACK, true);
+
 	}
 	else if (level == 3) {
-		if (CheckSoundMem(level3) == 0) {
-			PlaySoundMem(level3, DX_PLAYTYPE_BACK, true);
-		}
+
+		PlaySoundMem(level3, DX_PLAYTYPE_BACK, true);
+
 	}
 	else if (level == 4) {
-		if (CheckSoundMem(level4) == 0) {
-			PlaySoundMem(level4, DX_PLAYTYPE_BACK, true);
-		}
+
+		PlaySoundMem(level4, DX_PLAYTYPE_BACK, true);
+
 	}
 	else if (level == 5) {
-		if (CheckSoundMem(level5) == 0) {
-			PlaySoundMem(level5, DX_PLAYTYPE_BACK, true);
-		}
+
+		PlaySoundMem(level5, DX_PLAYTYPE_BACK, true);
+
 	}
 
 }

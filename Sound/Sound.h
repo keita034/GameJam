@@ -36,7 +36,7 @@ public:
 	/// <summary>
 	/// levelUpˆ—
 	/// </summary>
-	void levelUpdata(int level_,int soundVolum);
+	void levelUpdata(int level_);
 
 	/// <summary>
 	/// AttackHitˆ—

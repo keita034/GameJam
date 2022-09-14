@@ -263,6 +263,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 
 				level++;
 				playerLevelUp_->playerLevelUp(level);
+				sound_->levelUpdata(level);
 				break;
 
 			case 1:
@@ -276,6 +277,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 
 				level++;
 				playerLevelUp_->playerLevelUp(level);
+				sound_->levelUpdata(level);
 				break;
 
 			case 2:
@@ -289,6 +291,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 
 				level++;
 				playerLevelUp_->playerLevelUp(level);
+				sound_->levelUpdata(level);
 				break;
 
 			case 3:
@@ -302,6 +305,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 
 				level++;
 				playerLevelUp_->playerLevelUp(level);
+				sound_->levelUpdata(level);
 				break;
 
 			case 4:
@@ -313,6 +317,7 @@ void Player::LevelUpdate(Vec2 vec, Enemy* enemy)
 				levelUpDistance = 96;
 				attackStanceEffectColor = 0xcd3043;
 				swordMagnification = 0.60f;
+				sound_->levelUpdata(level);
 				break;
 
 			default:

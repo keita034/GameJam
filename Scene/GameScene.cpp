@@ -74,8 +74,6 @@ void GameScene::Update()
 			enemypop_.get()->EnemyPopInit();
 		}*/
 
-		player_->Update();
-
 		enemypop_.get()->EnemyPopInit();
 		enemypop_.get()->EnemyPopUpdate(player_.get());
 
