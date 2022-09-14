@@ -129,10 +129,6 @@ void Player::Update()
 		damageFlag = false;
 	}
 
-	if (hp <= 0)
-	{
-		hp = 0;
-	}
 
 	angle = atan2((pos.y - screen.y) - (pos.y + frontVec.y * 100 - screen.y), (pos.x - screen.x) - (pos.x + frontVec.x * 100 - screen.x));
 
@@ -145,6 +141,11 @@ void Player::Draw()
 	playerLevelUp_->Draw(screen);
 
 	SwordDraw();
+
+	if (hp <= 0)
+	{
+		hp = 0;
+	}
 
 	//フレームのプレイヤー
 	if (damageEffectTime <= 0)
