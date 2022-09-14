@@ -47,12 +47,10 @@ void GameScene::Initialize(){
 
 	//smoke_ = new Smoke();
 	playerFootprints_ = new PlayerFootprints();
-	playerLevelUp_ = new PlayerLevelUp();
 
 	score->Initialize(player_.get());
 
 	playerFootprints_->Initialize();
-	playerLevelUp_->Initialize();
 	
 
 }
@@ -68,11 +66,11 @@ void GameScene::Update(){
 	enemypop_.get()->EnemyPopUpdate(player_.get());
 
 	playerFootprints_->Update(player_->GetPos().x, player_->GetPos().y,player_->GetAngle());
-	
-	playerLevelUp_->Update(player_->GetPos().x, player_->GetPos().y);
 
 
 	enemypop_.get()->CheckCollisions(player_.get());
+
+
 
 	player_->ComboUpdate();
 
@@ -99,7 +97,6 @@ void GameScene::Draw(){
 	DrawFormatString(700, 160, GetColor(0, 0, 0), "%f", player_->GetScreen().y, true);
 
 	playerFootprints_->Draw(player_->GetScreen());
-	playerLevelUp_->Draw(player_->GetScreen());
 	player_->Draw();
 	
 	DrawGraph(640 - frameXRadius, 360 - frameYRadius, frameImg, true);

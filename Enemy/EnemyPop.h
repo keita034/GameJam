@@ -49,5 +49,6 @@ private:
 	Sound* sound_ = nullptr;
 	Pause* pause_ = nullptr;
 
+	Smoke* smoke_ = nullptr;
 };
 

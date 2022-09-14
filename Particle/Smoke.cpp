@@ -92,26 +92,27 @@ void Smoke::Update(float enemyPosX, float enemyPosY) {
 		}
 	}
 	for (int i = 0; i < 100; i++) {
-		if (smokeFlag[i] == 1&& dieFlag[i] == 1) {
+		if (smokeFlag[i] == 1) {
+			if (dieFlag[i] == 1) {
 
-			KeepVecX[i] += vecX[i] * 2;
-			KeepVecY[i] += vecY[i] * 1.5f;
+				KeepVecX[i] += vecX[i] * 2;
+				KeepVecY[i] += vecY[i] * 1.5f;
 
-			y[i] -= 0.8;
+				y[i] -= 0.8;
 
-			MakeEnemySmokeX[i] += KeepVecX[i];
-			MakeEnemySmokeY[i] += KeepVecY[i];
-			MakeEnemySmokeY[i] += y[i];
+				MakeEnemySmokeX[i] += KeepVecX[i];
+				MakeEnemySmokeY[i] += KeepVecY[i];
+				MakeEnemySmokeY[i] += y[i];
 
 
-		}
-		if (AllTimer < 0) {
-			smokeFlag[i] = 0;
-			dieFlag[i] = 0;
-			AllTimer = -1;
+			}
+			if (AllTimer < 0) {
+				smokeFlag[i] = 0;
+				dieFlag[i] = 0;
+				AllTimer = -1;
+			}
 		}
 	}
-
 }
 
 void Smoke::Draw(Vec2 screen) {

@@ -4,6 +4,7 @@ EnemyPop::EnemyPop() {
 	siroGh = LoadGraph("Resources/haiiroMoku.png", true);
 	sound_ = Sound::GetInstance();
 	pause_ = new Pause();
+	smoke_ = new Smoke();
 }
 
 void EnemyPop::EnemyPopInit()

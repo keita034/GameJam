@@ -5,6 +5,7 @@
 #include"Ease.h"
 #include<cmath>
 #include"Sound.h"
+#include"playerLevelUp.h"
 
 class Enemy;
 
@@ -13,6 +14,9 @@ class Player
 private:
 
 	Sound* sound_ = nullptr;
+
+	PlayerLevelUp* playerLevelUp_ = nullptr;
+
 
 	//ç¿ïW
 	Vec2 pos{};

@@ -19,7 +19,6 @@ void SceneManager::Initialize() {
 	titleScene_->Initialize();
 	gameScene_->Initialize();
 	resultScene_->Initialize();
-	//resultScene_->Initialize();
 	pause_->Initialize();
 	sound_->Initialize();
 

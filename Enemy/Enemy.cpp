@@ -36,6 +36,8 @@ void Enemy::Initialize(Pattern pattern,Vec2 pos, float speed, int hp_, int siroG
 	smoke_->Initialize(pos.x, pos.y, siroGh);
 	smokes_.push_back(std::move(smoke_));*/
 
+	smokeTimer = 40;
+
 	smoke_->Initialize(siroGh);
 	smoke_->MakeEnemySmoke();
 
@@ -250,8 +252,14 @@ void Enemy::Update(Vec2 playerNpos)
 
 	if (hp <= 0)
 	{
-		smoke_->DieSmoke(pos_.x, pos_.y);
-		isDeath_ = true;
+		smokeTimer--;
+		if (isEnemyDie == 0) {
+			smoke_->DieSmoke(pos_.x, pos_.y);
+			isEnemyDie = 1;
+		}
+		if (smokeTimer < 0) {
+			isDeath_ = true;
+		}
 		Score::GetInstance()->ScoreAdd(100);
 		Score::GetInstance()->AddEnemydestroy();
 
@@ -391,6 +399,6 @@ void Enemy::SetDamageFlag(bool flag)
 	damageFlag = flag;
 }
 
-int Enemy::GetHp() {
+int Enemy::GetisDie() {
 	return hp;
 }
