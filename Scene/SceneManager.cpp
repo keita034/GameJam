@@ -1,6 +1,8 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager() {}
+SceneManager::SceneManager() {
+	escGh = LoadGraph("Resources/MenuButton1.png");
+}
 
 SceneManager::~SceneManager() {
 
@@ -73,14 +75,15 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 				isESC = 0;
 			}
 		}
-
+		if (isESC == 0) {
+			gameScene_->Update();
+		}
 		pause_->Update();
 		vx = pause_->GetSoundVolum();
 		sound_->SetSound(vx);
 		sound_->gameSceneUpdate();
 		sound_->Updata();
 
-		gameScene_->Update();
 
 		if (gameScene_->GetFinish() == 1) {
 			pal += 5;
@@ -134,7 +137,7 @@ void SceneManager::Update(char* keys, char* oldkeys) {
 		//ここにInitializeをぶち込む
 
 		gameScene_->Initialize();
-		
+		pause_->Initialize();
 
 		if (sceenSelect == 1) {
 			pal = 0;
@@ -160,6 +163,7 @@ void SceneManager::Draw() {
 	case SceneManager::Scene::Title://タイトル
 	
 		titleScene_->Draw();
+		DrawGraph(60, 60, escGh, true);
 		pause_->Draw();
 		break;
 	case SceneManager::Scene::Tutorial://チュートリアル
@@ -167,6 +171,7 @@ void SceneManager::Draw() {
 		break;
 	case SceneManager::Scene::Stage://バトルステージ
 		gameScene_->Draw();
+		DrawGraph(60, 60, escGh, true);
 		pause_->Draw();
 
 		DrawFormatString(700, 300, GetColor(0, 0, 0), "%d", pal, true);

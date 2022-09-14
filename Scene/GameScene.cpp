@@ -52,8 +52,6 @@ void GameScene::Initialize()
 
 	enemypop_->EnemyPopInitInit();
 
-	//smoke_ = new Smoke();
-
 	score->Initialize(player_.get());
 
 	playerFootprints_->Initialize();

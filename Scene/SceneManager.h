@@ -116,5 +116,7 @@ private:
 
 	int sceenSelect = 0;
 
+	int escGh = 0;
+
 };
 
